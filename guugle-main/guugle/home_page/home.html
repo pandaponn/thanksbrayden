@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" shrink-to-fit="no">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../parallax.js-1.5.0/parallax.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>guugle</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="card.css">
+</head>
+<body data-spy="scroll" data-target="body" data-offset="490">
+    <script>
+        // Scroll Animation Function
+        $(document).ready(function() {
+            // Check if element is scrolled into view
+            function isScrolledIntoView(elem) {
+                var docViewTop = $(window).scrollTop();
+                var docViewBottom = docViewTop + $(window).height();
+
+                var elemTop = $(elem).offset().top;
+                var elemBottom = elemTop + $(elem).height();
+
+                return (((elemTop >= docViewTop) && (elemTop <= docViewBottom)) || ((elemBottom >= docViewTop) && (elemBottom <= docViewBottom)));
+            }
+            // If element is scrolled into view, fade it in
+            $(window).scroll(function() {
+                $('.animate__animated').each(function() {
+                    if (isScrolledIntoView(this) === true) {
+                        $(this).addClass('animate__fadeInLeft');
+                    }
+                });
+            });
+        });
+    </script>
+    
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
+        <a href="home.html" class="navbar-brand"><img src="" style="width: 100px; height: auto;">Phris Coskitt</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#hamburger">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="hamburger">
+            <ul class="navbar-nav ml-auto">
+                <!-- <li class="nav-item">
+                    <a href="home.html" class="nav-link">Home</a>
+                </li> -->
+                <li class="nav-item">
+                    <a href="#interviewers" class="nav-link">Interviewers</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#reviews" class="nav-link">Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <a href="profile_creation.html" class="nav-link">Join Us</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-link">Log In</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- Header -->
+    <div class="tint header">
+        <img src="img/interview6.jpg" alt="interview1" style="max-width:100%; height:auto;">
+        <!-- <h1 class="headText animate__animated">Need help with interviews?</h1> -->
+        <div class="headText">
+            <h1>Need help with interviews?</h1>
+            <button type="button" class="btn btn-outline-light" style="margin-top: 10px;">Let us help you!</button>
+            <!-- <a class="header__arrow js-header-arrow" href="#main">
+              <span></span>
+            </a> -->
+        </div>
+    </div>
+    
+    <!-- Industry Experts -->
+    <div class="container mx-auto animate__animated" id="interviewers">
+        <h2 class="animate__animated a">Meet a few of our industry experts!</h2>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="img/chris.jpg" alt="prof">
+                    <div class="card-body">
+                        <h5 class="card-title">Phris Coskitt <a href="#" style="padding-left: 5px;"><i class="fab fa-linkedin fa-md"></i></a></h5>
+                        <p class="desc">Assistant Professor of Information Systems, SMU</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                            <p class="desc-review">I am a faculty member in the School of Information Systems at Singapore Management University, where I am part of the Research Lab for Intelligent Software Engineering (RISE).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="img/xinwei.jpeg" alt="xw">
+                    <div class="card-body">
+                        <h5 class="card-title">Wong Xin Wei <a href="#" style="padding-left: 5px;"><i class="fab fa-linkedin fa-md"></i></a></h5>
+                        <p class="desc">Tech Lead, Google LLC.</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                            <p class="desc-review">I am one of the best students in the School of Information Systems, currently assisting 3 modules as a Teaching Assistant.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="img/hongseng.png" alt="hs">
+                    <div class="card-body">
+                        <h5 class="card-title">Ong Hong Seng <a href="#" style="padding-left: 5px;"><i class="fab fa-linkedin fa-md"></i></a></h5>
+                        <p class="desc">Senior Instructor of Information Systems, SMU</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half"></i>
+                        </div>
+                            <p class="desc-review">I am a faculty member in the School of Information Systems at Singapore Management University, where I teach courses related to Software Engineering!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- About Us Parallax -->
+    <div class="parallax-window tint" id="about" data-parallax="scroll"  data-image-src="img/interview2.jpg">
+        <p class="parallax-text">
+            <span style="font-size: 35px; letter-spacing: .2rem;">WHAT WE DO</span><br>
+            We have curated several professionals across a multitude of industries who have been generous enough to offer their time to help level up the interview skills of others. Through our platform,
+            you can simply arrange for either an informational or mock interview with an industry professional and begin the process of upgrading your interviewing skills for that next job on the horizon!
+        </p>
+    </div>
+        
+
+    <!-- Reviews -->
+    <!-- As inspired by https://github.com/fireship-io/stacked-card-list -->
+    <div class="container mx-auto animate__animated" id="reviews">
+        <h2 class="animate__animated a">Hear our reviews!</h2>
+        <div class="container mx-auto">
+            <section class="card-list">
+                <article class="card2">
+                  <header class="card-header">
+                    <p>Jun 24th 2020</p>
+                    <h2>Dr. Phris Coskitt is a wonderful professor, when he isn't trying to jumpscare me.</h2>
+                  </header>
+          
+                  <div class="card-author">
+                    <a class="author-avatar" href="#">
+                      <img src="img/zh.jpeg"/>
+                    </a>
+                    <svg class="half-circle" viewBox="0 0 106 57">
+                      <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+                    </svg>
+          
+                    <div class="author-name">
+                      <div class="author-name-prefix">Developer</div>
+                      Lim Zhi Hao
+                    </div>
+                  </div>
+                </article>
+          
+          
+                <article class="card2">
+                  <header class="card-header">
+                    <p>July 7th 2020</p>
+                    <h2>Xin wei helped me become the second best in SIS.</h2>
+                  </header>
+          
+                  <div class="card-author">
+                    <a class="author-avatar" href="#">
+                      <img src="img/brayden.jpeg" />
+                    </a>
+                    <svg class="half-circle" viewBox="0 0 106 57">
+                      <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+                    </svg>
+          
+                    <div class="author-name">
+                      <div class="author-name-prefix">Teacher</div>
+                      Brayden Leo
+                    </div>
+                  </div>
+                </article>
+          
+          
+                <article class="card2">
+                  <header class="card-header">
+                    <p>Aug 9th 2020</p>
+                    <h2>Thanks to Hong Seng, I now have a job!</h2>
+                  </header>
+          
+                  <div class="card-author">
+                    <a class="author-avatar" href="#">
+                      <img src="https://api.adorable.io/avatars/172/b.png" />
+                    </a>
+                    <svg class="half-circle" viewBox="0 0 106 57">
+                      <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+                    </svg>
+          
+                    <div class="author-name">
+                      <div class="author-name-prefix">Security Analyst</div>
+                      Benjamin Khong
+                    </div>
+                  </div>
+                </article>
+          
+                <article class="card2">
+                  <header class="card-header">
+                    <p>Sep 14th 2020</p>
+                    <h2>I would be homeless right now if it weren't for this platform.</h2>
+                  </header>
+          
+                  <div class="card-author">
+                    <a class="author-avatar" href="#">
+                      <img src="img/weijie.jpg" />
+                    </a>
+                    <svg class="half-circle" viewBox="0 0 106 57">
+                      <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+                    </svg>
+          
+                    <div class="author-name">
+                      <div class="author-name-prefix">Game Developer</div>
+                      Goh Wei Jie
+                    </div>
+                  </div>
+                </article>
+
+
+                <article class="card2">
+                    <header class="card-header">
+                      <p>Oct 11th 2020</p>
+                      <h2>Thanks to this platform, I was able to upgrade my interview skills and secure a job!</h2>
+                    </header>
+            
+                    <div class="card-author">
+                      <a class="author-avatar" href="#">
+                        <img src="img/ambrose.jpg" />
+                      </a>
+                      <svg class="half-circle" viewBox="0 0 106 57">
+                        <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+                      </svg>
+            
+                      <div class="author-name">
+                        <div class="author-name-prefix">Tech Consultant</div>
+                        Ambrose Wang
+                      </div>
+                    </div>
+                  </article>
+        </div>
+      </div>
+
+    <!-- Footer -->
+    <div class="text-center py-2" style="background-color: black; color: white; margin-top: 80px; font-size: small;">© 2020 Copyright: 
+        <a href="https://www.linkedin.com/in/zhi-hao-lim/" target="blank">Lim Zhi Hao</a> 
+    </div>
+</body>
+</html>
