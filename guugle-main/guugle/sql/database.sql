@@ -58,6 +58,17 @@ INSERT INTO `interviewers` (`id`, `fname`, `lname`, `job`, `company`, `years`, `
 'profile_img/chris.jpg',
 "{""timeslots"" : [""30/10/20, 4:00pm"", ""08/11/20, 9:00am"", ""11/11/20, 12:00pm""]}");
 
+INSERT INTO `interviewers` (`id`, `fname`, `lname`, `job`, `company`, `years`, `industry`, `about`,
+`email`, `experience`, `education`, `img`, `timeslots`) VALUES (2, 'Wong', 'Xin Wei','Cyber and Strategic Risk Intern', 'Deloitte', 0.5, 'Cybersecurity', 
+'I am a penultimate student at Singapore Management University, pursing a Bachelor of Science (Information System) degree majoring in software development. My experience and interest lies in the area of information technology, full stack web application development, database management and project management.', 
+'xinwei.wong.2018@smu.edu.sg', 
+"{""experience"" : [""Teaching Assistant, School of Information Systems, SMU, Aug 2020 - Present"",
+""Cyber and Strategic Risk Intern, Deloitte, Singapore, Jul 2020 - Present"",
+""Product Management Intern, Shopee, Singapore, Jan 2020 - Jul 2020""]}",
+"{""education"" : [""Bachelors of Science (Information Systems), Singapore Management University,Ongoing""]}",
+'profile_img/XW.jpeg',
+"{""timeslots"" : [""29/10/20, 1:00pm"", ""04/11/20, 11:00am"", ""07/11/20, 12:00pm"",""11/11/20, 4:00pm""]}");
+
 -- --------------------------------------------------------
 
 DROP TABLE IF EXISTS `users`;
