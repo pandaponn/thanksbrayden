@@ -132,47 +132,78 @@ class UserDAO {
         return $isOk;
     }
 
-
-//     // Pull User Info
-    // Takes $id and returns info 
-    #returns null if there is nothing to retrieve
-    #Retrieve / get
-    public function getUser($id) {
+    public function getUsers($id) {
         $conn = new ConnectionManager();
         $pdo = $conn->getConnection();
-
-        $sql = "SELECT * FROM users WHERE id = :id";
+        
+        $sql = "SELECT * FROM `users` where id = :id";
 
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_STR);
-
-        $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
 
-        $post_object = null;
-        if( $row = $stmt->fetch() ) {
-            $post_object = 
-                new Users(
-                    $row['id'],
-                    $row['dname'],
-                    $row['fname'],
-                    $row['lname'],
-                    $row['email'],
-                    $row['photoURL'],
-                    $row['job'],
-                    $row['company'],
-                    $row['industry'],
-                    $row['specialization']
-                );
-        
+        $result = [];
+        while($row = $stmt->fetch()){
+            $result[] = new user(
+            $row["id"],
+            $row["dname"], 
+            $row["fname"],
+            $row["lname"],
+            $row["email"], 
+            $row["photoURL"],
+            $row["job"], 
+            $row["company"], 
+            $row["industry"], 
+            $row["specialization"]
+            );
         }
+
         $stmt = null;
         $pdo = null;
 
-        return $post_object;
-
-
+        return $result;
     }
+
+
+//     // Pull User Info
+//     // Takes $id and returns info 
+//     #returns null if there is nothing to retrieve
+//     #Retrieve / get
+//     public function getUser($id) {
+//         $sql = "SELECT
+//                     *
+//                 FROM users
+//                 WHERE 
+//                     id = :id";
+
+//         $conn = new ConnectionManager();
+//         $pdo = $conn->getConnection();
+
+//         $stmt = $pdo->prepare($sql);
+//         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+//         $stmt->execute();
+//         $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+//         $post_object = null;
+//         if( $row = $stmt->fetch() ) {
+//             $post_object = 
+//                 new Users(
+//                     $row['id'],
+//                     $row['dname'],
+//                     $row['email'],
+//                     $row['photoURL'],
+//                 );
+        
+//         }
+//         $stmt = null;
+//         $pdo = null;
+
+//         return $post_object;
+
+
+//     }
 }   
 
 ?>
