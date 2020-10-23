@@ -1,43 +1,6 @@
 <?php
     class InterviewDAO{
 
-        // public function createPost($title, $username) {
-        //     $conn = new ConnectionManager();
-        //     $pdo = $conn->getConnection();
-
-        //     $sql = "INSERT INTO `post` (`title`, `username`, `likes`) VALUES (:title, :username, 0)";
-
-        //     $stmt = $pdo->prepare($sql);
-        //     $stmt->bindParam(':title', $title, PDO::PARAM_STR);
-        //     $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-
-        //     $isOk = $stmt->execute();
-
-        //     $lastID = $pdo->lastInsertId();
-        
-        //     $stmt = null;
-        //     $pdo = null;
-        
-        //     return $lastID;
-        // }
-
-        // public function addLike($id) {
-        //     $conn = new ConnectionManager();
-        //     $pdo = $conn->getConnection();
-
-        //     $sql = "UPDATE `post` SET `likes` = `likes` + 1 WHERE `id` = :id";
-
-        //     $stmt = $pdo->prepare($sql);
-        //     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-
-        //     $isOk = $stmt->execute();
-
-        //     $stmt = null;
-        //     $pdo = null;
-
-        //     return $isOk;
-        // }
-
         public function getInterviewers($limit) {
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
@@ -78,6 +41,8 @@
             $pdo = null;
             return $isOk;
         }
+
+
         
         public function deleteBooking($user_id, $interviewer_id, $timeslots){
             $conn = new ConnectionManager();
@@ -96,6 +61,8 @@
             return $isOk;
         }
 
+
+        
         public function getBookings(){
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();

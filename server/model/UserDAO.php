@@ -134,43 +134,45 @@ class UserDAO {
 
 
 //     // Pull User Info
-//     // Takes $id and returns info 
-//     #returns null if there is nothing to retrieve
-//     #Retrieve / get
-//     public function getUser($id) {
-//         $sql = "SELECT
-//                     *
-//                 FROM users
-//                 WHERE 
-//                     id = :id";
+    // Takes $id and returns info 
+    #returns null if there is nothing to retrieve
+    #Retrieve / get
+    public function getUser($id) {
+        $conn = new ConnectionManager();
+        $pdo = $conn->getConnection();
 
-//         $conn = new ConnectionManager();
-//         $pdo = $conn->getConnection();
+        $sql = "SELECT * FROM users WHERE id = :id";
 
-//         $stmt = $pdo->prepare($sql);
-//         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_STR);
 
-//         $stmt->execute();
-//         $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-//         $post_object = null;
-//         if( $row = $stmt->fetch() ) {
-//             $post_object = 
-//                 new Users(
-//                     $row['id'],
-//                     $row['dname'],
-//                     $row['email'],
-//                     $row['photoURL'],
-//                 );
+        $post_object = null;
+        if( $row = $stmt->fetch() ) {
+            $post_object = 
+                new Users(
+                    $row['id'],
+                    $row['dname'],
+                    $row['fname'],
+                    $row['lname'],
+                    $row['email'],
+                    $row['photoURL'],
+                    $row['job'],
+                    $row['company'],
+                    $row['industry'],
+                    $row['specialization']
+                );
         
-//         }
-//         $stmt = null;
-//         $pdo = null;
+        }
+        $stmt = null;
+        $pdo = null;
 
-//         return $post_object;
+        return $post_object;
 
 
-//     }
+    }
 }   
 
 ?>
