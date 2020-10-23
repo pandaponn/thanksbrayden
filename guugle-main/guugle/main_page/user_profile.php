@@ -44,13 +44,13 @@ const id = '<?php echo $_SESSION["id"]?>';
                     <a href="main.php" class="nav-link">Main</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Calendar</a>
-                </li>
-                <li class="nav-item">
                     <a href="profile.php" class="nav-link">Professionals</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Profile</a>
+                    <a href="user_profile.php" class="nav-link">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../../server/helper/logout.php" class="nav-link">Log Out</a>  
                 </li>
             </ul>
         </div>
@@ -105,6 +105,26 @@ const id = '<?php echo $_SESSION["id"]?>';
             request.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status==200){
                     console.log(JSON.parse(this.responseText).users);
+                    let data = JSON.parse(this.responseText).users;
+                    
+                    let user_img = document.getElementById('user_img');
+                    let fname = document.getElementById('fname');
+                    let lname = document.getElementById('lname');
+                    let job = document.getElementById('job');
+                    let company = document.getElementById('company');
+                    let email = document.getElementById('email');
+                    let industry = document.getElementById('industry');
+                    let specialization = document.getElementById('specialization');
+
+                    user_img.setAttribute("src", data.photoURL);
+                    fname.innerHTML = data.fname;
+                    lname.innerHTML = data.lname;
+                    job.innerHTML = data.job;
+                    company.innerHTML = data.company;
+                    email.innerHTML = data.email;
+                    industry.innerHTML = data.industry;
+                    specialization.innerHTML = data.specialization;
+
                 }
             }
         request.open("GET", "../../../server/helper/getUser.php", true);

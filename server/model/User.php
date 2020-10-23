@@ -15,8 +15,8 @@ class Users {
     public function __construct($id, $dname, $fname, $lname, $email, $photoURL, $job, $company, $industry, $specialization) {
         $this->id = $id;
         $this->dname = $dname;
-        $this->$fname = $fname;
-        $this->$lname = $lname;
+        $this->fname = $fname;
+        $this->lname = $lname;
         $this->email = $email;
         $this->photoURL = $photoURL;
         $this->job = $job;

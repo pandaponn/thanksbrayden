@@ -44,7 +44,7 @@ const id = '<?php echo $_SESSION["id"]?>';
             <a href="profile.php" class="nav-link">Professionals</a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">Profile</a>
+            <a href="user_profile.php" class="nav-link">Profile</a>
         </li>
         <!-- Log Out fxn but does not work-->
         <li class="nav-item">

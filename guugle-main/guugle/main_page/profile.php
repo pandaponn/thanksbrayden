@@ -47,14 +47,13 @@ const id = '<?php echo $_SESSION["id"]?>';
                     <a href="main.php" class="nav-link">Main</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Calendar</a>
-                </li>
-                <li class="nav-item">
-                    <!-- changed to profile.php --> 
                     <a href="profile.php" class="nav-link">Professionals</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Profile</a>
+                    <a href="user_profile.php" class="nav-link">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../../server/helper/logout.php" class="nav-link">Log Out</a>  
                 </li>
             </ul>
         </div>
