@@ -3,7 +3,7 @@
     require_once "common.php";
     $dao = new InterviewDAO();
 
-    $result = $dao->createBooking($_SESSION["id"], 1, $_POST['radio_timeslot']);
+    $result = $dao->createBooking($_SESSION["id"], $_POST['interviewer_id'], $_POST['radio_timeslot']);
 
     header("Location: ../../guugle-main/guugle/main_page/profile.php");
 

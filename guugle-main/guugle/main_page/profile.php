@@ -59,15 +59,6 @@ const id = '<?php echo $_SESSION["id"]?>';
         </div>
     </nav>
 
-    <!-- <div class="container">
-        <div class="header-img">
-            <img src="profile_img/ferrari1.jpg" alt="ferrari_bg" style="width: 100%; height: auto;">
-            <div class="circle">
-                <img src="profile_img/zh.jpeg" alt="avatar" class="image">
-            </div>
-        </div>
-    </div> -->
-
     <div class="box container-fluid">
         <div class="profile">
             <img src="" style="height: 150px; width: 150px;" id="user_img">
@@ -117,6 +108,7 @@ const id = '<?php echo $_SESSION["id"]?>';
                         </div> -->
                         </div>
                     </div>
+                    <input type="hidden" name="interviewer_id" id="interviewer_id">
                     <div class="modal-footer">
                         <div class="mx-auto">
                             <button type="submit" class="btn btn-dark" id="info_submit">Informational Interview</button>
@@ -208,7 +200,9 @@ const id = '<?php echo $_SESSION["id"]?>';
                     let email = document.getElementById('email');
                     let experience = document.getElementById('experience');
                     let education = document.getElementById('education');
+                    let interviewer_id = document.getElementById('interviewer_id');
                     
+                    interviewer_id.value = data[0].id;
                     user_img.setAttribute("src", data[0].img);
                     fname.innerHTML = data[0].fname;
                     lname.innerHTML = data[0].lname;
