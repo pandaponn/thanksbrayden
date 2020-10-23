@@ -17,8 +17,6 @@ if ($dao->checkCompletion($_SESSION["id"])){
     exit();
 }
 
-$fname = $dao->getName($_SESSION["id"]);
-
 ?>
 
 <script type='text/javascript'>
@@ -96,10 +94,10 @@ const id = '<?php echo $_SESSION["id"]?>';
         <h2 class="b">Profile Creation</h2>
 
         <div class="circle">
-            <img src="img/avatar.png" alt="avatar" class="image">
+            <img src="img/avatar.png" alt="avatar" class="image" id="user_img">
         </div>
         
-        <h2 class="b">Hey <span id="fname"><?php echo "$fname" ?></span>, <br> just going to need a few more details from you!</h2>
+        <h2 class="b">Hey <span id="fname"></span>, <br> just going to need a few more details from you!</h2>
 
         <form style="margin-top: 30px;" action="../../../server/helper/addUser.php" method="POST" class="form" enctype="multipart/form-data">
         <!--"-->
@@ -278,6 +276,23 @@ const id = '<?php echo $_SESSION["id"]?>';
             //         </div>
             //     `;
             // })
+
+            const request = new XMLHttpRequest;
+            request.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status==200){
+                    console.log(JSON.parse(this.responseText).users);
+                    let data = JSON.parse(this.responseText).users;
+                    
+                    let user_img = document.getElementById('user_img');
+                    let fname = document.getElementById('fname');
+
+                    user_img.setAttribute("src", data.photoURL);
+                    fname.innerHTML = data.fname;
+
+                }
+            }
+        request.open("GET", "../../../server/helper/getUser.php", true);
+        request.send();
         })
         
     </script>
