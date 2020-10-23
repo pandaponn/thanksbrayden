@@ -1,0 +1,29 @@
+html {
+    height: 100%
+}
+
+body {
+    background-image: url("img/singapore.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login_box {
+    width: 40%;
+    margin: 300px auto 120px;
+    background-color: rgba(0, 0, 0, 0.678);
+    padding: 0 20px 80px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    text-align: center;
+    position: relative;
+}
+
+.btn {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+}
+
