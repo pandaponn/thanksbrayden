@@ -44,7 +44,7 @@ const id = '<?php echo $_SESSION["id"]?>';
             <a href="profile.php" class="nav-link">Professionals</a>
         </li>
         <li class="nav-item">
-            <a href="user_profile.php" class="nav-link">Profile</a>
+            <a href="#" class="nav-link">Profile</a>
         </li>
         <!-- Log Out fxn but does not work-->
         <li class="nav-item">
@@ -119,20 +119,17 @@ const id = '<?php echo $_SESSION["id"]?>';
         <div class="wrapper mb-5">
           <div class="search_box">
             <div class="dropdown">
-                <div class="default_option">All</div>  
+                <div class="default_option">Name</div>  
                 <ul>
-                  <li id='name'>Name</li>
-                  <li id='industry'>Industry</li>
+                  <li>Name</li>
+                  <li>Industry</li>
                 </ul>
             </div>
             <form>
               <div class='search_field form-check-inline'>
-                <input list="interviewer" type='text' class='form-control' placeholder="Search for Interviewer" >
-                <datalist id="interviewer">
-                  <option value="Abaddon">
-                </datalist>
+                <input id="searchItem" type='text' class='mt-2 form-control' placeholder="Search for Interviewer" >
     
-                <button class='btn btn-primary ml-1' type="submit"><i class="fa fa-search"></i></button>
+                <button id='doSearch' class='btn btn-primary ml-1 mt-2' type='button'><i class="fa fa-search"></i></button>
               </div>
             </form>
           </div>
@@ -146,6 +143,13 @@ const id = '<?php echo $_SESSION["id"]?>';
     <br>
     <br>
     <br>
+    <br>
+    <br>
+    
+    <div id='results' class='card-columns'>
+    </div>
+
+
     <footer class="my-5 pt-5 text-muted text-center text-small">
       <p class="mb-1">&copy; 2020 Guugle</p>
       <ul class="list-inline">
@@ -155,6 +159,174 @@ const id = '<?php echo $_SESSION["id"]?>';
       </ul>
     </footer>
   </div>
-  <script src='main.js'></script>
+  
+  <script>
+    var search_category = 'name';
+    $(".default_option").click(function(){
+      $(".dropdown ul").addClass("active");
+    });
+
+    $(".dropdown ul li").click(function(){
+      var text = $(this).text();
+      $(".default_option").text(text);
+      $(".dropdown ul").removeClass("active");
+      if (text == 'Industry'){
+        search_category = 'industry';
+        document.getElementById('searchItem').placeholder = 'Search by Industry';
+      }else{
+        search_category = 'name';
+        document.getElementById('searchItem').placeholder = 'Search for Interviewer';
+      }
+    });
+    var interviewers = {};
+    function getInterviewers(){
+    const request = new XMLHttpRequest();
+    request.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status==200){
+            let data = JSON.parse(this.responseText).interviewers;
+            interviewers = data;
+            console.log(interviewers);
+        }
+    }
+    request.open("GET", "http://localhost/is216/thanksbrayden-main/server/helper/getInterviewers.php", true);
+    request.send();
+  }
+function doSearch(){
+  document.getElementById('results').innerHTML = '';
+  const search = document.getElementById('searchItem').value.toLowerCase();
+  console.log(search)
+  if (search ==''){
+    alert('Please enter a valid name/industry')
+  };
+  if (search_category == 'name'){
+    for (interviewer of interviewers){
+      var fname = interviewer['fname'].toLowerCase();
+      var lname = interviewer['lname'].toLowerCase();
+      if (fname.includes(search) || lname.includes(search)){
+
+        var name = interviewer['fname'] + ' ' + interviewer['lname'];
+        var img = interviewer['img'];
+        var company = interviewer['company'];
+        var about = interviewer['about'];
+        var id = interviewer['id'];
+
+        const card = document.createElement('div');
+        const image = document.createElement('img');
+        const cardBody = document.createElement('div');
+        const cardTitle = document.createElement('h5');
+        const cardTop = document.createElement('p');
+        const cardBottom = document.createElement('p');
+        const cardButton = document.createElement('button');
+
+        card.className = 'card';
+
+        image.className = 'card-img-top';
+        image.src = img;
+
+        cardBody.className = 'card-body';
+
+        cardTitle.className = 'card-title';
+        cardTitle.appendChild(document.createTextNode(name));
+
+        cardTop.className = 'card-text font-weight-bold';
+
+        cardTop.appendChild(document.createTextNode(company));
+
+        cardBottom.className = 'card-text text-muted font-italic';
+        cardBottom.appendChild(document.createTextNode(about));
+
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'profile.php';
+
+        var valueAttri = document.createAttribute('value');
+        valueAttri.value = id;
+        cardButton.className = 'btn btn-primary';
+        cardButton.name = 'interviewer_id';
+        cardButton.type = 'submit';
+        cardButton.setAttributeNode(valueAttri);
+        cardButton.appendChild(document.createTextNode('Book Now!'));
+
+        form.appendChild(cardButton);
+
+        cardBody.appendChild(cardTitle);
+        cardBody.appendChild(cardTop);
+        cardBody.appendChild(cardBottom);
+        cardBody.appendChild(form);
+
+        card.appendChild(image);
+        card.appendChild(cardBody);
+
+        document.getElementById('results').appendChild(card);
+      };
+    };
+  }
+    else if (search_category == 'industry'){
+      for (interviewer of interviewers){
+        var industry = interviewer['industry'].toLowerCase();
+        if (industry.includes(search)){
+          var name = interviewer['fname'] + ' ' + interviewer['lname'];
+          var img = interviewer['img'];
+          var company = interviewer['company'];
+          var about = interviewer['about'];
+          var id = interviewer['id'];
+  
+          const card = document.createElement('div');
+          const image = document.createElement('img');
+          const cardBody = document.createElement('div');
+          const cardTitle = document.createElement('h5');
+          const cardTop = document.createElement('p');
+          const cardBottom = document.createElement('p');
+          const cardButton = document.createElement('button');
+  
+          card.className = 'card';
+  
+          image.className = 'card-img-top';
+          image.src = img;
+  
+          cardBody.className = 'card-body';
+  
+          cardTitle.className = 'card-title';
+          cardTitle.appendChild(document.createTextNode(name));
+  
+          cardTop.className = 'card-text font-weight-bold';
+  
+          cardTop.appendChild(document.createTextNode(company));
+  
+          cardBottom.className = 'card-text text-muted font-italic';
+          cardBottom.appendChild(document.createTextNode(about));
+  
+          var form = document.createElement('form');
+          form.method = 'POST';
+          form.action = 'profile.php';
+
+          var valueAttri = document.createAttribute('value');
+          valueAttri.value = id;
+          cardButton.className = 'btn btn-primary';
+          cardButton.name = 'interviewer_id';
+          cardButton.type = 'submit';
+          cardButton.setAttributeNode(valueAttri);
+          cardButton.appendChild(document.createTextNode('Book Now!'));
+
+          form.appendChild(cardButton);
+
+          cardBody.appendChild(cardTitle);
+          cardBody.appendChild(cardTop);
+          cardBody.appendChild(cardBottom);
+          cardBody.appendChild(form);
+
+  
+          card.appendChild(image);
+          card.appendChild(cardBody);
+  
+          document.getElementById('results').appendChild(card);
+        };
+      };
+    };
+  };
+    document.getElementById('doSearch').addEventListener('click', doSearch);
+    getInterviewers();
+  </script>
 </body>
 </html>
+
