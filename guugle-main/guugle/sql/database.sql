@@ -69,6 +69,102 @@ INSERT INTO `interviewers` (`id`, `fname`, `lname`, `job`, `company`, `years`, `
 'profile_img/XW.jpeg',
 "{""timeslots"" : [""29/10/20, 1:00pm"", ""04/11/20, 11:00am"", ""07/11/20, 12:00pm"",""11/11/20, 4:00pm""]}");
 
+INSERT INTO interviewers (id, fname, lname, job, company, years, industry, about,
+email, experience, education, img, timeslots) VALUES 
+(3, 'Ong', 'Hong Seng','Senior Instructor of Information Systems', 'SMU', 13, 'Information Technology', 
+'I am a Senior Instructor of Information Systems. I have been in the field of Information Technology for 20 years.', 
+'hsong@smu.edu.sg', 
+"{""experience"" : [""Senior Instructor, School of Information Systems, SMU, Aug 2007 - Present"",
+""IT Consultant, Thoughts Interactive Pte Ltd, Singapore, Jan 2003 - Jul 2013"",
+""Senior Software Engineer, Techbubble Alliance, Singapore, Aug 2000 - Dec 2002""]}",
+"{""education"" : [""Bachelors of Science (Computer Science), National University of Singapore, 1999""]}",
+'profile_img/hsong.jpg',
+"{""timeslots"" : [""01/11/20, 12:00pm"", ""03/11/20, 12:00pm"", ""05/11/20, 12:00pm""]}");
+
+INSERT INTO interviewers (id, fname, lname, job, company, years, industry, about,
+email, experience, education, img, timeslots) VALUES 
+(4, 'Vera', 'Chua','Senior Manager (Operations)', 'Keppel', 6, 'Operations Management', 
+'I am a level 2 manager at the operations department of Keppel Corp, where I am currently in the Future Initiatives for Business Ops program (FIBO)', 
+'vchua@keppel.sg', 
+"{""experience"" : [""Senior Operations Manager, Keppel Corporation, Singapore, Aug 2014 - Present"",
+""Business Development Manager, AIA, Singapore, Jan 2010 - Jul 2014"",
+""Business Strategy Intern, OCBC, Singapore, Jan 2009 - May 2010""]}",
+"{""education"" : [""Bachelors of Arts (Business Administration), National University of Singapore, 2010""]}",
+'profile_img/vera.jpg',
+"{""timeslots"" : [""10/11/20, 10:00am"", ""11/11/20, 9:00am"", ""12/11/20, 11:00am"", ""13/11/20, 11:30am""]}");
+
+INSERT INTO interviewers (id, fname, lname, job, company, years, industry, about,
+email, experience, education, img, timeslots) VALUES 
+(5, 'Danielle', 'Mann','Marketing Executive', 'TrueSight', 3.5, 'Marketing', 
+'I head the marketing department at TrueSight, and I help my clients with firm branding.', 
+'Dmann@Truesight.com', 
+"{""experience"" : [""Marketing Executive, Truesight Consulting, Zurich, Mar 2017 - Present"",
+""Senior Marketing Manager, Prudential, Singapore, Jan 2014 - Feb 2017"",
+""Marketing Intern, DBS, Singapore, Jan 2013 - Jul 2013""]}",
+"{""education"" : [""Bachelors of Arts (Psychology), National University of Singapore, 2012""]}",
+'profile_img/danielle.jpg',
+"{""timeslots"" : [""04/11/20, 9:00am"", ""07/11/20, 9:00am"", ""09/11/20, 11:00am"", ""13/11/20, 11:00am""]}");
+
+INSERT INTO interviewers (id, fname, lname, job, company, years, industry, about,
+email, experience, education, img, timeslots) VALUES 
+(6, 'Sohan', 'Bahvyat','Audit Accountant', 'Ernst and Young', 5, 'Accounting', 
+'Hello! I am a senior acountant at Ernst and Young. I am a middle manager for our tax audit department in Singapore.', 
+'SohanB@ey.com.sg', 
+"{""experience"" : [""Audit Accountant, Ernst and Young, Singapore, Aug 2015 - Present"",
+""Junior Accountant, Ernst and Young, Singapore, Jan 2013 - Aug 2015"",
+""Intern, Ernst and Young, Singapore, Jan 2012 - Jul 2012""]}",
+"{""education"" : [""Bachelors of Arts (Accountancy), Nanyang Technological University, 2012""]}",
+'profile_img/sohan.jpeg',
+"{""timeslots"" : [""12/11/20, 8:00am"", ""14/11/20, 10:00am""]}");
+
+INSERT INTO interviewers (id, fname, lname, job, company, years, industry, about,
+email, experience, education, img, timeslots) VALUES 
+(7, 'Nurul', 'Tanya','Communications Executive', 'Mckinsey and Co', 2, 'Communications', 
+'Hi! I am Tanya, a communications specialist at Mckinsey. I help organisations optimise their image and relations.', 
+'NTanya@Mckinsey.com', 
+"{""experience"" : [""Communications Executive, Mckinsey and Co, New York, Aug 2018 - Present"",
+""Management Consultant, Bain and Co., Massachusetts, Jun 2013 - Aug 2018""]}",
+"{""education"" : [""Bachelors of Arts (Business Management), Harvard Business School, 2013""]}",
+'profile_img/tanya.jpeg',
+"{""timeslots"" : [""15/11/20, 12:00pm"", ""17/11/20, 12:00pm"", ""19/11/20, 1:30pm""]}");
+
+INSERT INTO interviewers (id, fname, lname, job, company, years, industry, about,
+email, experience, education, img, timeslots) VALUES 
+(8, 'George', 'Servio','Vice Chairman', 'Royal Dutch Shell', 3, 'Strategic Management', 
+'I have been in the RDS board of directors for 8 years, and aim to bring our energy industry into the future.', 
+'georgeservio@shell.com', 
+"{""experience"" : [""Vice Chairman, Royal Dutch Shell, London, Sep 2017 - Present"",
+""Strategy Director, Royal Dutch Shell, London, Aug 2013 - Sep 2018"",
+""Regional Manager, Royal Dutch Shell, Hamburg, Jan 2009 - Aug 2013""]}",
+"{""education"" : [""Masters in Business Administration, Oxford Said Business School, 2009"",
+""Bachelors of Arts (Business Management), TU Munich, 2007""]}",
+'profile_img/george.jpeg',
+"{""timeslots"" : [""10/11/20, 2:00pm"", ""11/11/20, 2:00pm"", ""13/11/20, 2:00pm"", ""15/11/20, 2:00pm""]}");
+
+INSERT INTO interviewers (id, fname, lname, job, company, years, industry, about,
+email, experience, education, img, timeslots) VALUES 
+(9, 'Phris The Third', 'of the House Coskitt','Emperor', 'The Entire World', 50, 'Law', 
+'Bow, you peasants.', 
+'kingphris@anywhere.com', 
+"{""experience"" : [""Emperor, The World, Earth, Jan 1970 - Present""]}",
+"{""education"" : [""Nil""]}",
+'profile_img/emperorchris.jpg',
+"{""timeslots"" : [""11/11/20, 2:00pm""]}");
+
+INSERT INTO interviewers (id, fname, lname, job, company, years, industry, about,
+email, experience, education, img, timeslots) VALUES 
+(10, 'Barack', 'Obama','President', 'United States of America', 12, 'Politics', 
+'Twenty-second Amendment? Donald Trump? Never of them.', 
+'obama@whitehouse.gov', 
+"{""experience"" : [""President, United States, Washington DC, Jan 2009 - Present"",
+""Congressman, United States, Illinos, Aug 2004 - Jul 2008"",
+""Lawyer, Freelance, Illinos, Jan 1997 - Aug 2004""]}",
+"{""education"" : [""Masters in Law, Harvard University, 1997"",
+""Bachelors of Laws, University of Illinos, 1995""]}",
+'profile_img/obama.jpg',
+"{""timeslots"" : [""03/11/20, 1:00pm"", ""04/11/20, 3:00pm"", ""06/11/20, 3:00pm"", ""10/11/20, 3:00pm""]}");
+
+
 -- --------------------------------------------------------
 
 DROP TABLE IF EXISTS `users`;
