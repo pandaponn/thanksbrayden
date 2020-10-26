@@ -5,7 +5,6 @@ if (!isset($_SESSION["id"]) || !isset($_SESSION["login"])  ){
   header("Location: ../home_page/login.html");
   exit();
 }
-
 ?>
 
 <script type='text/javascript'>
@@ -181,66 +180,76 @@ const id = '<?php echo $_SESSION["id"]?>';
         
 
     </div>
-
+    <?php 
+    $interviewer_id = $_POST['interviewer_id'];
+    ?>
     <script type="text/javascript">
+        var interviewer_id = "<?php echo $interviewer_id ?>"
+        console.log(interviewer_id);
+        var interviewers = {}
         function getInterviewers(){
             const request = new XMLHttpRequest;
             request.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status==200){
                     let data = JSON.parse(this.responseText).interviewers;
-                    console.log(data);
+                    interviewers = data;
+                    console.log(interviewers);
 
                     // Interviewer's Info
-                    let user_img = document.getElementById('user_img');
-                    let fname = document.getElementById('fname');
-                    let lname = document.getElementById('lname');
-                    let job = document.getElementById('job');
-                    let company = document.getElementById('company');
-                    let about = document.getElementById('about');
-                    let email = document.getElementById('email');
-                    let experience = document.getElementById('experience');
-                    let education = document.getElementById('education');
-                    let interviewer_id = document.getElementById('interviewer_id');
-                    
-                    interviewer_id.value = data[0].id;
-                    user_img.setAttribute("src", data[0].img);
-                    fname.innerHTML = data[0].fname;
-                    lname.innerHTML = data[0].lname;
-                    job.innerHTML = data[0].job;
-                    company.innerHTML = data[0].company;
-                    about.innerHTML = data[0].about;
-                    email.innerHTML = data[0].email;
+                    for (interviewer of interviewers){
+                        if (interviewer['id'] == interviewer_id){
+                            let user_img = document.getElementById('user_img');
+                            let fname = document.getElementById('fname');
+                            let lname = document.getElementById('lname');
+                            let job = document.getElementById('job');
+                            let company = document.getElementById('company');
+                            let about = document.getElementById('about');
+                            let email = document.getElementById('email');
+                            let experience = document.getElementById('experience');
+                            let education = document.getElementById('education');
+                            let interviewer_id = document.getElementById('interviewer_id');
+                            
+                            interviewer_id.value = interviewer.id;
+                            user_img.setAttribute("src", interviewer.img);
+                            fname.innerHTML = interviewer.fname;
+                            lname.innerHTML = interviewer.lname;
+                            job.innerHTML = interviewer.job;
+                            company.innerHTML = interviewer.company;
+                            about.innerHTML = interviewer.about;
+                            email.innerHTML = interviewer.email;
 
-                    let expArray = JSON.parse(data[0].experience).experience;
-                    for (exp of expArray){
-                        experience.innerHTML += `
-                        <li>
-                            ${exp}
-                        </li> 
-                    `;
-                    }
+                            let expArray = JSON.parse(interviewer.experience).experience;
+                            for (exp of expArray){
+                                experience.innerHTML += `
+                                <li>
+                                    ${exp}
+                                </li> 
+                            `;
+                            }
 
-                    let eduArray = JSON.parse(data[0].education).education;
-                    for (edu of eduArray){
-                        education.innerHTML += `
-                        <li>
-                            ${edu}
-                        </li> 
-                    `;
-                    }
+                            let eduArray = JSON.parse(interviewer.education).education;
+                            for (edu of eduArray){
+                                education.innerHTML += `
+                                <li>
+                                    ${edu}
+                                </li> 
+                            `;
+                            }
 
-                    // Booking
-                    let bookings = document.getElementById('booking_form');
-                    let timeslots = JSON.parse(data[0].timeslots).timeslots;
+                            // Booking
+                            let bookings = document.getElementById('booking_form');
+                            let timeslots = JSON.parse(interviewer.timeslots).timeslots;
 
-                    // Need to add unique name & id for these, preferably using interviewer's id
-                    for(timeslot of timeslots){
-                        bookings.innerHTML += `
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radio_timeslot" id="${data[0].id}" value="${timeslot}">
-                            ${timeslot}
-                        </div>
-                        `;
+                            // Need to add unique name & id for these, preferably using interviewer's id
+                            for(timeslot of timeslots){
+                                bookings.innerHTML += `
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="radio_timeslot" id="${interviewer.id}" value="${timeslot}">
+                                    ${timeslot}
+                                </div>
+                                `;
+                            }
+                        }
                     }
                 }
             }
@@ -267,5 +276,8 @@ const id = '<?php echo $_SESSION["id"]?>';
 
 </body>
 </html>
+
+
+
 
 
