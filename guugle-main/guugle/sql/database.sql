@@ -177,6 +177,7 @@ CREATE TABLE IF NOT EXISTS `interviews` (
   `user_id` varchar(50) NOT NULL,
   `interviewer_id` int(11) NOT NULL,
   `timeslots` varchar(50) NOT NULL,
+  `interview_type` varchar(50) NOT NULL,
   PRIMARY KEY (`user_id`, `interviewer_id`, `timeslots`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 

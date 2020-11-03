@@ -110,8 +110,8 @@ const id = '<?php echo $_SESSION["id"]?>';
                     <input type="hidden" name="interviewer_id" id="interviewer_id">
                     <div class="modal-footer">
                         <div class="mx-auto">
-                            <button type="submit" class="btn btn-dark" id="info_submit">Informational Interview</button>
-                            <button type="button" class="btn btn-dark" data-dismiss="modal" id="mock_submit">Mock Interview</button>
+                            <button type="submit" class="btn btn-dark" id="info_submit" name="info">Informational Interview</button>
+                            <button type="submit" class="btn btn-dark" id="mock_submit" name="mock">Mock Interview</button>
                         </div>
                     </div>
                 </form>

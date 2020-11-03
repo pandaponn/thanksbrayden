@@ -64,16 +64,17 @@
         }
 
 
-        public function createBooking($user_id, $interviewer_id, $timeslots){
+        public function createBooking($user_id, $interviewer_id, $timeslots, $interview_type){
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
 
-            $sql = "INSERT INTO `interviews` (`user_id`, `interviewer_id`, `timeslots`) VALUES (:user_id, :interviewer_id, :timeslots)";
+            $sql = "INSERT INTO `interviews` (`user_id`, `interviewer_id`, `timeslots`, `interview_type`) VALUES (:user_id, :interviewer_id, :timeslots, :interview_type)";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':user_id', $user_id, PDO::PARAM_STR);
             $stmt->bindParam(':interviewer_id', $interviewer_id, PDO::PARAM_INT);
             $stmt->bindParam(':timeslots', $timeslots, PDO::PARAM_STR);
+            $stmt->bindParam(':interview_type', $interview_type, PDO::PARAM_STR);
 
             $isOk = $stmt->execute();
             $stmt = null;
@@ -114,7 +115,7 @@
 
             $result = [];
             while($row = $stmt->fetch()){
-                $result[] = new booking($row["user_id"],$row["interviewer_id"], $row["timeslots"]);
+                $result[] = new booking($row["user_id"],$row["interviewer_id"], $row["timeslots"], $row["interview_type"]);
             }
 
             $stmt = null;

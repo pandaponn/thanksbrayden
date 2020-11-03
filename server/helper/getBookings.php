@@ -9,7 +9,8 @@
         $result["bookings"][] = array(
             "user_id" => $booking->getUserId(),
             "interviewer_id" => $booking->getInterviewerId(),
-            "timeslots" => $booking->getTimeslots()
+            "timeslots" => $booking->getTimeslots(),
+            "interview_type" => $interview_type->getType()
         );
     }
 
