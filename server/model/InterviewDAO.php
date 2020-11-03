@@ -46,6 +46,23 @@
             return $result;
         }
 
+        
+        public function deleteTimeslot($interviewer_id, $timeslots){
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+
+            $sql = "DELETE FROM `interviewSlots` WHERE `interviewer_id` = :interviewer_id AND `timeslots` = :timeslots";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':interviewer_id', $interviewer_id, PDO::PARAM_INT);
+            $stmt->bindParam(':timeslots', $timeslots, PDO::PARAM_STR);
+
+            $isOk = $stmt->execute();
+            $stmt = null;
+            $pdo = null;
+            return $isOk;
+        }
+
 
         public function createBooking($user_id, $interviewer_id, $timeslots){
             $conn = new ConnectionManager();
