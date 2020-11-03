@@ -36,7 +36,6 @@ CREATE TABLE IF NOT EXISTS `interviewers` (
   `experience` varchar(2083) NOT NULL,
   `education` varchar(2083) NOT NULL,
   `img` varchar(100) NOT NULL,
-  `timeslots` varchar(2083) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
@@ -45,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `interviewers` (
 --
 
 INSERT INTO `interviewers` (`id`, `fname`, `lname`, `job`, `company`, `years`, `industry`, `about`,
-`email`, `experience`, `education`, `img`, `timeslots`) VALUES
+`email`, `experience`, `education`, `img`) VALUES
 (1, 'Phris', 'Coskitt','Assistant Professor of Information Systems', 'SMU', 7, 'Information Technology', 
 'I am a faculty member in the School of Information Systems at Singapore Management University, where I am part of the Research Lab for Intelligent Software Engineering (RISE).', 
 'cposkitt@smu.edu.sg', 
@@ -55,22 +54,20 @@ INSERT INTO `interviewers` (`id`, `fname`, `lname`, `job`, `company`, `years`, `
 ""Postdoctoral Research Scientist, ETH Zurich, Switzerland, Jan 2013 - Jan 2016""]}",
 "{""education"" : [""PhD, University of York, 2014"",
 ""Bachelors of Science, University of York, 2009""]}",
-'profile_img/chris.jpg',
-"{""timeslots"" : [""30/10/20, 4:00pm"", ""08/11/20, 9:00am"", ""11/11/20, 12:00pm""]}");
+'profile_img/chris.jpg');
 
 INSERT INTO `interviewers` (`id`, `fname`, `lname`, `job`, `company`, `years`, `industry`, `about`,
-`email`, `experience`, `education`, `img`, `timeslots`) VALUES (2, 'Wong', 'Xin Wei','Cyber and Strategic Risk Intern', 'Deloitte', 0.5, 'Cybersecurity', 
+`email`, `experience`, `education`, `img`) VALUES (2, 'Wong', 'Xin Wei','Cyber and Strategic Risk Intern', 'Deloitte', 0.5, 'Cybersecurity', 
 'I am a penultimate student at Singapore Management University, pursing a Bachelor of Science (Information System) degree majoring in software development. My experience and interest lies in the area of information technology, full stack web application development, database management and project management.', 
 'xinwei.wong.2018@smu.edu.sg', 
 "{""experience"" : [""Teaching Assistant, School of Information Systems, SMU, Aug 2020 - Present"",
 ""Cyber and Strategic Risk Intern, Deloitte, Singapore, Jul 2020 - Present"",
 ""Product Management Intern, Shopee, Singapore, Jan 2020 - Jul 2020""]}",
 "{""education"" : [""Bachelors of Science (Information Systems), Singapore Management University,Ongoing""]}",
-'profile_img/XW.jpeg',
-"{""timeslots"" : [""29/10/20, 1:00pm"", ""04/11/20, 11:00am"", ""07/11/20, 12:00pm"",""11/11/20, 4:00pm""]}");
+'profile_img/XW.jpeg');
 
 INSERT INTO interviewers (id, fname, lname, job, company, years, industry, about,
-email, experience, education, img, timeslots) VALUES 
+email, experience, education, img) VALUES 
 (3, 'Ong', 'Hong Seng','Senior Instructor of Information Systems', 'SMU', 13, 'Information Technology', 
 'I am a Senior Instructor of Information Systems. I have been in the field of Information Technology for 20 years.', 
 'hsong@smu.edu.sg', 
@@ -78,11 +75,10 @@ email, experience, education, img, timeslots) VALUES
 ""IT Consultant, Thoughts Interactive Pte Ltd, Singapore, Jan 2003 - Jul 2013"",
 ""Senior Software Engineer, Techbubble Alliance, Singapore, Aug 2000 - Dec 2002""]}",
 "{""education"" : [""Bachelors of Science (Computer Science), National University of Singapore, 1999""]}",
-'profile_img/hsong.jpg',
-"{""timeslots"" : [""01/11/20, 12:00pm"", ""03/11/20, 12:00pm"", ""05/11/20, 12:00pm""]}");
+'profile_img/hsong.jpg');
 
 INSERT INTO interviewers (id, fname, lname, job, company, years, industry, about,
-email, experience, education, img, timeslots) VALUES 
+email, experience, education, img) VALUES 
 (4, 'Vera', 'Chua','Senior Manager (Operations)', 'Keppel', 6, 'Operations Management', 
 'I am a level 2 manager at the operations department of Keppel Corp, where I am currently in the Future Initiatives for Business Ops program (FIBO)', 
 'vchua@keppel.sg', 
@@ -90,11 +86,10 @@ email, experience, education, img, timeslots) VALUES
 ""Business Development Manager, AIA, Singapore, Jan 2010 - Jul 2014"",
 ""Business Strategy Intern, OCBC, Singapore, Jan 2009 - May 2010""]}",
 "{""education"" : [""Bachelors of Arts (Business Administration), National University of Singapore, 2010""]}",
-'profile_img/vera.jpg',
-"{""timeslots"" : [""10/11/20, 10:00am"", ""11/11/20, 9:00am"", ""12/11/20, 11:00am"", ""13/11/20, 11:30am""]}");
+'profile_img/vera.jpg');
 
 INSERT INTO interviewers (id, fname, lname, job, company, years, industry, about,
-email, experience, education, img, timeslots) VALUES 
+email, experience, education, img) VALUES 
 (5, 'Danielle', 'Mann','Marketing Executive', 'TrueSight', 3.5, 'Marketing', 
 'I head the marketing department at TrueSight, and I help my clients with firm branding.', 
 'Dmann@Truesight.com', 
@@ -102,11 +97,10 @@ email, experience, education, img, timeslots) VALUES
 ""Senior Marketing Manager, Prudential, Singapore, Jan 2014 - Feb 2017"",
 ""Marketing Intern, DBS, Singapore, Jan 2013 - Jul 2013""]}",
 "{""education"" : [""Bachelors of Arts (Psychology), National University of Singapore, 2012""]}",
-'profile_img/danielle.jpg',
-"{""timeslots"" : [""04/11/20, 9:00am"", ""07/11/20, 9:00am"", ""09/11/20, 11:00am"", ""13/11/20, 11:00am""]}");
+'profile_img/danielle.jpg');
 
 INSERT INTO interviewers (id, fname, lname, job, company, years, industry, about,
-email, experience, education, img, timeslots) VALUES 
+email, experience, education, img) VALUES 
 (6, 'Sohan', 'Bahvyat','Audit Accountant', 'Ernst and Young', 5, 'Accounting', 
 'Hello! I am a senior acountant at Ernst and Young. I am a middle manager for our tax audit department in Singapore.', 
 'SohanB@ey.com.sg', 
@@ -114,22 +108,20 @@ email, experience, education, img, timeslots) VALUES
 ""Junior Accountant, Ernst and Young, Singapore, Jan 2013 - Aug 2015"",
 ""Intern, Ernst and Young, Singapore, Jan 2012 - Jul 2012""]}",
 "{""education"" : [""Bachelors of Arts (Accountancy), Nanyang Technological University, 2012""]}",
-'profile_img/sohan.jpeg',
-"{""timeslots"" : [""12/11/20, 8:00am"", ""14/11/20, 10:00am""]}");
+'profile_img/sohan.jpeg');
 
 INSERT INTO interviewers (id, fname, lname, job, company, years, industry, about,
-email, experience, education, img, timeslots) VALUES 
+email, experience, education, img) VALUES 
 (7, 'Nurul', 'Tanya','Communications Executive', 'Mckinsey and Co', 2, 'Communications', 
 'Hi! I am Tanya, a communications specialist at Mckinsey. I help organisations optimise their image and relations.', 
 'NTanya@Mckinsey.com', 
 "{""experience"" : [""Communications Executive, Mckinsey and Co, New York, Aug 2018 - Present"",
 ""Management Consultant, Bain and Co., Massachusetts, Jun 2013 - Aug 2018""]}",
 "{""education"" : [""Bachelors of Arts (Business Management), Harvard Business School, 2013""]}",
-'profile_img/tanya.jpeg',
-"{""timeslots"" : [""15/11/20, 12:00pm"", ""17/11/20, 12:00pm"", ""19/11/20, 1:30pm""]}");
+'profile_img/tanya.jpeg');
 
 INSERT INTO interviewers (id, fname, lname, job, company, years, industry, about,
-email, experience, education, img, timeslots) VALUES 
+email, experience, education, img) VALUES 
 (8, 'George', 'Servio','Vice Chairman', 'Royal Dutch Shell', 3, 'Strategic Management', 
 'I have been in the RDS board of directors for 8 years, and aim to bring our energy industry into the future.', 
 'georgeservio@shell.com', 
@@ -138,21 +130,19 @@ email, experience, education, img, timeslots) VALUES
 ""Regional Manager, Royal Dutch Shell, Hamburg, Jan 2009 - Aug 2013""]}",
 "{""education"" : [""Masters in Business Administration, Oxford Said Business School, 2009"",
 ""Bachelors of Arts (Business Management), TU Munich, 2007""]}",
-'profile_img/george.jpeg',
-"{""timeslots"" : [""10/11/20, 2:00pm"", ""11/11/20, 2:00pm"", ""13/11/20, 2:00pm"", ""15/11/20, 2:00pm""]}");
+'profile_img/george.jpeg');
 
 INSERT INTO interviewers (id, fname, lname, job, company, years, industry, about,
-email, experience, education, img, timeslots) VALUES 
+email, experience, education, img) VALUES 
 (9, 'Phris The Third', 'of the House Coskitt','Emperor', 'The Entire World', 50, 'Law', 
 'Bow, you peasants.', 
 'kingphris@anywhere.com', 
 "{""experience"" : [""Emperor, The World, Earth, Jan 1970 - Present""]}",
 "{""education"" : [""Nil""]}",
-'profile_img/emperorchris.jpg',
-"{""timeslots"" : [""11/11/20, 2:00pm""]}");
+'profile_img/emperorchris.jpg');
 
 INSERT INTO interviewers (id, fname, lname, job, company, years, industry, about,
-email, experience, education, img, timeslots) VALUES 
+email, experience, education, img) VALUES 
 (10, 'Barack', 'Obama','President', 'United States of America', 12, 'Politics', 
 'Twenty-second Amendment? Donald Trump? Never of them.', 
 'obama@whitehouse.gov', 
@@ -161,9 +151,7 @@ email, experience, education, img, timeslots) VALUES
 ""Lawyer, Freelance, Illinos, Jan 1997 - Aug 2004""]}",
 "{""education"" : [""Masters in Law, Harvard University, 1997"",
 ""Bachelors of Laws, University of Illinos, 1995""]}",
-'profile_img/obama.jpg',
-"{""timeslots"" : [""03/11/20, 1:00pm"", ""04/11/20, 3:00pm"", ""06/11/20, 3:00pm"", ""10/11/20, 3:00pm""]}");
-
+'profile_img/obama.jpg');
 
 -- --------------------------------------------------------
 
@@ -191,3 +179,90 @@ CREATE TABLE IF NOT EXISTS `interviews` (
   `timeslots` varchar(50) NOT NULL,
   PRIMARY KEY (`user_id`, `interviewer_id`, `timeslots`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+DROP TABLE IF EXISTS `interviewSlots`;
+CREATE TABLE IF NOT EXISTS `interviewSlots` (
+  `interviewer_id` int(11) NOT NULL,
+  `timeslots` varchar(50) NOT NULL,
+  PRIMARY KEY (`interviewer_id`, `timeslots`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `interviewSlots`
+--
+
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(1, "30/10/20, 4:00pm");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(1, "08/11/20, 9:00am");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(1, "11/11/20, 12:00pm");
+
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(2, "29/10/20, 1:00pm");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(2, "04/11/20, 11:00am");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(2, "07/11/20, 12:00pm");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(2, "11/11/20, 4:00pm");
+
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(3, "01/11/20, 12:00pm");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(3, "03/11/20, 12:00pm");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(3, "05/11/20, 12:00pm");
+
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(4, "10/11/20, 10:00am");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(4, "11/11/20, 9:00am");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(4, "12/11/20, 11:00am");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(4, "13/11/20, 11:30am");
+
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(5, "04/11/20, 9:00am");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(5, "07/11/20, 9:00am");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(5, "09/11/20, 11:00am");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(5, "13/11/20, 11:00am");
+
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(6, "12/11/20, 8:00am");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(6, "14/11/20, 10:00am");
+
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(7, "15/11/20, 12:00pm");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(7, "17/11/20, 12:00pm");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(7, "19/11/20, 1:30pm");
+
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(8, "10/11/20, 2:00pm");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(8, "11/11/20, 2:00pm");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(8, "13/11/20, 2:00pm");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(8, "15/11/20, 2:00pm");
+
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(9, "11/11/20, 2:00pm");
+
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(10, "03/11/20, 1:00pm");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(10, "04/11/20, 3:00pm");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(10, "06/11/20, 3:00pm");
+INSERT INTO interviewSlots (interviewer_id, timeslots) VALUES 
+(10, "10/11/20, 3:00pm");

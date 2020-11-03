@@ -12,9 +12,8 @@
         private $experience;
         private $education;
         private $img;
-        private $timeslots;
 
-        public function __construct($id, $fname, $lname, $job, $company, $years, $industry, $about, $email, $experience, $education, $img, $timeslots){
+        public function __construct($id, $fname, $lname, $job, $company, $years, $industry, $about, $email, $experience, $education, $img){
             $this->id = $id;
             $this->fname = $fname;
             $this->lname = $lname;
@@ -27,7 +26,6 @@
             $this->experience = $experience;
             $this->education = $education;
             $this->img = $img;
-            $this->timeslots = $timeslots;
         }
 
         public function getID() {
@@ -76,10 +74,6 @@
 
         public function getImg() {
             return $this->img;
-        }
-
-        public function getTimeslots() {
-            return $this->timeslots;
         }
     }
 ?>

@@ -14,7 +14,7 @@
 
             $result = [];
             while($row = $stmt->fetch()){
-                $result[] = new interviewer($row["id"],$row["fname"], $row["lname"], $row["job"], $row["company"], $row["years"], $row["industry"], $row["about"], $row["email"], $row["experience"], $row["education"], $row["img"], $row["timeslots"]);
+                $result[] = new interviewer($row["id"],$row["fname"], $row["lname"], $row["job"], $row["company"], $row["years"], $row["industry"], $row["about"], $row["email"], $row["experience"], $row["education"], $row["img"]);
             }
 
             $stmt = null;
@@ -23,7 +23,29 @@
             return $result;
         }
 
-        
+
+        public function getTimeslotsById($interviewer_id) {
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+            
+            $sql = "SELECT * FROM `interviewSlots` WHERE `interviewer_id` = :interviewer_id";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':interviewer_id', $interviewer_id, PDO::PARAM_INT);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->execute();
+
+            $result = [];
+            while($row = $stmt->fetch()){
+                $result[] = new interviewSlot($row["interviewer_id"], $row["timeslots"]);
+            }
+
+            $stmt = null;
+            $pdo = null;
+
+            return $result;
+        }
+
 
         public function createBooking($user_id, $interviewer_id, $timeslots){
             $conn = new ConnectionManager();
@@ -48,7 +70,7 @@
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
 
-            $sql = "DELETE FROM `interviewers` WHERE `user_id` = :user_id AND `interviewer_id` = :interviewer_id AND `timeslots` = :timeslots";
+            $sql = "DELETE FROM `interviews` WHERE `user_id` = :user_id AND `interviewer_id` = :interviewer_id AND `timeslots` = :timeslots";
         
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':user_id', $user_id, PDO::PARAM_STR);

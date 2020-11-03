@@ -44,7 +44,7 @@ const id = '<?php echo $_SESSION["id"]?>';
             <a href="profile.php" class="nav-link">Professionals</a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">Profile</a>
+            <a href="user_profile.php" class="nav-link">Profile</a>
         </li>
         <!-- Log Out fxn but does not work-->
         <li class="nav-item">
@@ -188,9 +188,10 @@ const id = '<?php echo $_SESSION["id"]?>';
             console.log(interviewers);
         }
     }
-    request.open("GET", "http://localhost/is216/thanksbrayden-main/server/helper/getInterviewers.php", true);
+    request.open("GET", "../../../server/helper/getInterviewers.php", true);
     request.send();
   }
+  
 function doSearch(){
   document.getElementById('results').innerHTML = '';
   const search = document.getElementById('searchItem').value.toLowerCase();

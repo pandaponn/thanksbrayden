@@ -28,8 +28,7 @@
             "email" => $interviewer->getEmail(),
             "experience" => $interviewer->getExperience(),
             "education" => $interviewer->getEducation(),
-            "img" => $interviewer->getImg(),
-            "timeslots" => $interviewer->getTimeslots()
+            "img" => $interviewer->getImg()
         );
     }
 

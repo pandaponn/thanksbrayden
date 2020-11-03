@@ -76,7 +76,7 @@ const id = '<?php echo $_SESSION["id"]?>';
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title">Book an interview with Phris!</h5>
+                    <h5 class="modal-title">Book an interview with <span id="interviewer_fname"></span>!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -180,13 +180,12 @@ const id = '<?php echo $_SESSION["id"]?>';
         
 
     </div>
-    <?php 
-    $interviewer_id = $_POST['interviewer_id'];
-    ?>
+    
     <script type="text/javascript">
-        var interviewer_id = "<?php echo $interviewer_id ?>"
+        var interviewer_id = "<?php echo $_POST['interviewer_id'] ?>"
         console.log(interviewer_id);
         var interviewers = {}
+
         function getInterviewers(){
             const request = new XMLHttpRequest;
             request.onreadystatechange = function(){
@@ -208,6 +207,7 @@ const id = '<?php echo $_SESSION["id"]?>';
                             let experience = document.getElementById('experience');
                             let education = document.getElementById('education');
                             let interviewer_id = document.getElementById('interviewer_id');
+                            let interviewer_fname = document.getElementById('interviewer_fname');
                             
                             interviewer_id.value = interviewer.id;
                             user_img.setAttribute("src", interviewer.img);
@@ -217,6 +217,7 @@ const id = '<?php echo $_SESSION["id"]?>';
                             company.innerHTML = interviewer.company;
                             about.innerHTML = interviewer.about;
                             email.innerHTML = interviewer.email;
+                            interviewer_fname.innerHTML = interviewer.fname;
 
                             let expArray = JSON.parse(interviewer.experience).experience;
                             for (exp of expArray){
@@ -235,20 +236,6 @@ const id = '<?php echo $_SESSION["id"]?>';
                                 </li> 
                             `;
                             }
-
-                            // Booking
-                            let bookings = document.getElementById('booking_form');
-                            let timeslots = JSON.parse(interviewer.timeslots).timeslots;
-
-                            // Need to add unique name & id for these, preferably using interviewer's id
-                            for(timeslot of timeslots){
-                                bookings.innerHTML += `
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="radio_timeslot" id="${interviewer.id}" value="${timeslot}">
-                                    ${timeslot}
-                                </div>
-                                `;
-                            }
                         }
                     }
                 }
@@ -258,6 +245,30 @@ const id = '<?php echo $_SESSION["id"]?>';
         }
         getInterviewers();
 
+        function getTimeslots(){
+            const request = new XMLHttpRequest;
+            request.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200){
+
+                    // Booking
+                    let bookings = document.getElementById('booking_form');
+                    let timeslots = JSON.parse(this.responseText).timeslots;
+                    console.log(timeslots);
+                    // Need to add unique name & id for these, preferably using interviewer's id
+                    for(timeslot of timeslots){
+                        bookings.innerHTML += `
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radio_timeslot" id="${timeslot.interviewer_id}" value="${timeslot.timeslots}">
+                            ${timeslot.timeslots}
+                        </div>
+                        `;
+                    }
+                }
+            }
+            request.open("GET", `../../../server/helper/getTimeslots.php?interviewer_id=${interviewer_id}`, true);
+            request.send();
+        }
+        getTimeslots();
 
         // Test code to get bookings
         document.getElementById('retrievebookings').addEventListener('click', getBookings);
