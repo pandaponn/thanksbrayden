@@ -50,7 +50,7 @@ const id = '<?php echo $_SESSION["id"]?>';
                     <a href="user_profile.php" class="nav-link">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../../../server/helper/logout.php" class="nav-link">Log Out</a>  
+                    <a href="../../../server/helper/logout.php" class="nav-link" onclick="window.open('https://www.linkedin.com/m/logout/')">Log Out</a>  
                 </li>
             </ul>
         </div>

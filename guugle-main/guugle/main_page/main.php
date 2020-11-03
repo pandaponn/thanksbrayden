@@ -48,7 +48,7 @@ const id = '<?php echo $_SESSION["id"]?>';
         </li>
         <!-- Log Out fxn but does not work-->
         <li class="nav-item">
-          <a href="../../../server/helper/logout.php" class="nav-link">Log Out</a>  
+          <a href="../../../server/helper/logout.php" class="nav-link" onclick="window.open('https://www.linkedin.com/m/logout/')">Log Out</a>  
       </li>
       </ul>
     </div>
