@@ -199,7 +199,7 @@ function doSearch(){
   if (search ==''){
     alert('Please enter a valid name/industry')
   };
-  if (search_category == 'name'){
+  if (search_category == 'name' && search != ''){
     for (interviewer of interviewers){
       var fname = interviewer['fname'].toLowerCase();
       var lname = interviewer['lname'].toLowerCase();
@@ -262,7 +262,7 @@ function doSearch(){
       };
     };
   }
-    else if (search_category == 'industry'){
+    else if (search_category == 'industry' && search != ''){
       for (interviewer of interviewers){
         var industry = interviewer['industry'].toLowerCase();
         if (industry.includes(search)){
@@ -324,10 +324,13 @@ function doSearch(){
         };
       };
     };
+    if (document.getElementById('results').innerHTML == ''){
+      alert("Sorry, we couldn't find the interviewer you were looking for.");
+      document.getElementById('searchItem').value = '';
+    }
   };
     document.getElementById('doSearch').addEventListener('click', doSearch);
     getInterviewers();
   </script>
 </body>
 </html>
-
