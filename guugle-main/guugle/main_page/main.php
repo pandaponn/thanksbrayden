@@ -23,6 +23,7 @@ const id = '<?php echo $_SESSION["id"]?>';
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <title>guugle</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="search.css">
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
@@ -34,25 +35,29 @@ const id = '<?php echo $_SESSION["id"]?>';
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="hamburger">
-      <ul class="navbar-nav ml-auto">
+      <!-- Search -->
+      <form class="form-inline my-2 my-lg-0 ml-auto" action="result.php" method="POST">
+        <input class="form-control form-control-sm" type="text" placeholder="Search" aria-label="Search" name="searchItem">
+        <button class="btn btn-link" name="doSearch" type="submit"><i class="fas fa-search text-white" aria-hidden="true"></i></button>
+      </form>
+      
+      <ul class="navbar-nav">
         <li class="nav-item">
-          <!-- Changed link to main.php --> 
             <a href="main.php" class="nav-link">Main</a>
         </li>
         <li class="nav-item">
-          <!-- Weijie, added href to profile.php-->
             <a href="profile.php" class="nav-link">Professionals</a>
         </li>
         <li class="nav-item">
             <a href="user_profile.php" class="nav-link">Profile</a>
         </li>
-        <!-- Log Out fxn but does not work-->
         <li class="nav-item">
           <a href="../../../server/helper/logout.php" class="nav-link" onclick="window.open('https://www.linkedin.com/m/logout/')">Log Out</a>  
-      </li>
+        </li>
       </ul>
     </div>
   </nav>
+  
   <div class="container">
     <div class="py-5 text-center">
       <h2 class='mt-5'>Our Recommendations</h2>
@@ -136,19 +141,12 @@ const id = '<?php echo $_SESSION["id"]?>';
       </div>
       </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    
-    <div id='results' class='card-columns'>
-    </div>
+    <br><br>
 
+    <div id="search_results" style="margin-top: 30px;"></div>
+
+    <!-- <div id='results' class='card-columns'>
+    </div> -->
 
     <footer class="my-5 pt-5 text-muted text-center text-small">
       <p class="mb-1">&copy; 2020 Guugle</p>
@@ -193,8 +191,10 @@ const id = '<?php echo $_SESSION["id"]?>';
   }
   
 function doSearch(){
-  document.getElementById('results').innerHTML = '';
+  // document.getElementById('results').innerHTML = '';
   const search = document.getElementById('searchItem').value.toLowerCase();
+  let search_results = document.getElementById('search_results');
+  search_results.innerHTML = "";
   console.log(search)
   if (search ==''){
     alert('Please enter a valid name/industry')
@@ -210,55 +210,73 @@ function doSearch(){
         var company = interviewer['company'];
         var about = interviewer['about'];
         var id = interviewer['id'];
+        var job = interviewer['job'];
+        var industry = interviewer['industry'];
 
-        const card = document.createElement('div');
-        const image = document.createElement('img');
-        const cardBody = document.createElement('div');
-        const cardTitle = document.createElement('h5');
-        const cardTop = document.createElement('p');
-        const cardBottom = document.createElement('p');
-        const cardButton = document.createElement('button');
+        search_results.innerHTML += `
+        <div class="fir-image-figure">
+          <img class="fir-author-image fir-clickcircle" src="${img}">
 
-        card.className = 'card';
+          <figcaption>
+            <div class="fig-author-figure-title">${name}</div>
+            <div class="fig-author-figure-title">${job}, ${company}</div>
+            <div class="fig-author-figure-title">${industry}</div>
+          </figcaption>
 
-        image.className = 'card-img-top';
-        image.src = img;
+          <form action="profile.php" method="POST">
+            <button class="btn btn-dark btn-sm" style="margin-left: 15px;" value="${id}" name="interviewer_id">Book now</button>
+          </form>
+        </div>
+        `;
 
-        cardBody.className = 'card-body';
+        // const card = document.createElement('div');
+        // const image = document.createElement('img');
+        // const cardBody = document.createElement('div');
+        // const cardTitle = document.createElement('h5');
+        // const cardTop = document.createElement('p');
+        // const cardBottom = document.createElement('p');
+        // const cardButton = document.createElement('button');
 
-        cardTitle.className = 'card-title';
-        cardTitle.appendChild(document.createTextNode(name));
+        // card.className = 'card';
 
-        cardTop.className = 'card-text font-weight-bold';
+        // image.className = 'card-img-top';
+        // image.src = img;
 
-        cardTop.appendChild(document.createTextNode(company));
+        // cardBody.className = 'card-body';
 
-        cardBottom.className = 'card-text text-muted font-italic';
-        cardBottom.appendChild(document.createTextNode(about));
+        // cardTitle.className = 'card-title';
+        // cardTitle.appendChild(document.createTextNode(name));
 
-        var form = document.createElement('form');
-        form.method = 'POST';
-        form.action = 'profile.php';
+        // cardTop.className = 'card-text font-weight-bold';
 
-        var valueAttri = document.createAttribute('value');
-        valueAttri.value = id;
-        cardButton.className = 'btn btn-primary';
-        cardButton.name = 'interviewer_id';
-        cardButton.type = 'submit';
-        cardButton.setAttributeNode(valueAttri);
-        cardButton.appendChild(document.createTextNode('Book Now!'));
+        // cardTop.appendChild(document.createTextNode(company));
 
-        form.appendChild(cardButton);
+        // cardBottom.className = 'card-text text-muted font-italic';
+        // cardBottom.appendChild(document.createTextNode(about));
 
-        cardBody.appendChild(cardTitle);
-        cardBody.appendChild(cardTop);
-        cardBody.appendChild(cardBottom);
-        cardBody.appendChild(form);
+        // var form = document.createElement('form');
+        // form.method = 'POST';
+        // form.action = 'profile.php';
 
-        card.appendChild(image);
-        card.appendChild(cardBody);
+        // var valueAttri = document.createAttribute('value');
+        // valueAttri.value = id;
+        // cardButton.className = 'btn btn-primary';
+        // cardButton.name = 'interviewer_id';
+        // cardButton.type = 'submit';
+        // cardButton.setAttributeNode(valueAttri);
+        // cardButton.appendChild(document.createTextNode('Book Now!'));
 
-        document.getElementById('results').appendChild(card);
+        // form.appendChild(cardButton);
+
+        // cardBody.appendChild(cardTitle);
+        // cardBody.appendChild(cardTop);
+        // cardBody.appendChild(cardBottom);
+        // cardBody.appendChild(form);
+
+        // card.appendChild(image);
+        // card.appendChild(cardBody);
+
+        // document.getElementById('results').appendChild(card);
       };
     };
   }
@@ -271,60 +289,80 @@ function doSearch(){
           var company = interviewer['company'];
           var about = interviewer['about'];
           var id = interviewer['id'];
-  
-          const card = document.createElement('div');
-          const image = document.createElement('img');
-          const cardBody = document.createElement('div');
-          const cardTitle = document.createElement('h5');
-          const cardTop = document.createElement('p');
-          const cardBottom = document.createElement('p');
-          const cardButton = document.createElement('button');
-  
-          card.className = 'card';
-  
-          image.className = 'card-img-top';
-          image.src = img;
-  
-          cardBody.className = 'card-body';
-  
-          cardTitle.className = 'card-title';
-          cardTitle.appendChild(document.createTextNode(name));
-  
-          cardTop.className = 'card-text font-weight-bold';
-  
-          cardTop.appendChild(document.createTextNode(company));
-  
-          cardBottom.className = 'card-text text-muted font-italic';
-          cardBottom.appendChild(document.createTextNode(about));
-  
-          var form = document.createElement('form');
-          form.method = 'POST';
-          form.action = 'profile.php';
+          var job = interviewer['job'];
+          var industry = interviewer['industry'];
 
-          var valueAttri = document.createAttribute('value');
-          valueAttri.value = id;
-          cardButton.className = 'btn btn-primary';
-          cardButton.name = 'interviewer_id';
-          cardButton.type = 'submit';
-          cardButton.setAttributeNode(valueAttri);
-          cardButton.appendChild(document.createTextNode('Book Now!'));
+          search_results.innerHTML += `
+          <div class="fir-image-figure">
+            <a class="fir-imageover" rel="noopener" target="_blank" href="#">
+              <img class="fir-author-image fir-clickcircle" src="${img}">
+            </a>
 
-          form.appendChild(cardButton);
+            <figcaption>
+              <div class="fig-author-figure-title">${name}</div>
+              <div class="fig-author-figure-title">${job}, ${company}</div>
+              <div class="fig-author-figure-title">${industry}</div>
+              
+            </figcaption>
+            <form action="profile.php" method="POST">
+              <button class="btn btn-dark btn-sm" style="margin-left: 15px;" value="${id}" name="interviewer_id">Book now</button>
+            </form>
+          </div>
+          `;
+  
+          // const card = document.createElement('div');
+          // const image = document.createElement('img');
+          // const cardBody = document.createElement('div');
+          // const cardTitle = document.createElement('h5');
+          // const cardTop = document.createElement('p');
+          // const cardBottom = document.createElement('p');
+          // const cardButton = document.createElement('button');
+  
+          // card.className = 'card';
+  
+          // image.className = 'card-img-top';
+          // image.src = img;
+  
+          // cardBody.className = 'card-body';
+  
+          // cardTitle.className = 'card-title';
+          // cardTitle.appendChild(document.createTextNode(name));
+  
+          // cardTop.className = 'card-text font-weight-bold';
+  
+          // cardTop.appendChild(document.createTextNode(company));
+  
+          // cardBottom.className = 'card-text text-muted font-italic';
+          // cardBottom.appendChild(document.createTextNode(about));
+  
+          // var form = document.createElement('form');
+          // form.method = 'POST';
+          // form.action = 'profile.php';
 
-          cardBody.appendChild(cardTitle);
-          cardBody.appendChild(cardTop);
-          cardBody.appendChild(cardBottom);
-          cardBody.appendChild(form);
+          // var valueAttri = document.createAttribute('value');
+          // valueAttri.value = id;
+          // cardButton.className = 'btn btn-primary';
+          // cardButton.name = 'interviewer_id';
+          // cardButton.type = 'submit';
+          // cardButton.setAttributeNode(valueAttri);
+          // cardButton.appendChild(document.createTextNode('Book Now!'));
+
+          // form.appendChild(cardButton);
+
+          // cardBody.appendChild(cardTitle);
+          // cardBody.appendChild(cardTop);
+          // cardBody.appendChild(cardBottom);
+          // cardBody.appendChild(form);
 
   
-          card.appendChild(image);
-          card.appendChild(cardBody);
+          // card.appendChild(image);
+          // card.appendChild(cardBody);
   
-          document.getElementById('results').appendChild(card);
+          // document.getElementById('results').appendChild(card);
         };
       };
     };
-    if (document.getElementById('results').innerHTML == ''){
+    if (document.getElementById('search_results').innerHTML == ''){
       alert("Sorry, we couldn't find the interviewer you were looking for.");
       document.getElementById('searchItem').value = '';
     }
