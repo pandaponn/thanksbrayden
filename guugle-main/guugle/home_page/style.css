@@ -1,11 +1,20 @@
+html, body{
+    width:100%;
+    height:100%;
+    margin:0;
+}
 .nav {
     background-color: black !important;
     text-transform: uppercase;
     letter-spacing: .1rem;
+    
+    
 }
+
 
 .tint  {
     position: relative;
+
 }
 
 .tint:after {
@@ -16,7 +25,10 @@
   	top: 0;
   	left: 0;
   	display: block;
-  	content: "";
+    content: "";
+    
+      
+    
 }
 
 h2.a {
@@ -34,6 +46,7 @@ h2.b {
     text-align: center;
     position: relative;
     color: white;
+
 }
 
 .headText {
@@ -85,6 +98,7 @@ h5 {
 }
 
 .parallax-window {
+    margin-top: 90px;
     min-height: 700px;
     background: transparent;
 }
@@ -155,4 +169,17 @@ h5 {
     border-radius: 6px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     /* text-align: center; */
+}
+
+/*.pls{
+    width:100%;
+    justify-content: center;
+    overflow:hidden;
+}*/
+
+.row {
+    margin-left:15px;
+    margin-right:15px;
+    justify-content: center;
+
 }
