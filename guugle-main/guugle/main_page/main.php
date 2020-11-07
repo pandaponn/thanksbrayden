@@ -194,36 +194,38 @@ const id = '<?php echo $_SESSION["id"]?>';
     request.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
             let data = JSON.parse(this.responseText).bookings
-            console.log(data);
-            document.getElementById('recommendation').style = 'display: none';
-            document.getElementById('recommendations').style = 'display: none';
-            document.getElementById('booking').style = '';
-            document.getElementById('bookings').style = '';
+            if (data.length != 0){
+              console.log(data);
+              document.getElementById('recommendation').style = 'display: none';
+              document.getElementById('recommendations').style = 'display: none';
+              document.getElementById('booking').style = '';
+              document.getElementById('bookings').style = '';
 
-            var tbody = document.createElement('tbody')
+              var tbody = document.createElement('tbody')
 
-            for (booking of data){
-              var interviewer_id = booking['interviewer_id']
-              var timeslot = booking['timeslots']
-              for (interviewer of interviewers){
-                var id = interviewer['id']
-                if (interviewer_id == id){
-                  var name = interviewer['fname'] + ' ' + interviewer['lname'];
-                  var tr = document.createElement('tr')
-                  var td1 = document.createElement('td')
-                  var td2 = document.createElement('td')
-                  var td3 = document.createElement('td')
+              for (booking of data){
+                var interviewer_id = booking['interviewer_id']
+                var timeslot = booking['timeslots']
+                for (interviewer of interviewers){
+                  var id = interviewer['id']
+                  if (interviewer_id == id){
+                    var name = interviewer['fname'] + ' ' + interviewer['lname'];
+                    var tr = document.createElement('tr')
+                    var td1 = document.createElement('td')
+                    var td2 = document.createElement('td')
+                    var td3 = document.createElement('td')
 
-                  td1.appendChild(document.createTextNode(name))
-                  tr.appendChild(td1)
+                    td1.appendChild(document.createTextNode(name))
+                    tr.appendChild(td1)
 
-                  td2.appendChild(document.createTextNode(timeslot))
-                  tr.appendChild(td2)
+                    td2.appendChild(document.createTextNode(timeslot))
+                    tr.appendChild(td2)
 
-                  td3.innerHTML = `<button id='delete' value="${id}" class="btn btn-dark btn-sm" type='button'>Delete Booking</button>`
-                  tr.appendChild(td3)
+                    td3.innerHTML = `<button id='delete' value="${id}" class="btn btn-dark btn-sm" type='button'>Delete Booking</button>`
+                    tr.appendChild(td3)
 
-                  tbody.appendChild(tr)
+                    tbody.appendChild(tr)
+                  }
                 }
               }
             }
