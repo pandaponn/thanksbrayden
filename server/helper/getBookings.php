@@ -10,7 +10,7 @@
             "user_id" => $booking->getUserId(),
             "interviewer_id" => $booking->getInterviewerId(),
             "timeslots" => $booking->getTimeslots(),
-            "interview_type" => $interview_type->getType()
+            "interview_type" => $booking->getType()
         );
     }
 
