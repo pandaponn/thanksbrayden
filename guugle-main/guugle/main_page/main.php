@@ -59,11 +59,15 @@ const id = '<?php echo $_SESSION["id"]?>';
   </nav>
   
   <div class="container">
-    <div class="py-5 text-center">
+    <div id='recommendation' class="py-5 text-center" style=''>
       <h2 class='mt-5'>Our Recommendations</h2>
       <p class="lead"> Welcome to Guugle! To get you started, these are some of our recommendations we picked out for you to start you on your interview journey!</p>
     </div>
-    <div class="row">
+    <div id='booking' class="py-5 text-center" style='display: none'>
+      <h2 class='mt-5'>Bookings</h2>
+      <p class="lead"> Welcome back to Guugle! These are your current interview bookings.</p>
+    </div>
+    <div id='recommendations' class="row" style=''>
       <div class='col-md-4'>
         <figure class="snip1336">
           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg" alt="sample87" />
@@ -98,6 +102,17 @@ const id = '<?php echo $_SESSION["id"]?>';
           </figcaption>
         </figure>
       </div>
+    </div>
+    <div id='bookings' class="row" style='display: none'>
+      <table id='details' class = 'table'>
+        <thead>
+          <tr>
+          <th>Interviewer</th>
+          <th>Details</th>
+          <th>Delete</th>
+          </tr>
+        </thead>
+      </table>
     </div>
     <div class = row>
       <div class = 'col-sm-5'>
@@ -159,6 +174,73 @@ const id = '<?php echo $_SESSION["id"]?>';
   </div>
   
   <script>
+    var interviewers = {};
+    function getInterviewers(){
+      const request = new XMLHttpRequest();
+      request.onreadystatechange = function(){
+          if (this.readyState == 4 && this.status==200){
+              let data = JSON.parse(this.responseText).interviewers;
+              interviewers = data;
+              console.log(interviewers);
+          }
+      }
+      request.open("GET", "../../../server/helper/getInterviewers.php", true);
+      request.send();
+    }
+    getInterviewers();
+
+    function getBookings(){
+    const request = new XMLHttpRequest;
+    request.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+            let data = JSON.parse(this.responseText).bookings
+            console.log(data);
+            document.getElementById('recommendation').style = 'display: none';
+            document.getElementById('recommendations').style = 'display: none';
+            document.getElementById('booking').style = '';
+            document.getElementById('bookings').style = '';
+
+            var tbody = document.createElement('tbody')
+
+            for (booking of data){
+              var interviewer_id = booking['interviewer_id']
+              var timeslot = booking['timeslots']
+              for (interviewer of interviewers){
+                var id = interviewer['id']
+                if (interviewer_id == id){
+                  var name = interviewer['fname'] + ' ' + interviewer['lname'];
+                  var tr = document.createElement('tr')
+                  var td1 = document.createElement('td')
+                  var td2 = document.createElement('td')
+                  var td3 = document.createElement('td')
+
+                  td1.appendChild(document.createTextNode(name))
+                  tr.appendChild(td1)
+
+                  td2.appendChild(document.createTextNode(timeslot))
+                  tr.appendChild(td2)
+
+                  td3.innerHTML = `<button id='delete' value="${id}" class="btn btn-dark btn-sm" type='button'>Delete Booking</button>`
+                  tr.appendChild(td3)
+
+                  tbody.appendChild(tr)
+                }
+              }
+            }
+            document.getElementById('details').appendChild(tbody)
+            document.getElementById('delete').addEventListener('click', deleteInterview);
+        }
+    }
+    request.open("GET", "../../../server/helper/getBookings.php", true);
+    request.send();
+    }
+    getBookings();
+
+
+    function deleteInterview(){
+      console.log('peepee')
+    }
+
     var search_category = 'name';
     $(".default_option").click(function(){
       $(".dropdown ul").addClass("active");
@@ -176,19 +258,7 @@ const id = '<?php echo $_SESSION["id"]?>';
         document.getElementById('searchItem').placeholder = 'Search for Interviewer';
       }
     });
-    var interviewers = {};
-    function getInterviewers(){
-    const request = new XMLHttpRequest();
-    request.onreadystatechange = function(){
-        if (this.readyState == 4 && this.status==200){
-            let data = JSON.parse(this.responseText).interviewers;
-            interviewers = data;
-            console.log(interviewers);
-        }
-    }
-    request.open("GET", "../../../server/helper/getInterviewers.php", true);
-    request.send();
-  }
+
   
 function doSearch(){
   // document.getElementById('results').innerHTML = '';
@@ -368,7 +438,6 @@ function doSearch(){
     }
   };
     document.getElementById('doSearch').addEventListener('click', doSearch);
-    getInterviewers();
   </script>
 </body>
 </html>
