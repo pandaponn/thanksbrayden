@@ -81,8 +81,6 @@
             $pdo = null;
             return $isOk;
         }
-
-
         
         public function deleteBooking($user_id, $interviewer_id, $timeslots){
             $conn = new ConnectionManager();
@@ -101,6 +99,21 @@
             return $isOk;
         }
 
+        public function addBooking($interviewer_id, $timeslots){
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+
+            $sql = "INSERT INTO `interviewslots` (`interviewer_id`, `timeslots`) VALUES (:interviewer_id, :timeslots)";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':interviewer_id', $interviewer_id, PDO::PARAM_INT);
+            $stmt->bindParam(':timeslots', $timeslots, PDO::PARAM_STR);
+
+            $isOk = $stmt->execute();
+            $stmt = null;
+            $pdo = null;
+            return $isOk;
+        }
 
         
         public function getBookings(){
