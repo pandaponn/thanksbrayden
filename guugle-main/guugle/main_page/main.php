@@ -46,9 +46,6 @@ const id = '<?php echo $_SESSION["id"]?>';
             <a href="main.php" class="nav-link">Main</a>
         </li>
         <li class="nav-item">
-            <a href="profile.php" class="nav-link">Professionals</a>
-        </li>
-        <li class="nav-item">
             <a href="user_profile.php" class="nav-link">Profile</a>
         </li>
         <li class="nav-item">
@@ -129,6 +126,9 @@ const id = '<?php echo $_SESSION["id"]?>';
   
   <script>
     var interviewers = {};
+    var bookings = {};
+
+    // Retrieve Interviewers
     function getInterviewers(){
       const request = new XMLHttpRequest();
       request.onreadystatechange = function(){
@@ -136,63 +136,66 @@ const id = '<?php echo $_SESSION["id"]?>';
               let data = JSON.parse(this.responseText).interviewers;
               interviewers = data;
               console.log(interviewers);
+
+              // Retrieve Bookings
+              function getBookings(){
+              const request = new XMLHttpRequest;
+              request.onreadystatechange = function(){
+                  if (this.readyState == 4 && this.status == 200){
+                      let data = JSON.parse(this.responseText).bookings
+                      if (data.length != 0){
+                        bookings = data;
+                        console.log(bookings);
+                        document.getElementById('recommendation').style = 'display: none';
+                        document.getElementById('recommendations').style = 'display: none';
+                        document.getElementById('booking').style = '';
+                        document.getElementById('bookings').style = '';
+
+                        var tbody = document.createElement('tbody')
+
+                        for (booking of data){
+                          var interviewer_id = booking['interviewer_id']
+                          var timeslot = booking['timeslots']
+                          for (interviewer of interviewers){
+                            var id = interviewer['id']
+                            if (interviewer_id == id){
+                              var name = interviewer['fname'] + ' ' + interviewer['lname'];
+                              var tr = document.createElement('tr')
+                              var td1 = document.createElement('td')
+                              var td2 = document.createElement('td')
+                              var td3 = document.createElement('td')
+
+                              td1.appendChild(document.createTextNode(name))
+                              tr.appendChild(td1)
+
+                              td2.appendChild(document.createTextNode(timeslot))
+                              tr.appendChild(td2)
+
+                              td3.innerHTML = `<button id='delete' value="${booking['user_id']}" class="btn btn-dark btn-sm" type='button'>Delete Booking</button>`
+                              tr.appendChild(td3)
+
+                              tbody.appendChild(tr)
+                            }
+                          }
+                        }
+                        document.getElementById('details').appendChild(tbody)
+                        document.getElementById('delete').addEventListener('click', deleteInterview);
+                      }
+                  }
+              }
+              request.open("GET", "../../../server/helper/getBookings.php", true);
+              request.send();
+              }
+              getBookings();
+              // END Retrieval of Bookings
+
           }
       }
       request.open("GET", "../../../server/helper/getInterviewers.php", true);
       request.send();
     }
     getInterviewers();
-
-    var bookings = {};
-    function getBookings(){
-    const request = new XMLHttpRequest;
-    request.onreadystatechange = function(){
-        if (this.readyState == 4 && this.status == 200){
-            let data = JSON.parse(this.responseText).bookings
-            if (data.length != 0){
-              bookings = data;
-              console.log(bookings);
-              document.getElementById('recommendation').style = 'display: none';
-              document.getElementById('recommendations').style = 'display: none';
-              document.getElementById('booking').style = '';
-              document.getElementById('bookings').style = '';
-
-              var tbody = document.createElement('tbody')
-
-              for (booking of data){
-                var interviewer_id = booking['interviewer_id']
-                var timeslot = booking['timeslots']
-                for (interviewer of interviewers){
-                  var id = interviewer['id']
-                  if (interviewer_id == id){
-                    var name = interviewer['fname'] + ' ' + interviewer['lname'];
-                    var tr = document.createElement('tr')
-                    var td1 = document.createElement('td')
-                    var td2 = document.createElement('td')
-                    var td3 = document.createElement('td')
-
-                    td1.appendChild(document.createTextNode(name))
-                    tr.appendChild(td1)
-
-                    td2.appendChild(document.createTextNode(timeslot))
-                    tr.appendChild(td2)
-
-                    td3.innerHTML = `<button id='delete' value="${booking['user_id']}" class="btn btn-dark btn-sm" type='button'>Delete Booking</button>`
-                    tr.appendChild(td3)
-
-                    tbody.appendChild(tr)
-                  }
-                }
-              }
-              document.getElementById('details').appendChild(tbody)
-              document.getElementById('delete').addEventListener('click', deleteInterview);
-            }
-        }
-    }
-    request.open("GET", "../../../server/helper/getBookings.php", true);
-    request.send();
-    }
-    getBookings();
+    // END Retrieval of Interviewers
 
 
     function deleteInterview(){
