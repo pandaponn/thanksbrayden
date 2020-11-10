@@ -64,41 +64,7 @@ const id = '<?php echo $_SESSION["id"]?>';
       <h2 class='mt-5'>Bookings</h2>
       <p class="lead"> Welcome back to Guugle! These are your current interview bookings.</p>
     </div>
-    <div id='recommendations' class="row" style=''>
-      <div class='col-md-4'>
-        <figure class="snip1336">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg" alt="sample87" />
-          <figcaption>
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample4.jpg" alt="profile-sample4" class="profile" />
-            <h2>Hans Down<span>Engineer</span></h2>
-            <p>I'm looking for something that can deliver a 50-pound payload of snow on a small feminine target. Can you suggest something? Hello...? </p>
-            <a href="#" class="follow">Follow</a>
-            <a href="#" class="info">More Info</a>
-          </figcaption>
-        </figure>
-      </div>
-      <div class="col-md-4">
-        <figure class="snip1336 hover"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample74.jpg" alt="sample74" />
-          <figcaption>
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample2.jpg" alt="profile-sample2" class="profile" />
-            <h2>Wisteria Widget<span>Photographer</span></h2>
-            <p>Calvin: I'm a genius, but I'm a misunderstood genius. Hobbes: What's misunderstood about you? Calvin: Nobody thinks I'm a genius.</p>
-            <a href="#" class="follow">Follow</a>
-            <a href="#" class="info">More Info</a>
-          </figcaption>
-        </figure>
-      </div>
-      <div class='col-md-4'>
-        <figure class="snip1336"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample69.jpg" alt="sample69" />
-          <figcaption>
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample5.jpg" alt="profile-sample5" class="profile" />
-            <h2>Desmond Eagle<span>Accountant</span></h2>
-            <p>If you want to stay dad you've got to polish your image. I think the image we need to create for you is "repentant but learning".</p>
-            <a href="#" class="follow">Follow</a>
-            <a href="#" class="info">More Info</a>
-          </figcaption>
-        </figure>
-      </div>
+    <div id='recommendations' class="row card-deck" style=''>
     </div>
     <div id='bookings' class="row" style='display: none'>
       <table id='details' class = 'table'>
@@ -106,7 +72,7 @@ const id = '<?php echo $_SESSION["id"]?>';
           <tr>
           <th>Interviewer</th>
           <th>Details</th>
-          <th>Delete</th>
+          <th>Type</th>
           </tr>
         </thead>
       </table>
@@ -127,6 +93,48 @@ const id = '<?php echo $_SESSION["id"]?>';
   <script>
     var interviewers = {};
     var bookings = {};
+
+    //Retrieve Recommendations
+    function getRandom(arr, n) {
+    var result = new Array(n),
+        len = arr.length,
+        taken = new Array(len);
+    while (n--) {
+        var x = Math.floor(Math.random() * len);
+        result[n] = arr[x in taken ? taken[x] : x];
+        taken[x] = --len in taken ? taken[len] : len;
+    }
+    return result;
+    }
+
+    function getRecommendations(){
+      result = getRandom(interviewers, 3)
+      for (item of result){
+        var name = item['fname'] + ' ' + item['lname'];
+        var img = item['img'];
+        var company = item['company'];
+        var about = item['about'];
+        var id = item['id'];
+        var job = item['job'];
+        var industry = item['industry'];
+        
+
+        recommendations.innerHTML += `
+        <div class="card col-md-4" style="width: 18rem;">
+          <img class="card-img-top" src="${img}" alt="Oops">
+          <div class="card-body">
+            <h5 class="card-title">${name}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">${industry}</h6>
+            <p class="card-text text-muted font-italic">Works in ${company} as a ${job}</p>
+            <p class="card-text">${about}</p>
+            <form action="profile.php" method="POST">
+              <button class="btn btn-dark" value="${id}" name="interviewer_id">Book now</button>
+            </form>
+          </div>
+        </div>
+        `;
+      }
+    }
 
     // Retrieve Interviewers
     function getInterviewers(){
@@ -156,6 +164,7 @@ const id = '<?php echo $_SESSION["id"]?>';
                         for (booking of data){
                           var interviewer_id = booking['interviewer_id']
                           var timeslot = booking['timeslots']
+                          var interview_type = booking['interview_type']
                           for (interviewer of interviewers){
                             var id = interviewer['id']
                             if (interviewer_id == id){
@@ -164,6 +173,7 @@ const id = '<?php echo $_SESSION["id"]?>';
                               var td1 = document.createElement('td')
                               var td2 = document.createElement('td')
                               var td3 = document.createElement('td')
+                              var td4 = document.createElement('td')
 
                               td1.appendChild(document.createTextNode(name))
                               tr.appendChild(td1)
@@ -171,8 +181,11 @@ const id = '<?php echo $_SESSION["id"]?>';
                               td2.appendChild(document.createTextNode(timeslot))
                               tr.appendChild(td2)
 
-                              td3.innerHTML = `<button id='delete' value="${booking['user_id']}" class="btn btn-dark btn-sm" type='button'>Delete Booking</button>`
+                              td3.appendChild(document.createTextNode(interview_type))
                               tr.appendChild(td3)
+
+                              td4.innerHTML = `<button id='delete' value="${booking['user_id']}" class="btn btn-dark btn-sm" type='button'>Delete Booking</button>`
+                              tr.appendChild(td4)
 
                               tbody.appendChild(tr)
                             }
@@ -180,6 +193,8 @@ const id = '<?php echo $_SESSION["id"]?>';
                         }
                         document.getElementById('details').appendChild(tbody)
                         document.getElementById('delete').addEventListener('click', deleteInterview);
+                      }else{
+                        getRecommendations();
                       }
                   }
               }
