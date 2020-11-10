@@ -33,9 +33,6 @@
                 <a href="main.php" class="nav-link">Main</a>
             </li>
             <li class="nav-item">
-                <a href="profile.php" class="nav-link">Professionals</a>
-            </li>
-            <li class="nav-item">
                 <a href="user_profile.php" class="nav-link">Profile</a>
             </li>
             <li class="nav-item">
@@ -46,9 +43,11 @@
     </nav>
 
     <!-- Search Results -->
-    <div class = 'box'>
-    <div id="search_results" style="margin-top: 70px;">
-    </div>
+    <h1 id="search_header">Search Results</h1>
+    <div class='box'>
+        <div id="search_results">
+
+        </div>
     </div>
 </body>
 </html>

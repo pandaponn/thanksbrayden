@@ -31,12 +31,12 @@ body {
 
 .box {
   width: 60%;
-  margin: 200px auto 120px;
+  margin: 30px auto 120px;
   background-color: #fff;
   padding: 0 20px 80px;
   border-radius: 6px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-  text-align: center;
+  /* text-align: center; */
 }
 
 .profile {
@@ -64,4 +64,10 @@ li {
 
 .form-check-label {
   margin-bottom: 10px;
+}
+
+#search_header {
+  color: black; 
+  margin-top: 120px; 
+  text-align: center;
 }
