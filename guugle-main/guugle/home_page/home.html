@@ -12,10 +12,36 @@
     <script src="../parallax.js-1.5.0/parallax.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <title>guugle</title>
+    <link rel="stylesheet" href="card4.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="card.css">
-
-  </head>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet"> 
+</head>
+<style>
+  .bounce1 {
+    animation-delay: 0.3s;
+  }
+  .bounce2{
+    animation-delay: 0.5s;
+  }
+  .bounce3{
+    animation-delay: 0.7s;
+  }
+  .animation{
+    animation-duration: 1s;
+  }
+  .fadein{
+    animation-duration: 1.5s;
+  }
+  .anime{
+    animation-duration: 1.5s;
+  }
+  i {
+    margin-bottom: 10px;
+  }
+  li.faq {
+  margin-bottom: 10px;
+  }
+</style>
 <body data-spy="scroll" data-target="body" data-offset="490">
     <script>
         // Scroll Animation Function
@@ -32,16 +58,29 @@
             }
             // If element is scrolled into view, fade it in
             $(window).scroll(function() {
-                $('.animate__animated').each(function() {
+                $('.animation').each(function() {
                     if (isScrolledIntoView(this) === true) {
                         $(this).addClass('animate__fadeInLeft');
+                    }
+                });
+            });
+            $(window).scroll(function() {
+                $('.bounce').each(function() {
+                    if (isScrolledIntoView(this) === true) {
+                        $(this).addClass('animate__bounceIn');
+                    }
+                });
+            });
+            $(window).scroll(function() {
+                $('.fadein').each(function() {
+                    if (isScrolledIntoView(this) === true) {
+                        $(this).addClass('animate__fadeIn');
                     }
                 });
             });
           });
     </script>
 
-    
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
@@ -64,32 +103,36 @@
                   <a href="#reviews" class="nav-link">Reviews</a>
                 </li>
                 <li class="nav-item">
-                    <a href="profile_creation.html" class="nav-link">Join Us</a>
+                  <a href="#faq" class="nav-link">FAQ</a>
                 </li>
                 <li class="nav-item">
-                    <a href="login.html" class="nav-link">Log In</a>
+                  <!-- LinkedIn Hidden Inputs -->
+                  <form method='get' action='https://www.linkedin.com/oauth/v2/authorization' class="form-inline">
+                    <input type='hidden' name='response_type' value = 'code'>
+                    <input type='hidden' name='client_id' value = '8666gpxcfx4fa8'>
+                    <input type='hidden' name='redirect_uri' value = 'http://localhost:8888/test/server/helper/callback.php'>
+                    <!-- <input type='hidden' name='state' value = 'DCEeFWf45A53sdfKef424'>  -->
+                    <input type='hidden' name='scope' value = 'r_liteprofile,r_emailaddress'>
+
+                    <button href="#" type='submit' class="nav-link" style="background-color: transparent; border: none; text-transform: uppercase; letter-spacing: .1rem;">Log In</button>
+                  </form>  
                 </li>
             </ul>
         </div>
     </nav>
     <!-- Header-->
-    <div class="tint header" style="margin-top:55px;">
-        <img src="img/interview6.jpg" alt="interview1" style="max-width:100%; height:auto;">
-        <!-- <h1 class="headText animate__animated">Need help with interviews?</h1> -->
-        <div class="headText">
-            <h1>Need help with interviews?</h1>
-            <button type="button" class="btn btn-outline-light" style="margin-top: 10px;">Let us help you!</button>
-            <!-- <a class="header__arrow js-header-arrow" href="#main">
-              <span></span>
-            </a> -->
-        </div>
+    <div class="parallax-window tint header" data-parallax="scroll"  data-image-src="img/interview6.jpg" style="min-height: 800px; margin-top:0px">
+      <div class="headText parallax-text p-text">
+        <h1>Need help with interviews?</h1>
+        <button type="button" class="btn btn-outline-light" style="margin-top: 10px;">Let us help you!</button>
+      </div>
     </div>
 
     
     <!-- Industry Experts -->
     <!--<div class="container mx-auto animate__animated" id="interviewers"></div>-->
-    <div class="container animate__animated" id="interviewers">
-        <h2 class="animate__animated a">Meet a few of our industry experts!</h2>
+    <div class="container animation animate__animated" id="interviewers">
+        <h2 class="animation animate__animated a">Meet a few of our industry experts!</h2>
         
         <div class="row">
                 <div class="card col-sm-4" style="width: 18rem;">
@@ -139,148 +182,321 @@
         </div>
     </div>
 
-        <!-- About Us Parallax -->
-        
-        <div class="parallax-window tint" id="about" data-parallax="scroll"  data-image-src="img/interview2.jpg">
-            <p class="parallax-text">
-                <span style="font-size: 35px; letter-spacing: .2rem;">WHAT WE DO</span><br>
+
+    <!-- About Us Parallax -->
+    <div class="parallax-window tint" id="about" data-parallax="scroll"  data-image-src="img/interview2.jpg" style="margin-top: 100px;">
+        <!-- <p class="parallax-text">
+            <span style="font-size: 35px; letter-spacing: .2rem;">WHAT WE DO</span><br>
+            We have curated several professionals across a multitude of industries who have been generous enough to offer their time to help level up the interview skills of others. Through our platform,
+            you can simply arrange for either an informational or mock interview with an industry professional and begin the process of upgrading your interviewing skills for that next job on the horizon!
+        </p> -->
+          <div class="row mx-auto text-center parallax-text fadein animate__animated">
+            <div style="margin-bottom: 30px;">
+              <span style="font-size: 35px; letter-spacing: .2rem; text-align: center;">WHAT WE DO</span><br>
+              <p>
                 We have curated several professionals across a multitude of industries who have been generous enough to offer their time to help level up the interview skills of others. Through our platform,
                 you can simply arrange for either an informational or mock interview with an industry professional and begin the process of upgrading your interviewing skills for that next job on the horizon!
-            </p>
-        </div>
-        <!-- Reviews -->
-    <!-- As inspired by https://github.com/fireship-io/stacked-card-list -->
-    <!--<div class="row mx-auto">-->
-    
-          <div class="container reviews mx-auto animate__animated" id="reviews">
-            <h2 class="animate__animated a">Hear our reviews!</h2>
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-              <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-              </ol>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <div class="row">
-                    <div class="card2 col-sm-4" style="width: 18rem;">
-                        <div class="card-author">
-                          <a class="author-avatar">
-                            <img src="img/zh.jpeg"/>
-                          </a>
-                          <svg class="half-circle" viewBox="0 0 106 57">
-                            <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-                          </svg>
-                
-                          <div class="author-name">
-                            <div class="author-name-prefix">Developer</div>
-                            Lim Zhi Hao
-                          </div>
-                        </div>
-                        <p class="textDate">Jun 24th 2020</p>
-                        <p class="card-text reviewDesc">Dr. Phris Coskitt is a wonderful professor, when he isn't trying to jumpscare me.</p>
-                    
-                    </div>
-                    <div class="card2 col-sm-4" style="width: 18rem;">
-                      <div class="card-author">
-                        <a class="author-avatar">
-                          <img src="img/brayden.jpeg"/>
-                        </a>
-                        <svg class="half-circle" viewBox="0 0 106 57">
-                          <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-                        </svg>
-              
-                        <div class="author-name">
-                          <div class="author-name-prefix">Teacher</div>
-                          Brayden Leo
-                        </div>
-                      </div>
-                      <p class="textDate">July 7th 2020</p>
-                      <p class="card-text reviewDesc">Xin Wei helped me become the second best in SIS.</p>
-                  
-                  </div>
+              </p> 
+            </div>
 
-                    </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="row">
-                    <div class="card2 col-sm-4" style="width: 18rem;">
-                      <div class="card-author">
-                        <a class="author-avatar" href="#">
-                          <img src="img/ben.jpg" />
-                        </a>
-                        <svg class="half-circle" viewBox="0 0 106 57">
-                          <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-                        </svg>
-              
-                        <div class="author-name">
-                          <div class="author-name-prefix">Security Analyst</div>
-                          Benjamin Khong
-                        </div>
-                      </div>
-                        <p class="textDate">Aug 9th 2020</p>
-                        <p class="reviewDesc">Thanks to Hong Seng, I now have a job!<p>
-                    </div>
-                    <div class="card2 col-sm-4" style="width: 18rem;">
-                      <div class="card-author">
-                        <a class="author-avatar" href="#">
-                          <img src="img/weijie.jpg" />
-                        </a>
-                        <svg class="half-circle" viewBox="0 0 106 57">
-                          <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-                        </svg>
-              
-                        <div class="author-name">
-                          <div class="author-name-prefix">Game Developer</div>
-                          Goh Wei Jie
-                        </div>
-                      </div>
-                        <p class="textDate">Sep 14th 2020</p>
-                        <p class="reviewDesc">I would be homeless right now if it weren't for this platform.<p>
-                    </div>
-              
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="row">
-                  <div class="card2 col-sm-4 mx-auto" style="width: 18rem;">
-                    <div class="card-author">
-                      <a class="author-avatar" href="#">
-                        <img src="img/ambrose.jpg" />
-                      </a>
-                      <svg class="half-circle" viewBox="0 0 106 57">
-                        <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-                      </svg>
-            
-                      <div class="author-name">
-                        <div class="author-name-prefix">Tech Consultant</div>
-                        Ambrose Wang
-                      </div>
-                    </div>
-                      <p class="textDate">Oct 11th 2020</p>
-                      <p class="reviewDesc">Thanks to this platform, I was able to upgrade my interview skills and secure a job!<p>
-                  </div>
-                </div>
-                
+            <div class="col-sm-4 bounce animate__animated bounce1">
+              <!-- style="color: rgb(180, 246, 255);" -->
+              <i class="far fa-thumbs-up fa-8x" ></i>
+              <h1>90%</h1>
+              <h3>Approval</h3>
+            </div>
+            <div class="col-sm-4 bounce animate__animated bounce2">
+              <!-- style="color: rgb(202, 255, 202);" -->
+              <i class="fas fa-chart-line fa-8x"></i>
+              <h1>100%</h1>
+              <h3>Improvement in Interview Skills</h3>
+            </div>
+            <div class="col-sm-4 bounce animate__animated bounce3">
+              <!-- style="color: rgb(255, 255, 161);" -->
+              <i class="fas fa-briefcase fa-8x"></i>
+              <h1>101%</h1>
+              <h3>Jobs Secured</h3>
+            </div>
+        </div>      
+    </div>
+
+    <!-- Reviews -->
+    <!-- Adapted from CodingNepal, https://www.codingnepalweb.com/2020/10/responsive-testimonials-section.html -->
+    <div class="container reviews mx-auto animation animate__animated" id="reviews">
+      <h2 class="animation animate__animated a">Hear what our users have to say!</h2>
+      <div class="wrapper animation animate__animated anime">
+        <div class="box2">
+          <i class="fas fa-quote-left quote"></i>
+          <p>Dr. Phris Coskitt is a wonderful professor, when he isn't trying to jumpscare me.</p>
+          <div class="content">
+            <div class="info">
+              <div class="name">Lim Zhi Hao</div>
+              <div class="job">Software Engineer</div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
               </div>
-              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
+            </div>
+            <div class="image">
+              <img src="img/zh.jpeg" alt="zhihao">
             </div>
           </div>
+        </div>
+
+        <div class="box2">
+          <i class="fas fa-quote-left quote"></i>
+          <p>Thanks to this platform, I was able to upgrade my interview skills and secure a job!</p>
+          <div class="content">
+            <div class="info">
+              <div class="name">Ambrose Wang</div>
+              <div class="job">Tech Consultant</div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+            </div>
+            <div class="image">
+              <img src="img/ambrose.jpg" alt="ambrose">
+            </div>
           </div>
+        </div>
+        
+        <div class="box2">
+          <i class="fas fa-quote-left  quote"></i>
+          <p>I would be homeless right now if it weren't for this platform.</p>
+          <div class="content">
+            <div class="info">
+              <div class="name">Goh Wei Jie</div>
+              <div class="job">Game Developer</div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+            </div>
+            <div class="image">
+              <img src="img/weijie2.jpg" alt="weijie">
+            </div>
+          </div>
+        </div>
+
+        <div class="box2">
+          <i class="fas fa-quote-left  quote"></i>
+          <p>Xin Wei helped me become the second best in SIS. Only second because first is reserved for Xin Wei..</p>
+          <div class="content">
+            <div class="info">
+              <div class="name">Brayden Leo</div>
+              <div class="job">Fintech Expert</div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+            </div>
+            <div class="image">
+              <img src="img/brayden.jpeg" alt="brayden">
+            </div>
+          </div>
+        </div>
+
+        <div class="box2">
+          <i class="fas fa-quote-left  quote"></i>
+          <p>Thanks to Hong Seng, I now have a job!</p>
+          <div class="content">
+            <div class="info">
+              <div class="name">Benjamin Khong</div>
+              <div class="job">Business Analyst</div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <div class="image">
+              <img src="img/ben.jpg" alt="ben">
+            </div>
+          </div>
+        </div>
+
+        <div class="box2">
+          <i class="fas fa-quote-left  quote"></i>
+          <p>Watch out Batman, I'm coming for you!!</p>
+          <div class="content">
+            <div class="info">
+              <div class="name">Phris Coskitt</div>
+              <div class="job">Professional Villain</div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <div class="image">
+              <img src="img/chris.jpg" alt="chris">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     
 
+      <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row">
+              <div class="card2 col-sm-4" style="width: 18rem;">
+                  <div class="card-author">
+                    <a class="author-avatar">
+                      <img src="img/zh.jpeg"/>
+                    </a>
+                    <svg class="half-circle" viewBox="0 0 106 57">
+                      <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+                    </svg>
+          
+                    <div class="author-name">
+                      <div class="author-name-prefix">Developer</div>
+                      Lim Zhi Hao
+                    </div>
+                  </div>
+                  <p class="textDate">Jun 24th 2020</p>
+                  <p class="card-text reviewDesc">Dr. Phris Coskitt is a wonderful professor, when he isn't trying to jumpscare me.</p>
+              
+              </div>
+              <div class="card2 col-sm-4" style="width: 18rem;">
+                <div class="card-author">
+                  <a class="author-avatar">
+                    <img src="img/brayden.jpeg"/>
+                  </a>
+                  <svg class="half-circle" viewBox="0 0 106 57">
+                    <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+                  </svg>
+        
+                  <div class="author-name">
+                    <div class="author-name-prefix">Teacher</div>
+                    Brayden Leo
+                  </div>
+                </div>
+                <p class="textDate">July 7th 2020</p>
+                <p class="card-text reviewDesc">Xin Wei helped me become the second best in SIS.</p>
+            
+            </div>
+
+              </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row">
+              <div class="card2 col-sm-4" style="width: 18rem;">
+                <div class="card-author">
+                  <a class="author-avatar" href="#">
+                    <img src="img/ben.jpg" />
+                  </a>
+                  <svg class="half-circle" viewBox="0 0 106 57">
+                    <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+                  </svg>
+        
+                  <div class="author-name">
+                    <div class="author-name-prefix">Security Analyst</div>
+                    Benjamin Khong
+                  </div>
+                </div>
+                  <p class="textDate">Aug 9th 2020</p>
+                  <p class="reviewDesc">Thanks to Hong Seng, I now have a job!<p>
+              </div>
+              <div class="card2 col-sm-4" style="width: 18rem;">
+                <div class="card-author">
+                  <a class="author-avatar" href="#">
+                    <img src="img/weijie.jpg" />
+                  </a>
+                  <svg class="half-circle" viewBox="0 0 106 57">
+                    <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+                  </svg>
+        
+                  <div class="author-name">
+                    <div class="author-name-prefix">Game Developer</div>
+                    Goh Wei Jie
+                  </div>
+                </div>
+                  <p class="textDate">Sep 14th 2020</p>
+                  <p class="reviewDesc">I would be homeless right now if it weren't for this platform.<p>
+              </div>
+        
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row">
+            <div class="card2 col-sm-4 mx-auto" style="width: 18rem;">
+              <div class="card-author">
+                <a class="author-avatar" href="#">
+                  <img src="img/ambrose.jpg" />
+                </a>
+                <svg class="half-circle" viewBox="0 0 106 57">
+                  <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+                </svg>
+      
+                <div class="author-name">
+                  <div class="author-name-prefix">Tech Consultant</div>
+                  Ambrose Wang
+                </div>
+              </div>
+                <p class="textDate">Oct 11th 2020</p>
+                <p class="reviewDesc">Thanks to this platform, I was able to upgrade my interview skills and secure a job!<p>
+            </div>
+          </div>
+          
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div> -->
     
+    <!-- FAQ Section -->
+    <div class="container" style="margin-top: 100px;" id="faq">
+      <h1 style="text-align: center; margin-bottom: 40px;">FAQ</h1>
+        <ol style="display: table; margin: 0 auto;">
+          <li class="faq">What is the difference between an <strong>Informational</strong> & <strong>Mock</strong> interview?</li>
+          <li class="faq">How much does an interview cost?</li>
+          <li class="faq">Can I choose my interviewer?</li>
+          <li class="faq">Can I book an interview at my own convenience?</li>
+          <li class="faq">Can I do the interview online?</li>
+          <li class="faq">Why must I sign up using LinkedIn?</li>
+          <li class="faq">What should I do if I can't make it for my interview?</li>
+          <li class="faq">Is there a penalty for missing an interview?</li>
+          <li class="faq">Am I able to cancel my interview?</li>
+          <li class="faq">Is Phris Coskitt the evil twin brother of Chris Poskitt?</li>
+        </ol>
+      
+      
+    </div>
     
     <!-- Footer -->
     <div class="text-center py-2" style="background-color: black; color: white; margin-top: 300px; font-size: small;">© 2020 Copyright: 
         <a href="https://www.linkedin.com/in/zhi-hao-lim/" target="blank">Lim Zhi Hao</a> 
     </div>
+
 </body>
 </html>
