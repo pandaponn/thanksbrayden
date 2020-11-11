@@ -45,8 +45,10 @@
     <!-- Search Results -->
     <h1 id="search_header">Search Results</h1>
     <div class='box'>
-        <div id="search_results">
+        <div id="search_results" style="padding-top: 30px; padding-bottom:30px;">
+            <!--<div class="row" id="row">-->
 
+            </div>
         </div>
     </div>
 </body>
@@ -80,11 +82,11 @@
                     index ++;
 
                     search_results.innerHTML += `
-                    <div class="fir-image-figure">
+                    <div class="fir-image-figure" >
                     <img class="fir-author-image fir-clickcircle" src="${img}">
 
                     <figcaption>
-                    <div class="fig-author-figure-title">${name}</div>
+                    <div class="fig-author-figure-title" style="font-weight:900;">${name}</div>
                     <div class="fig-author-figure-title">${job}, ${company}</div>
                     <div class="fig-author-figure-title">${industry}</div>
                     </figcaption>
@@ -93,6 +95,7 @@
                     <button class="btn btn-dark btn-sm" style="margin-left: 15px;" value="${id}" name="interviewer_id">Book now</button>
                     </form>
                     </div>
+                    <br>
                     `;
                 }
             }
