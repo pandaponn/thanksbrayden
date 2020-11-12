@@ -8,10 +8,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <title>Search Result</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="search.css"> 
+    <link rel="stylesheet" href="search.css">
 </head>
+<style>
+    .animate__fadeIn{
+        animation-duration: 1.5s;
+    }
+</style>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
         <!-- Changed link to main.php --> 
@@ -43,8 +49,8 @@
     </nav>
 
     <!-- Search Results -->
-    <h1 id="search_header">Search Results</h1>
-    <div class='box'>
+    <h1 id="search_header" class="animate__animated animate__fadeIn">Search Results</h1>
+    <div class='box animate__animated animate__fadeIn'>
         <div id="search_results" style="padding-top: 30px; padding-bottom:30px;">
             <!--<div class="row" id="row">-->
 
@@ -56,6 +62,52 @@
 
 
 <script type='text/javascript'>
+
+    //Retrieve Recommendations
+    function getRandom(arr, n) {
+        var result = new Array(n),
+            len = arr.length,
+            taken = new Array(len);
+        while (n--) {
+            var x = Math.floor(Math.random() * len);
+            result[n] = arr[x in taken ? taken[x] : x];
+            taken[x] = --len in taken ? taken[len] : len;
+        }
+        return result;
+    }
+
+    function getRecommendations(){
+      result = getRandom(interviewers, 3)
+      for (item of result){
+        var name = item['fname'] + ' ' + item['lname'];
+        var img = item['img'];
+        var company = item['company'];
+        var about = item['about'];
+        var id = item['id'];
+        var job = item['job'];
+        var industry = item['industry'];
+        
+
+        search_results.innerHTML += `
+        <div class="fir-image-figure">
+            <img class="fir-author-image fir-clickcircle" src="${img}">
+
+            <figcaption>
+            <div class="fig-author-figure-title" style="font-weight:900;">${name}</div>
+            <div class="fig-author-figure-title">${job}, ${company}</div>
+            <div class="fig-author-figure-title">${industry}</div>
+            </figcaption>
+
+            <form action="profile.php" method="POST">
+            <button class="btn btn-dark btn-sm" style="margin-left: 15px;" value="${id}" name="interviewer_id">Book now</button>
+            </form>
+        </div>
+        <br>
+        `;
+      }
+    }
+
+    let interviewers = {}
     let search = '<?php echo $_POST['searchItem']; ?>'.toLowerCase();
     console.log(search);
 
@@ -82,7 +134,7 @@
                     index ++;
 
                     search_results.innerHTML += `
-                    <div class="fir-image-figure" >
+                    <div class="fir-image-figure">
                     <img class="fir-author-image fir-clickcircle" src="${img}">
 
                     <figcaption>
@@ -100,7 +152,16 @@
                 }
             }
             if (index == 0){
-                alert('Unable to find what you are looking for.')
+                search_results.innerHTML += `
+                <div class="text-center">
+                    <i class="fas fa-exclamation-circle fa-8x" style="color: #cb1616;"></i>
+                    <h3 style="margin: 20px 20px 10px 20px">Sorry, we couldn't find what you were searching for!</h3>
+                    <h4 style="margin-bottom: 20px;">How about these <strong style="font-style: italic;">fine</strong> interviewers instead?</h4>
+                    <br>
+                </div>
+                    
+                `;
+                getRecommendations();
             }
         }
     }
