@@ -29,24 +29,22 @@ const id = '<?php echo $_SESSION["id"]?>';
     <link rel="stylesheet" href="profile.css">
 </head>
 <body>
-
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
-        <!-- changed to main.php -->
-        <a href="main.php" class="navbar-brand">
-            <!-- image throws error -->
-            <!--<img src=''style="width: 100px; height: auto;">-->
-            Phris Coskitt</a>
+        <a href="main.php" class="navbar-brand">Phris Coskitt</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#hamburger">
-            <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="hamburger">
-            <ul class="navbar-nav ml-auto">
+            <!-- Search -->
+            <form class="form-inline my-2 my-lg-0 ml-auto" action="result.php" method="POST">
+                <input class="form-control form-control-sm" type="text" placeholder="Search" aria-label="Search" name="searchItem">
+                <button class="btn btn-link" name="doSearch" type="submit"><i class="fas fa-search text-white" aria-hidden="true"></i></button>
+            </form>
+            
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a href="main.php" class="nav-link">Main</a>
-                </li>
-                <li class="nav-item">
-                    <a href="profile.php" class="nav-link">Professionals</a>
                 </li>
                 <li class="nav-item">
                     <a href="user_profile.php" class="nav-link">Profile</a>
@@ -86,6 +84,9 @@ const id = '<?php echo $_SESSION["id"]?>';
                   <form action="../../../server/helper/addBooking.php" method="POST" class="form">
                     <div class="modal-body">
                         <div id="booking_form" style="margin-top: 10px;">
+                        <div id='noTimeslots' class = 'mx-auto' style="display:none">
+                            <span>Sorry, <span id="interviewer_fname3"></span> has no available slots in the next 2 months</span>
+                        </div>
                           <!-- Replace with actual timeslots from database later -->
                         <!-- <div class="form-check">
                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
@@ -115,9 +116,6 @@ const id = '<?php echo $_SESSION["id"]?>';
                         <div class="mx-auto" id='makeBooking'>
                             <button type="submit" class="btn btn-dark" id="info_submit" name="info">Informational Interview</button>
                             <button type="submit" class="btn btn-dark" id="mock_submit" name="mock">Mock Interview</button>
-                        </div>
-                        <div id='noTimeslots' class = 'mx-auto' style="display:none">
-                            <span>Sorry, the Interviewer has no slots available in the next 2 months</span>
                         </div>
                     </div>
                 </form>
@@ -215,6 +213,7 @@ const id = '<?php echo $_SESSION["id"]?>';
                             let interviewer_id = document.getElementById('interviewer_id');
                             let interviewer_fname1 = document.getElementById('interviewer_fname1');
                             let interviewer_fname2 = document.getElementById('interviewer_fname2');
+                            let interviewer_fname3 = document.getElementById('interviewer_fname3');
                             
                             interviewer_id.value = interviewer.id;
                             user_img.setAttribute("src", interviewer.img);
@@ -226,6 +225,7 @@ const id = '<?php echo $_SESSION["id"]?>';
                             email.innerHTML = interviewer.email;
                             interviewer_fname1.innerHTML = interviewer.fname;
                             interviewer_fname2.innerHTML = interviewer.fname;
+                            interviewer_fname3.innerHTML = interviewer.fname;
                             
 
                             let expArray = JSON.parse(interviewer.experience).experience;
@@ -269,7 +269,7 @@ const id = '<?php echo $_SESSION["id"]?>';
                         bookings.innerHTML += `
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="radio_timeslot" id="${timeslot.interviewer_id}" value="${timeslot.timeslots}">
-                            ${timeslot.timeslots};
+                            ${timeslot.timeslots}
                         </div>
                         `;
                     }

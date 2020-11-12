@@ -30,21 +30,22 @@ const id = '<?php echo $_SESSION["id"]?>';
     <link rel="stylesheet" href="profile.css">
 </head>
 <body>
-
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
-        <a href="main.php" class="navbar-brand">
-            Phris Coskitt</a>
+        <a href="main.php" class="navbar-brand">Phris Coskitt</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#hamburger">
-            <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="hamburger">
-            <ul class="navbar-nav ml-auto">
+            <!-- Search -->
+            <form class="form-inline my-2 my-lg-0 ml-auto" action="result.php" method="POST">
+                <input class="form-control form-control-sm" type="text" placeholder="Search" aria-label="Search" name="searchItem">
+                <button class="btn btn-link" name="doSearch" type="submit"><i class="fas fa-search text-white" aria-hidden="true"></i></button>
+            </form>
+            
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a href="main.php" class="nav-link">Main</a>
-                </li>
-                <li class="nav-item">
-                    <a href="profile.php" class="nav-link">Professionals</a>
                 </li>
                 <li class="nav-item">
                     <a href="user_profile.php" class="nav-link">Profile</a>
