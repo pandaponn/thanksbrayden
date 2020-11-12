@@ -76,7 +76,9 @@ const id = '<?php echo $_SESSION["id"]?>';
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title">Book an interview with <span id="interviewer_fname"></span>!</h5>
+                    <!-- Toggled in accordance to availability --> 
+                  <h5 class="modal-title" id="availTimeslotHeader">Book an interview with <span id="interviewer_fname1"></span>!</h5>
+                  <h5 class="modal-title" id = "noTimeslotHeader" style="display:none">Oops! <span id="interviewer_fname2"> </span> is not available!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -108,10 +110,14 @@ const id = '<?php echo $_SESSION["id"]?>';
                         </div>
                     </div>
                     <input type="hidden" name="interviewer_id" id="interviewer_id">
-                    <div class="modal-footer">
-                        <div class="mx-auto">
+                    <div class="modal-footer" >
+                        <!-- Toggled in accordance to availability --> 
+                        <div class="mx-auto" id='makeBooking'>
                             <button type="submit" class="btn btn-dark" id="info_submit" name="info">Informational Interview</button>
                             <button type="submit" class="btn btn-dark" id="mock_submit" name="mock">Mock Interview</button>
+                        </div>
+                        <div id='noTimeslots' class = 'mx-auto' style="display:none">
+                            <span>Sorry, the Interviewer has no slots available in the next 2 months</span>
                         </div>
                     </div>
                 </form>
@@ -207,7 +213,8 @@ const id = '<?php echo $_SESSION["id"]?>';
                             let experience = document.getElementById('experience');
                             let education = document.getElementById('education');
                             let interviewer_id = document.getElementById('interviewer_id');
-                            let interviewer_fname = document.getElementById('interviewer_fname');
+                            let interviewer_fname1 = document.getElementById('interviewer_fname1');
+                            let interviewer_fname2 = document.getElementById('interviewer_fname2');
                             
                             interviewer_id.value = interviewer.id;
                             user_img.setAttribute("src", interviewer.img);
@@ -217,7 +224,9 @@ const id = '<?php echo $_SESSION["id"]?>';
                             company.innerHTML = interviewer.company;
                             about.innerHTML = interviewer.about;
                             email.innerHTML = interviewer.email;
-                            interviewer_fname.innerHTML = interviewer.fname;
+                            interviewer_fname1.innerHTML = interviewer.fname;
+                            interviewer_fname2.innerHTML = interviewer.fname;
+                            
 
                             let expArray = JSON.parse(interviewer.experience).experience;
                             for (exp of expArray){
@@ -253,22 +262,49 @@ const id = '<?php echo $_SESSION["id"]?>';
                     // Booking
                     let bookings = document.getElementById('booking_form');
                     let timeslots = JSON.parse(this.responseText).timeslots;
-                    console.log(timeslots);
                     // Need to add unique name & id for these, preferably using interviewer's id
-                    for(timeslot of timeslots){
+                    // Hid Interview Button when there aren't any timeslots available 
+                    try {for(timeslot of timeslots){
+                        var timeSlotAvail = true;
                         bookings.innerHTML += `
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="radio_timeslot" id="${timeslot.interviewer_id}" value="${timeslot.timeslots}">
-                            ${timeslot.timeslots}
+                            ${timeslot.timeslots};
                         </div>
                         `;
                     }
-                }
+                    }
+
+                    catch {
+
+                        //Popup Header
+                        var availTimeslot = document.getElementById("availTimeslotHeader");
+                        availTimeslot.style.display = "none";
+
+                        var noTimeslot = document.getElementById("noTimeslotHeader");
+                        noTimeslot.style.display = "block";
+
+
+                        // Popup Contents
+                        var noTimeslots = document.getElementById("noTimeslots");
+                        noTimeslots.style.display = "block";
+
+                        var makeBooking = document.getElementById("makeBooking");
+                        makeBooking.style.display = "none";
+                        }    
+
+
+                       
+                    }
+                
             }
             request.open("GET", `../../../server/helper/getTimeslots.php?interviewer_id=${interviewer_id}`, true);
             request.send();
         }
+
+        
         getTimeslots();
+        
 
         // Test code to get bookings
         document.getElementById('retrievebookings').addEventListener('click', getBookings);
@@ -283,6 +319,71 @@ const id = '<?php echo $_SESSION["id"]?>';
             request.open("GET", "../../../server/helper/getBookings.php", true);
             request.send();
         }
+
+        // TO NOTE: Prevents 'No Selection' to be passed to server side
+        const infoButton = document.getElementById('info_submit');
+        const mockButton = document.getElementById('mock_submit');
+        var timeslotSelection = document.getElementsByClassName('form-check-input');
+        
+        infoButton.addEventListener('click', function (event) {
+            flag = false;
+            for(timeslot of timeslotSelection) { 
+                if (timeslot.checked === true) {
+                    // If the user makes a selection, flag!
+                    flag = true;
+                }
+            }
+            if(!flag) { 
+                // If the user does not make a selection
+                event.preventDefault();
+                alert('Please select a timeslot to proceed')
+
+            }
+        });
+
+        mockButton.addEventListener('click', function (event) {
+                flag = false;
+                for(timeslot of timeslotSelection) { 
+                    if (timeslot.checked === true) {
+                        // If the user makes a selection, flag!
+                        flag = true;
+                    }
+                }
+                if(!flag) { 
+                    // If the user does not make a selection
+                    event.preventDefault();
+                    alert('Please select a timeslot to proceed')
+            }
+        });
+
+        // Wanted to parse the onClick events through, this isn't possible for some reason? 
+        // Had to so as I had above, indiv 
+
+        // function submissionButton (event) {
+                
+        //         console.log(timeslotSelection); // gives me HTML Collection of the radio options
+
+        //         if (length.timeslotSelection == 0){ // If there are no radio options
+        //             console.log('error');
+        //             event.preventDefault();
+        //         } 
+        //         else  {
+        //             flag = false;
+        //             for(timeslot of timeslotSelection) { 
+        //                 if (timeslot.checked === true) {// If the user makes a selection, flag!
+        //                     flag = true;
+        //                 }
+        //             }
+        //             if(!flag) { // If the user does not make a selection
+        //                 event.preventDefault();
+        //             }
+        //         }
+        // }
+
+
+
+   
+
     </script>
 
 </body>

@@ -12,8 +12,17 @@
         $dao->deleteTimeslot($_POST['interviewer_id'], $_POST['radio_timeslot']);
     }
 
-    header("Location: ../../guugle-main/guugle/main_page/main.php");
+    
+
+    
+    if($result) {
+        header("Location: ../../guugle-main/guugle/main_page/load.html");
+    }
 
     // Add error message here if booking already exists
-    return $result;
+    else {
+        //Placeholder
+        //Will work on this!
+        // header("Location: ../../guugle-main/guugle/main_page/")
+    }
 ?>
