@@ -72,9 +72,10 @@ const id = '<?php echo $_SESSION["id"]?>';
           <tr>
           <th>Interviewer</th>
           <th>Details</th>
-          <th>Type</th>
+          <th>Interview Type</th>
           </tr>
         </thead>
+
       </table>
     </div>
 
@@ -159,8 +160,6 @@ const id = '<?php echo $_SESSION["id"]?>';
                         document.getElementById('booking').style = '';
                         document.getElementById('bookings').style = '';
 
-                        var tbody = document.createElement('tbody')
-
                         for (booking of data){
                           var interviewer_id = booking['interviewer_id']
                           var timeslot = booking['timeslots']
@@ -169,11 +168,12 @@ const id = '<?php echo $_SESSION["id"]?>';
                             var id = interviewer['id']
                             if (interviewer_id == id){
                               var name = interviewer['fname'] + ' ' + interviewer['lname'];
-                              var tr = document.createElement('tr')
-                              var td1 = document.createElement('td')
-                              var td2 = document.createElement('td')
-                              var td3 = document.createElement('td')
-                              var td4 = document.createElement('td')
+                              var delete_id = 'delete' + booking['interviewer_id'] + booking['timeslots'];
+                              var tr = document.createElement('tr');
+                              var td1 = document.createElement('td');
+                              var td2 = document.createElement('td');
+                              var td3 = document.createElement('td');
+                              var td4 = document.createElement('td');
 
                               td1.appendChild(document.createTextNode(name))
                               tr.appendChild(td1)
@@ -184,15 +184,16 @@ const id = '<?php echo $_SESSION["id"]?>';
                               td3.appendChild(document.createTextNode(interview_type))
                               tr.appendChild(td3)
 
-                              td4.innerHTML = `<button id='delete' value="${booking['user_id']}" class="btn btn-dark btn-sm" type='button'>Delete Booking</button>`
+                              td4.innerHTML = `<button id='${delete_id}' value="${delete_id}" class="btn btn-danger btn-sm" type='button'> &#10006 </button>`
                               tr.appendChild(td4)
-
-                              tbody.appendChild(tr)
+                              
+                              console.log(tr)
+                              document.getElementById('details').appendChild(tr)
+                              document.getElementById(delete_id).addEventListener('click', deleteInterview);
+                              
                             }
                           }
                         }
-                        document.getElementById('details').appendChild(tbody)
-                        document.getElementById('delete').addEventListener('click', deleteInterview);
                       }else{
                         getRecommendations();
                       }
@@ -215,9 +216,9 @@ const id = '<?php echo $_SESSION["id"]?>';
 
     function deleteInterview(){
       var id = this.value;
-      console.log(id)
       for (booking of bookings){
-        if (booking['user_id'] == id){
+        var delete_id = 'delete' + booking['interviewer_id'] + booking['timeslots'];
+        if (delete_id == id){
           var interviewer_id = booking['interviewer_id']
           var timeslots = booking['timeslots']
           var user_id = booking['user_id']
