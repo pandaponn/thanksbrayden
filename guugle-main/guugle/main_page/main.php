@@ -98,19 +98,19 @@ const id = '<?php echo $_SESSION["id"]?>';
   </nav>
   
   <div class="container animate__animated animate__fadeIn">
-    <div id='recommendation' class="py-5 text-center" style=''>
+    <!-- <div id='recommendation' class="py-5 text-center" style=''>
       <h2 class='mt-5'>Our Recommendations</h2>
       <p class="lead"> Welcome to Guugle! To get you started, these are some of our recommendations we picked out for you to start you on your interview journey!</p>
-    </div>
-    <div id='booking' class="py-5 text-center" style='display: none'>
+    </div> -->
+    <div id='booking' class="py-5 text-center" style=''>
       <h2 class='mt-5'>Bookings</h2>
       <p class="lead">These are your current interview bookings.</p>
     </div>
-    <div id='recommendations' class="row card-deck" style=''>
-    </div>
+    <!-- <div id='recommendations' class="row card-deck" style='display: none;'>
+    </div> -->
     <div class="row">
       <div class="col-sm-6">
-        <div id='bookings' class="row box_bookings" style='display: none;'>
+        <div id='bookings' class="row box_bookings" style=''>
           <table id='details' class = 'table table-hover table-borderless' style="margin-top: 10px; color: white;">
             <thead>
               <tr style="border-bottom: 2px solid orange;">
@@ -122,9 +122,15 @@ const id = '<?php echo $_SESSION["id"]?>';
             </thead>
           </table>
         </div>
+        
+          <div class="text-center" style=''>
+            <h5>Recommendations</h5>
+          </div>
+          <div class='box_bookings text-white' id='recommendations'>
+          </div>
       </div>
 
-      <div id='upNext' class="col-sm-6" style='display: none'>
+      <div id='upNext' class="col-sm-6" style=''>
         <div class="box_bookings" style="color: white; padding: 20px;">
           <p style="text-align: center;">Up Next</p>
           <p style="border-bottom: 2px solid orange;" id="nextBookingDate1">Friday, 13 Nov</p>
@@ -139,7 +145,13 @@ const id = '<?php echo $_SESSION["id"]?>';
           </p>
         </div>
       </div>
+      
     </div>
+    <!-- <div class="text-center" style=''>
+      <h5>Recommendations</h5>
+    </div>
+    <div class='box_bookings text-white' id='recommendations'>
+    </div> -->
   </div>
   <br>
   <br>
@@ -156,8 +168,8 @@ const id = '<?php echo $_SESSION["id"]?>';
           Are you sure you want to delete this booking?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button id='confirmDelete' type="button" class="btn btn-primary">Delete</button>
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+          <button id='confirmDelete' type="button" class="btn btn-danger">Delete</button>
         </div>
       </div>
     </div>
@@ -198,17 +210,21 @@ const id = '<?php echo $_SESSION["id"]?>';
         
 
         recommendations.innerHTML += `
-        <div class="card text-white bg-dark col-lg-4" style="width: 18rem;">
-          <img class="card-img-top profile_pic" src="${img}" alt="Oops">
-          <div class="card-body">
-            <h5 class="card-title">${name}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">${industry}</h6>
-            <p class="card-text text-muted font-italic">Works in ${company} as a ${job}</p>
-            <p class="card-text">${about}</p>
-            <form action="profile.php" method="POST">
-              <button class="btn btn-secondary" value="${id}" name="interviewer_id">More info</button>
-            </form>
-          </div>
+        <div class="fir-image-figure" style='padding-top: 20px;'>
+          <img class="fir-author-image fir-clickcircle" src="${img}">
+          
+          <figcaption>
+          <div class="fig-author-figure-title" style="font-weight:900;">${name}</div>
+          <div class="fig-author-figure-title">${job}, ${company}</div>
+          <div class="fig-author-figure-title">${industry}</div>
+          </figcaption>        
+      
+          <form action="profile.php" method="POST">
+          
+          <button class="btn btn-sm" style="justify-content:right; margin-left:50px;" value="${id}" name="interviewer_id"><i class="fa fa-user" style="color: white;"></i></button>
+          </form>
+        </div>
+        <div style="border-bottom: 2px solid orange;">
         </div>
         `;
       }
@@ -231,11 +247,11 @@ const id = '<?php echo $_SESSION["id"]?>';
                       if (data.length != 0){
                         bookings = data;
                         console.log(bookings);
-                        document.getElementById('recommendation').style = 'display: none';
-                        document.getElementById('recommendations').style = 'display: none';
-                        document.getElementById('booking').style = '';
-                        document.getElementById('bookings').style = '';
-                        document.getElementById('upNext').style = '';
+                        // document.getElementById('recommendation').style = 'display: none';
+                        // document.getElementById('recommendations').style = 'display: none';
+                        // document.getElementById('booking').style = '';
+                        // document.getElementById('bookings').style = '';
+                        // document.getElementById('upNext').style = '';
 
                         for (booking of data){
                           var interviewer_id = booking['interviewer_id']
@@ -270,9 +286,7 @@ const id = '<?php echo $_SESSION["id"]?>';
                             }
                           }
                         }
-                      }else{
-                        getRecommendations();
-                      }
+                      }getRecommendations();
                   }
               }
               request.open("GET", "../../../server/helper/getBookings.php", true);
