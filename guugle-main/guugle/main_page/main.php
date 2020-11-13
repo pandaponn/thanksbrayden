@@ -54,6 +54,18 @@ const id = '<?php echo $_SESSION["id"]?>';
   hr {
     background-color: white;
   }
+    .profile_pic {
+  height: 160px;
+  width: 160px;
+  border-radius: 50%;
+  border: 3px solid #272133;
+  margin-top: 20px;
+  box-shadow: 0 5px 7px rgba(0,0,0,0.5);
+  }
+
+  .card{
+    box-shadow: 0 5px 7px rgba(0,0,0,0.5);
+  }
 </style>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
@@ -112,7 +124,7 @@ const id = '<?php echo $_SESSION["id"]?>';
         </div>
       </div>
 
-      <div class="col-sm-6">
+      <div id='upNext' class="col-sm-6" style='display: none'>
         <div class="box_bookings" style="color: white; padding: 20px;">
           <p style="text-align: center;">Up Next</p>
           <p style="border-bottom: 2px solid orange;" id="nextBookingDate1">Friday, 13 Nov</p>
@@ -129,6 +141,8 @@ const id = '<?php echo $_SESSION["id"]?>';
       </div>
     </div>
   </div>
+  <br>
+  <br>
     
   <!-- Footer -->
   <div class="text-center py-2 footer">© 2020 Copyright: 
@@ -165,15 +179,15 @@ const id = '<?php echo $_SESSION["id"]?>';
         
 
         recommendations.innerHTML += `
-        <div class="card col-md-4" style="width: 18rem;">
-          <img class="card-img-top" src="${img}" alt="Oops">
+        <div class="card text-white bg-dark col-lg-4" style="width: 18rem;">
+          <img class="card-img-top profile_pic" src="${img}" alt="Oops">
           <div class="card-body">
             <h5 class="card-title">${name}</h5>
             <h6 class="card-subtitle mb-2 text-muted">${industry}</h6>
             <p class="card-text text-muted font-italic">Works in ${company} as a ${job}</p>
             <p class="card-text">${about}</p>
             <form action="profile.php" method="POST">
-              <button class="btn btn-dark" value="${id}" name="interviewer_id">Book now</button>
+              <button class="btn btn-secondary" value="${id}" name="interviewer_id">More info</button>
             </form>
           </div>
         </div>
@@ -203,6 +217,7 @@ const id = '<?php echo $_SESSION["id"]?>';
                         document.getElementById('recommendations').style = 'display: none';
                         document.getElementById('booking').style = '';
                         document.getElementById('bookings').style = '';
+                        document.getElementById('upNext').style = '';
 
                         for (booking of data){
                           var interviewer_id = booking['interviewer_id']
