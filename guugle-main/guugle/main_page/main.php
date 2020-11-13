@@ -130,16 +130,18 @@ const id = '<?php echo $_SESSION["id"]?>';
       <div id='upNext' class="col-sm-6" style=''>
         <div class="box_bookings" style="color: white; padding: 20px 30px;">
           <p style="text-align: center; font-weight: bold;">Up Next</p>
-          <p style="border-bottom: 2px solid orange;" id="nextBookingDate1"></p>
-          <p id="nextBooking1">
-            <!-- Mock Interview w/ Phris, 5pm <br>
-            Mock Interview w/ Chris, 6pm <br>
-            Informational Interview w/ Ben, 8pm -->
-          </p>
-          <p style="border-bottom: 2px solid orange;" id="nextBookingDate2"></p>
-          <p id="nextBooking2">
-            <!-- Mock Interview w/ Mok, 7pm -->
-          </p>
+          <div id="noBookings">
+            <p id="nextBookingDate1"></p>
+            <p id="nextBooking1">
+              <!-- Mock Interview w/ Phris, 5pm <br>
+              Mock Interview w/ Chris, 6pm <br>
+              Informational Interview w/ Ben, 8pm -->
+            </p>
+            <p id="nextBookingDate2"></p>
+            <p id="nextBooking2">
+              <!-- Mock Interview w/ Mok, 7pm -->
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -248,6 +250,7 @@ const id = '<?php echo $_SESSION["id"]?>';
               request.onreadystatechange = function(){
                   if (this.readyState == 4 && this.status == 200){
                       let data = JSON.parse(this.responseText).bookings
+                      console.log(data);
                       if (data.length != 0){
                         bookings = data;
                         console.log(bookings);
@@ -302,15 +305,24 @@ const id = '<?php echo $_SESSION["id"]?>';
                         sortedTimeSlots = timeSlots.sort((a,b) => a.newDate - b.newDate);
                         console.log(sortedTimeSlots);
                         document.getElementById('nextBookingDate1').innerHTML = sortedTimeSlots[0].newDate.toDateString();
-                        document.getElementById('nextBookingDate2').innerHTML = sortedTimeSlots[1].newDate.toDateString();
+                        document.getElementById('nextBookingDate1').setAttribute("style", "border-bottom: 2px solid orange");
+                        if(sortedTimeSlots.length > 1){
+                          document.getElementById('nextBookingDate2').innerHTML = sortedTimeSlots[1].newDate.toDateString();
+                          document.getElementById('nextBookingDate2').setAttribute("style", "border-bottom: 2px solid orange");
+                        }
                         for (interviewer of interviewers){
                           if(interviewer.id == sortedTimeSlots[0].id){
                             document.getElementById('nextBooking1').innerHTML = sortedTimeSlots[0].type + " interview w/ " + interviewer.fname + ", " + sortedTimeSlots[0].time;
                           }
-                          if(interviewer.id == sortedTimeSlots[1].id){
+                          if(sortedTimeSlots.length > 1){
+                            if(interviewer.id == sortedTimeSlots[1].id){
                             document.getElementById('nextBooking2').innerHTML = sortedTimeSlots[1].type + " interview w/ " + interviewer.fname + ", " + sortedTimeSlots[0].time;
+                            }
                           }
                         }
+                      }
+                      else{
+                        document.getElementById('noBookings').innerHTML = "No upcoming interviews!";
                       }
                       getRecommendations();
                   }
