@@ -90,19 +90,19 @@
 
         search_results.innerHTML += `
         <div class="flex-container row" style="justify-content:center;">
-        <div class="fir-image-figure">
-            <img class="fir-author-image fir-clickcircle" src="${img}">
+            <div class="fir-image-figure">
+                <img class="fir-author-image fir-clickcircle" src="${img}">
 
-            <figcaption>
-            <div class="fig-author-figure-title" style="font-weight:900;">${name}</div>
-            <div class="fig-author-figure-title">${job}, ${company}</div>
-            <div class="fig-author-figure-title">${industry}</div>
-            </figcaption>
+                <figcaption>
+                <div class="fig-author-figure-title" style="font-weight:900;">${name}</div>
+                <div class="fig-author-figure-title">${job}, ${company}</div>
+                <div class="fig-author-figure-title">${industry}</div>
+                </figcaption>
 
-            <form action="profile.php" method="POST">
-            <button class="btn btn-dark btn-sm" style="margin-left: 15px;" value="${id}" name="interviewer_id">Book now</button>
-            </form>
-        </div>
+                <form action="profile.php" method="POST">
+                <button class="btn btn-dark btn-sm" style="margin-left: 15px;" value="${id}" name="interviewer_id">Book now</button>
+                </form>
+            </div>
         </div>
         <br>
         `;
@@ -138,19 +138,21 @@
                     search_results.innerHTML += `
                     
                     <div class="fir-image-figure">
-                    <img class="fir-author-image fir-clickcircle" src="${img}">
+                        <img class="fir-author-image fir-clickcircle" src="${img}">
+                        
+                        <figcaption>
+                        <div class="fig-author-figure-title" style="font-weight:900;">${name}</div>
+                        <div class="fig-author-figure-title">${job}, ${company}</div>
+                        <div class="fig-author-figure-title">${industry}</div>
+                        </figcaption>        
                     
-                    <figcaption>
-                    <div class="fig-author-figure-title" style="font-weight:900;">${name}</div>
-                    <div class="fig-author-figure-title">${job}, ${company}</div>
-                    <div class="fig-author-figure-title">${industry}</div>
-                    </figcaption>
-                    
+                        <form action="profile.php" method="POST">
+                        
+                        <button class="btn btn-dark btn-sm" style="justify-content:right; margin-left: 50px;" value="${id}" name="interviewer_id">Book now</button>
+                        </form>
+                    </div>
 
-                    <form action="profile.php" method="POST">
                     
-                    <button class="btn btn-dark btn-sm" style="justify-content:right; margin-left: 50px;" value="${id}" name="interviewer_id">Book now</button>
-                    </form>
                     
                     </div>
                     
