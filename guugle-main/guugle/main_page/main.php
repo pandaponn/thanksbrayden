@@ -184,7 +184,7 @@ const id = '<?php echo $_SESSION["id"]?>';
                               td3.appendChild(document.createTextNode(interview_type))
                               tr.appendChild(td3)
 
-                              td4.innerHTML = `<button id='${delete_id}' value="${delete_id}" class="btn btn-danger btn-sm" type='button'> &#10006 </button>`
+                              td4.innerHTML = `<button id='${delete_id}' value="${delete_id}" class="btn btn-sm" type='button'><i class="fa fa-trash"></i></button>`
                               tr.appendChild(td4)
                               
                               console.log(tr)
