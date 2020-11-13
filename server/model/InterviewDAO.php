@@ -137,5 +137,28 @@
             return $result;
         }
 
+        public function getfName($interviewer_id) {
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+            
+            $sql = "SELECT * FROM `interviewers` WHERE `id` = :interviewer_id";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':interviewer_id', $interviewer_id, PDO::PARAM_INT);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->execute();
+            
+            $result = '';
+            if ($row=$stmt->fetch()){
+                $result = $row["fname"];
+
+            }
+
+            $stmt = null;
+            $pdo = null;
+
+            return $result;
+        }
+
     }
 ?>

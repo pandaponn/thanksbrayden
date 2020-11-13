@@ -33,10 +33,9 @@ const id = '<?php echo $_SESSION["id"]?>';
     background-size: cover;
   }
   .box_bookings {
-  /*width: 60%;*/
   width: fit-content;
   height:fit-content;
-  margin: 10px auto 120px;
+  margin: 0px auto 120px;
   background-color: black;
   padding: 0 20px 0px;
   border-radius: 6px;
@@ -103,7 +102,7 @@ const id = '<?php echo $_SESSION["id"]?>';
       <p class="lead"> Welcome to Guugle! To get you started, these are some of our recommendations we picked out for you to start you on your interview journey!</p>
     </div> -->
     <div id='booking' class="py-5 text-center" style=''>
-      <h2 class='mt-5'>Bookings</h2>
+      <h1 class='mt-5' style="text-transform: uppercase; letter-spacing: .2rem; ">Bookings</h1>
       <p class="lead">These are your current interview bookings.</p>
     </div>
     <!-- <div id='recommendations' class="row card-deck" style='display: none;'>
@@ -122,30 +121,27 @@ const id = '<?php echo $_SESSION["id"]?>';
             </thead>
           </table>
         </div>
-        
-          <div class="text-center" style=''>
-            <h5>Recommendations</h5>
-          </div>
-          <div class='box_bookings text-white' id='recommendations'>
-          </div>
+      
+        <div class='box_bookings text-white' id='recommendations' style="margin-top: -60px;">
+          <p style="padding: 20px; text-align: center; font-weight: bold;">Recommendations</p>
+        </div>
       </div>
 
       <div id='upNext' class="col-sm-6" style=''>
-        <div class="box_bookings" style="color: white; padding: 20px;">
-          <p style="text-align: center;">Up Next</p>
-          <p style="border-bottom: 2px solid orange;" id="nextBookingDate1">Friday, 13 Nov</p>
+        <div class="box_bookings" style="color: white; padding: 20px 30px;">
+          <p style="text-align: center; font-weight: bold;">Up Next</p>
+          <p style="border-bottom: 2px solid orange;" id="nextBookingDate1"></p>
           <p id="nextBooking1">
-            Mock Interview w/ Phris, 5pm <br>
+            <!-- Mock Interview w/ Phris, 5pm <br>
             Mock Interview w/ Chris, 6pm <br>
-            Informational Interview w/ Ben, 8pm
+            Informational Interview w/ Ben, 8pm -->
           </p>
-          <p style="border-bottom: 2px solid orange;" id="nextBookingDate2">Monday, 16 Nov</p>
+          <p style="border-bottom: 2px solid orange;" id="nextBookingDate2"></p>
           <p id="nextBooking2">
-            Mock Interview w/ Mok, 7pm
+            <!-- Mock Interview w/ Mok, 7pm -->
           </p>
         </div>
       </div>
-      
     </div>
     <!-- <div class="text-center" style=''>
       <h5>Recommendations</h5>
@@ -153,8 +149,6 @@ const id = '<?php echo $_SESSION["id"]?>';
     <div class='box_bookings text-white' id='recommendations'>
     </div> -->
   </div>
-  <br>
-  <br>
   <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -198,7 +192,8 @@ const id = '<?php echo $_SESSION["id"]?>';
     }
 
     function getRecommendations(){
-      result = getRandom(interviewers, 3)
+      result = getRandom(interviewers, 2)
+      let count = 1;
       for (item of result){
         var name = item['fname'] + ' ' + item['lname'];
         var img = item['img'];
@@ -207,10 +202,9 @@ const id = '<?php echo $_SESSION["id"]?>';
         var id = item['id'];
         var job = item['job'];
         var industry = item['industry'];
-        
 
         recommendations.innerHTML += `
-        <div class="fir-image-figure" style='padding-top: 20px;'>
+        <div class="fir-image-figure">
           <img class="fir-author-image fir-clickcircle" src="${img}">
           
           <figcaption>
@@ -224,9 +218,19 @@ const id = '<?php echo $_SESSION["id"]?>';
           <button class="btn btn-sm" style="justify-content:right; margin-left:50px;" value="${id}" name="interviewer_id"><i class="fa fa-user" style="color: white;"></i></button>
           </form>
         </div>
-        <div style="border-bottom: 2px solid orange;">
-        </div>
         `;
+
+        if (count != 2){
+          recommendations.innerHTML += `
+            <hr style="background-color:orange; height: 2px;">
+          `;
+        }
+        else{
+          recommendations.innerHTML += `
+            <div style="margin-bottom: 20px;">&nbsp</div>
+          `;
+        }
+        count++;
       }
     }
 
@@ -286,7 +290,29 @@ const id = '<?php echo $_SESSION["id"]?>';
                             }
                           }
                         }
-                      }getRecommendations();
+                        let timeSlots = []
+                        for (booking of bookings){
+                          let date = booking.timeslots.split(", ")[0];
+                          date = "20" + date.slice(-2) + "-" + date.slice(3,5) + "-" + date.slice(0,2);
+                          newDate = new Date(date);
+                          console.log(date);
+                          let time = booking.timeslots.split(", ")[1];
+                          timeSlots.push({'date': date, 'newDate': newDate, 'time': time, 'id': booking.interviewer_id, 'type': booking.interview_type});
+                        }
+                        sortedTimeSlots = timeSlots.sort((a,b) => a.newDate - b.newDate);
+                        console.log(sortedTimeSlots);
+                        document.getElementById('nextBookingDate1').innerHTML = sortedTimeSlots[0].newDate.toDateString();
+                        document.getElementById('nextBookingDate2').innerHTML = sortedTimeSlots[1].newDate.toDateString();
+                        for (interviewer of interviewers){
+                          if(interviewer.id == sortedTimeSlots[0].id){
+                            document.getElementById('nextBooking1').innerHTML = sortedTimeSlots[0].type + " interview w/ " + interviewer.fname + ", " + sortedTimeSlots[0].time;
+                          }
+                          if(interviewer.id == sortedTimeSlots[1].id){
+                            document.getElementById('nextBooking2').innerHTML = sortedTimeSlots[1].type + " interview w/ " + interviewer.fname + ", " + sortedTimeSlots[0].time;
+                          }
+                        }
+                      }
+                      getRecommendations();
                   }
               }
               request.open("GET", "../../../server/helper/getBookings.php", true);
