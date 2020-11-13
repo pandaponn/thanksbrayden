@@ -143,6 +143,25 @@ const id = '<?php echo $_SESSION["id"]?>';
   </div>
   <br>
   <br>
+  <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Deletion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">
+          Are you sure you want to delete this booking?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id='confirmDelete' type="button" class="btn btn-primary">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
     
   <!-- Footer -->
   <div class="text-center py-2 footer">© 2020 Copyright: 
@@ -202,7 +221,6 @@ const id = '<?php echo $_SESSION["id"]?>';
           if (this.readyState == 4 && this.status==200){
               let data = JSON.parse(this.responseText).interviewers;
               interviewers = data;
-              console.log(interviewers);
 
               // Retrieve Bookings
               function getBookings(){
@@ -244,13 +262,11 @@ const id = '<?php echo $_SESSION["id"]?>';
                               td3.appendChild(document.createTextNode(interview_type))
                               tr.appendChild(td3)
 
-                              td4.innerHTML = `<button id='${delete_id}' value="${delete_id}" class="btn btn-sm" type='button'><i class="fa fa-trash" style="color: white"></i></button>`
+                              td4.innerHTML = `<button value="${delete_id}" class="open-deleteBooking btn btn-sm" type='button' data-toggle="modal" data-target="#confirm"><i class="fa fa-trash" style="color: white"></i></button>`
                               tr.appendChild(td4)
                               
-                              console.log(tr)
                               document.getElementById('details').appendChild(tr)
-                              document.getElementById(delete_id).addEventListener('click', deleteInterview);
-                              
+                         
                             }
                           }
                         }
@@ -272,7 +288,13 @@ const id = '<?php echo $_SESSION["id"]?>';
     }
     getInterviewers();
     // END Retrieval of Interviewers
-
+    
+    //confirmation delete
+    $(document).on("click", '.open-deleteBooking', function () {
+      var delete_id = this.value;
+      document.getElementById('confirmDelete').value = delete_id;
+    });
+    document.getElementById('confirmDelete').addEventListener('click', deleteInterview)
 
     function deleteInterview(){
       var id = this.value;
@@ -282,19 +304,18 @@ const id = '<?php echo $_SESSION["id"]?>';
           var interviewer_id = booking['interviewer_id']
           var timeslots = booking['timeslots']
           var user_id = booking['user_id']
-          console.log('timeslots')
         }
       }
       const request = new XMLHttpRequest;
         request.onreadystatechange = function(){
           if (this.readyState == 4 && this.status == 200){
-            console.log('peepee')
             location.reload();
           }
         }
         request.open("GET", `../../../server/helper/deleteBooking.php?interviewer_id=${interviewer_id}&timeslots=${timeslots}&user_id=${user_id}`, true);
         request.send();
       }
+      //END of delete
 
   </script>
 </body>
