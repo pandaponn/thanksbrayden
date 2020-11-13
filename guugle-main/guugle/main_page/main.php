@@ -25,6 +25,32 @@ const id = '<?php echo $_SESSION["id"]?>';
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="search.css">
 </head>
+<style>
+  body {
+    background-image: url("img/bg_6.jpg");
+    background-repeat: repeat;
+    background-size: cover;
+  }
+  .box_bookings {
+  /*width: 60%;*/
+  width: fit-content;
+  height:fit-content;
+  margin: 10px auto 120px;
+  background-color: black;
+  padding: 0 20px 0px;
+  border-radius: 6px;
+  box-shadow: 0 5px 7px rgba(0,0,0,0.5);
+  }
+  .footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black; 
+    color: white; 
+    font-size: small;
+  } 
+</style>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
     <!-- Changed link to main.php --> 
@@ -62,33 +88,26 @@ const id = '<?php echo $_SESSION["id"]?>';
     </div>
     <div id='booking' class="py-5 text-center" style='display: none'>
       <h2 class='mt-5'>Bookings</h2>
-      <p class="lead"> Welcome back to Guugle! These are your current interview bookings.</p>
+      <p class="lead">These are your current interview bookings.</p>
     </div>
     <div id='recommendations' class="row card-deck" style=''>
     </div>
-    <div id='bookings' class="row" style='display: none'>
-      <table id='details' class = 'table'>
+    <div id='bookings' class="row box_bookings" style='display: none;'>
+      <table id='details' class = 'table table-hover table-borderless' style="margin-top: 10px; color: white;">
         <thead>
           <tr>
-          <th>Interviewer</th>
-          <th>Details</th>
-          <th>Interview Type</th>
+            <th scope="col">Interviewer</th>
+            <th scope="col">Details</th>
+            <th scope="col">Interview Type</th>
           </tr>
         </thead>
-
       </table>
     </div>
 
-        <hr class="mb-4">
-
-    <footer class="my-5 pt-5 text-muted text-center text-small">
-      <p class="mb-1">&copy; 2020 Guugle</p>
-      <ul class="list-inline">
-        <li class="list-inline-item"><a href="#">Privacy</a></li>
-        <li class="list-inline-item"><a href="#">Terms</a></li>
-        <li class="list-inline-item"><a href="#">Support</a></li>
-      </ul>
-    </footer>
+    <!-- Footer -->
+    <div class="text-center py-2 footer">© 2020 Copyright: 
+        <a href="https://www.linkedin.com/in/zhi-hao-lim/" target="blank">Guugle</a> 
+    </div>
   </div>
   
   <script>
@@ -176,6 +195,7 @@ const id = '<?php echo $_SESSION["id"]?>';
                               var td4 = document.createElement('td');
 
                               td1.appendChild(document.createTextNode(name))
+                              td1.setAttribute("scope", "row")
                               tr.appendChild(td1)
 
                               td2.appendChild(document.createTextNode(timeslot))
@@ -184,7 +204,7 @@ const id = '<?php echo $_SESSION["id"]?>';
                               td3.appendChild(document.createTextNode(interview_type))
                               tr.appendChild(td3)
 
-                              td4.innerHTML = `<button id='${delete_id}' value="${delete_id}" class="btn btn-sm" type='button'><i class="fa fa-trash"></i></button>`
+                              td4.innerHTML = `<button id='${delete_id}' value="${delete_id}" class="btn btn-sm" type='button'><i class="fa fa-trash" style="color: white"></i></button>`
                               tr.appendChild(td4)
                               
                               console.log(tr)
