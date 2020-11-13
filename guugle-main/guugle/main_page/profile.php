@@ -56,7 +56,7 @@ const id = '<?php echo $_SESSION["id"]?>';
         </div>
     </nav>
 
-    <div class="box container-fluid animate__animated animate__fadeIn">
+    <div class="box container-fluid">
         <div class="profile">
             <img src="" style="height: 150px; width: 150px;" id="user_img">
         </div>
