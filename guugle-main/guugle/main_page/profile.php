@@ -56,7 +56,7 @@ const id = '<?php echo $_SESSION["id"]?>';
         </div>
     </nav>
 
-    <div class="box container-fluid">
+    <div class="box container-fluid animate__animated animate__fadeIn">
         <div class="profile">
             <img src="" style="height: 150px; width: 150px;" id="user_img">
         </div>
@@ -178,9 +178,9 @@ const id = '<?php echo $_SESSION["id"]?>';
             </div>
         </div>
 
-        <form action="../../../server/helper/getBookings.php" method="POST" class="form">
+        <!-- <form action="../../../server/helper/getBookings.php" method="POST" class="form">
             <button type="button" id="retrievebookings">Retrieve Bookings</button>
-        </form>
+        </form> -->
         
 
     </div>

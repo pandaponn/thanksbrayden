@@ -53,7 +53,7 @@ const id = '<?php echo $_SESSION["id"]?>';
   hr {
     background-color: white;
   }
-    .profile_pic {
+  .profile_pic {
   height: 160px;
   width: 160px;
   border-radius: 50%;
@@ -61,7 +61,6 @@ const id = '<?php echo $_SESSION["id"]?>';
   margin-top: 20px;
   box-shadow: 0 5px 7px rgba(0,0,0,0.5);
   }
-
   .card{
     box-shadow: 0 5px 7px rgba(0,0,0,0.5);
   }
@@ -120,6 +119,7 @@ const id = '<?php echo $_SESSION["id"]?>';
               </tr>
             </thead>
           </table>
+          <p id="zeroBookings" style="margin: auto; color: white; margin-bottom: 12px;"></p>
         </div>
       
         <div class='box_bookings text-white' id='recommendations' style="margin-top: -60px;">
@@ -171,10 +171,7 @@ const id = '<?php echo $_SESSION["id"]?>';
     </div>
   </div>
     
-  <!-- Footer -->
-  <div class="text-center py-2 footer">© 2020 Copyright: 
-        <a href="https://www.linkedin.com/in/zhi-hao-lim/" target="blank">Guugle</a> 
-  </div>
+  
   
   <script>
     var interviewers = {};
@@ -322,6 +319,7 @@ const id = '<?php echo $_SESSION["id"]?>';
                         }
                       }
                       else{
+                        document.getElementById('zeroBookings').innerHTML = "No bookings made!";
                         document.getElementById('noBookings').innerHTML = "No upcoming interviews!";
                       }
                       getRecommendations();
