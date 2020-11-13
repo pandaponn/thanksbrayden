@@ -21,6 +21,7 @@ const id = '<?php echo $_SESSION["id"]?>';
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <title>guugle</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="search.css">
@@ -50,17 +51,8 @@ const id = '<?php echo $_SESSION["id"]?>';
     color: white; 
     font-size: small;
   } 
-  .profile_pic {
-  height: 160px;
-  width: 160px;
-  border-radius: 50%;
-  border: 3px solid #272133;
-  margin-top: 20px;
-  box-shadow: 0 5px 7px rgba(0,0,0,0.5);
-  }
-
-  .card{
-    box-shadow: 0 5px 7px rgba(0,0,0,0.5);
+  hr {
+    background-color: white;
   }
 </style>
 <body>
@@ -93,7 +85,7 @@ const id = '<?php echo $_SESSION["id"]?>';
     </div>
   </nav>
   
-  <div class="container">
+  <div class="container animate__animated animate__fadeIn">
     <div id='recommendation' class="py-5 text-center" style=''>
       <h2 class='mt-5'>Our Recommendations</h2>
       <p class="lead"> Welcome to Guugle! To get you started, these are some of our recommendations we picked out for you to start you on your interview journey!</p>
@@ -104,23 +96,43 @@ const id = '<?php echo $_SESSION["id"]?>';
     </div>
     <div id='recommendations' class="row card-deck" style=''>
     </div>
-    <div id='bookings' class="row box_bookings" style='display: none;'>
-      <table id='details' class = 'table table-hover table-borderless' style="margin-top: 10px; color: white;">
-        <thead>
-          <tr>
-            <th scope="col">Interviewer</th>
-            <th scope="col">Details</th>
-            <th scope="col">Interview Type</th>
-          </tr>
-        </thead>
-      </table>
+    <div class="row">
+      <div class="col-sm-6">
+        <div id='bookings' class="row box_bookings" style='display: none;'>
+          <table id='details' class = 'table table-hover table-borderless' style="margin-top: 10px; color: white;">
+            <thead>
+              <tr style="border-bottom: 2px solid orange;">
+                <th scope="col">Interviewer</th>
+                <th scope="col">Details</th>
+                <th scope="col">Interview Type</th>
+                <th></th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="box_bookings" style="color: white; padding: 20px;">
+          <p style="text-align: center;">Up Next</p>
+          <p style="border-bottom: 2px solid orange;" id="nextBookingDate1">Friday, 13 Nov</p>
+          <p id="nextBooking1">
+            Mock Interview w/ Phris, 5pm <br>
+            Mock Interview w/ Chris, 6pm <br>
+            Informational Interview w/ Ben, 8pm
+          </p>
+          <p style="border-bottom: 2px solid orange;" id="nextBookingDate2">Monday, 16 Nov</p>
+          <p id="nextBooking2">
+            Mock Interview w/ Mok, 7pm
+          </p>
+        </div>
+      </div>
     </div>
-    <br>
-    <br>
-    <!-- Footer -->
-    <div class="text-center py-2 footer">© 2020 Copyright: 
+  </div>
+    
+  <!-- Footer -->
+  <div class="text-center py-2 footer">© 2020 Copyright: 
         <a href="https://www.linkedin.com/in/zhi-hao-lim/" target="blank">Guugle</a> 
-    </div>
   </div>
   
   <script>
@@ -153,15 +165,15 @@ const id = '<?php echo $_SESSION["id"]?>';
         
 
         recommendations.innerHTML += `
-        <div class="card text-white bg-dark col-lg-4" style="width: 18rem;">
-          <img class="card-img-top profile_pic" src="${img}" alt="Oops">
+        <div class="card col-md-4" style="width: 18rem;">
+          <img class="card-img-top" src="${img}" alt="Oops">
           <div class="card-body">
             <h5 class="card-title">${name}</h5>
             <h6 class="card-subtitle mb-2 text-muted">${industry}</h6>
             <p class="card-text text-muted font-italic">Works in ${company} as a ${job}</p>
             <p class="card-text">${about}</p>
             <form action="profile.php" method="POST">
-              <button class="btn btn-secondary" value="${id}" name="interviewer_id">More info</button>
+              <button class="btn btn-dark" value="${id}" name="interviewer_id">Book now</button>
             </form>
           </div>
         </div>
