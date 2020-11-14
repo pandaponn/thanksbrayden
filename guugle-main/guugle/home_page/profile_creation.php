@@ -99,7 +99,7 @@ const id = '<?php echo $_SESSION["id"]?>';
         
         <h2 class="b">Hey <span id="fname"></span>, <br> just going to need a few more details from you!</h2>
 
-        <form style="margin-top: 30px;" action="../../../server/helper/addUser.php" method="POST" class="form" enctype="multipart/form-data">
+        <form class="needs-validation" novalidate style="margin-top: 30px;" action="../../../server/helper/addUser.php" method="POST" class="form" enctype="multipart/form-data">
         <!--"-->
             <!-- <div class="form-group">
                 <label for="fname">First Name</label>
@@ -113,7 +113,8 @@ const id = '<?php echo $_SESSION["id"]?>';
             
             <div class="form-group">
                 <label for="industry">Industry</label>
-                <select id="industry" name="industry" class="form-control">
+                <select id="industry" name="industry" class="form-control" required>
+                    <option value='' disabled selected hidden>Select an Industry</option>
                     <option>Accountancy</option>
                     <option>Business Development</option>
                     <option>Communications</option>
@@ -134,23 +135,35 @@ const id = '<?php echo $_SESSION["id"]?>';
                     <option>Real Estate</option>
                     <option>Strategic Management</option>
                 </select>
+                <div class="invalid-feedback">
+                  Please select an Industry.
+                </div>
             </div>
 
             <div class="form-group">
                 <label for="specialization">Specialization</label>
-                <input type="text" id="specialization" name="specialization" class="form-control">
+                <input type="text" id="specialization" name="specialization" class="form-control" placeholder='What is your specialization?' required>
+                <div class="invalid-feedback">
+                  Specialization is required.
+                </div>
             </div>
 
             <div class="form-group">
                 <label for="job">Current Occupation</label>
-                <input type="text" id="job" name="job" class="form-control" placeholder="Please specify 'Student' if you are a student" >
-                
+                <input type="text" id="job" name="job" class="form-control" placeholder="Please specify 'Student' if you are a student" required>
+                <div class="invalid-feedback">
+                  Current Occupation is required.
+                </div>
             </div>
 
             <div class="form-group">
                 <label for="company">Current Company</label>
-                <input type="text" id="company" name="company" class="form-control" placeholder="Please specify 'nil' if you are not part of any company">
+                <input type="text" id="company" name="company" class="form-control" placeholder="Please specify 'nil' if you are not part of any company" required>
+                <div class="invalid-feedback">
+                  Please fill in your company, 'nil' if you don't have one.
+                </div>
             </div>
+
 
             <div class="text-center">
                 <button class="btn btn-dark animate__animated animate__fadeInDown" id="adult_submit" type="submit">Create</button>
@@ -182,38 +195,54 @@ const id = '<?php echo $_SESSION["id"]?>';
 
     <script type = "text/javascript">
     const buttonSubmit = document.getElementById('adult_submit');
-    buttonSubmit.addEventListener('click',checkSubmit);
-    function checkSubmit(){
-        if (!(checkSpecialization() && checkJob() &&  checkCompany())) {
-            event.preventDefault();
-        }
+    // buttonSubmit.addEventListener('click',checkSubmit);
+    // function checkSubmit(){
+    //     if (!(checkSpecialization() && checkJob() &&  checkCompany())) {
+    //         event.preventDefault();
+    //     }
+    (function() {
+        'use strict';
 
-       
+        buttonSubmit.addEventListener('click', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
 
-    }
-    function checkSpecialization(){
-        const specialization = document.getElementById('specialization'); 
-        if (specialization.value == ""){
-            return false;
-        }
-        return true;
-    }
-    function checkJob(){
-        const job = document.getElementById('job'); 
-        if (job.value == ""){
-            return false;
-        }
-        return true;
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    
+    // function checkSpecialization(){
+    //     const specialization = document.getElementById('specialization'); 
+    //     if (specialization.value == ""){
+    //         return false;
+    //     }
+    //     return true;
+    // }
+    // function checkJob(){
+    //     const job = document.getElementById('job'); 
+    //     if (job.value == ""){
+    //         return false;
+    //     }
+    //     return true;
 
-    }
-    function checkCompany(){
-        const company = document.getElementById('company'); 
-        if (company.value == ""){
-            return false;
-        }
-        return true;
+    // }
+    // function checkCompany(){
+    //     const company = document.getElementById('company'); 
+    //     if (company.value == ""){
+    //         return false;
+    //     }
+    //     return true;
 
-    }
+    // }
 
 
     
@@ -264,18 +293,18 @@ const id = '<?php echo $_SESSION["id"]?>';
                 `;
             })
 
-            // $(document.getElementById('intern_before')).click(function(){
-            //     document.getElementById('internship').innerHTML = `
-            //         <div class="form-group">
-            //             <label for="intern">Most Recent Internship Title</label>
-            //             <input type="text" id="intern" class="form-control">
-            //         </div>
-            //         <div class="form-group">
-            //             <label for="intern_company">Most Recent Internship Company</label>
-            //             <input type="text" id="intern_company" class="form-control">
-            //         </div>
-            //     `;
-            // })
+            $(document.getElementById('intern_before')).click(function(){
+                document.getElementById('internship').innerHTML = `
+                    <div class="form-group">
+                        <label for="intern">Most Recent Internship Title</label>
+                        <input type="text" id="intern" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="intern_company">Most Recent Internship Company</label>
+                        <input type="text" id="intern_company" class="form-control">
+                    </div>
+                `;
+            })
 
             const request = new XMLHttpRequest;
             request.onreadystatechange = function(){
