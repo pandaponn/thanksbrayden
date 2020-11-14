@@ -128,7 +128,7 @@
                   <form method='get' action='https://www.linkedin.com/oauth/v2/authorization' class="form-inline">
                     <input type='hidden' name='response_type' value = 'code'>
                     <input type='hidden' name='client_id' value = '8666gpxcfx4fa8'>
-                    <input type='hidden' name='redirect_uri' value = 'http://localhost:8888/test/server/helper/callback.php'>
+                    <input type='hidden' name='redirect_uri' value = 'http://localhost/thanksbrayden/server/helper/callback.php'>
                     <!-- <input type='hidden' name='state' value = 'DCEeFWf45A53sdfKef424'>  -->
                     <input type='hidden' name='scope' value = 'r_liteprofile,r_emailaddress'>
 
@@ -142,7 +142,16 @@
     <div class="parallax-window tint header" data-parallax="scroll"  data-image-src="img/interview6.jpg" style="min-height: 800px; margin-top:0px">
       <div class="headText parallax-text p-text">
         <h1>Need help with interviews?</h1>
-        <button type="button" class="btn btn-outline-light" style="margin-top: 10px;">Let us help you!</button>
+        <form method='get' action='https://www.linkedin.com/oauth/v2/authorization' class="form-inline">
+          <input type='hidden' name='response_type' value = 'code'>
+          <input type='hidden' name='client_id' value = '8666gpxcfx4fa8'>
+          <input type='hidden' name='redirect_uri' value = 'http://localhost/thanksbrayden/server/helper/callback.php'>
+          <!-- <input type='hidden' name='state' value = 'DCEeFWf45A53sdfKef424'>  -->
+          <input type='hidden' name='scope' value = 'r_liteprofile,r_emailaddress'>
+
+          <button href="#" type='submit' class="btn btn-outline-light mx-auto" style="margin-top:10px;">Let us help you!</button>
+        </form>
+        <!--<button type="button" class="btn btn-outline-light" style="margin-top: 10px;">Let us help you!</button>-->
       </div>
     </div>
 
@@ -202,13 +211,14 @@
 
 
     <!-- About Us Parallax -->
-    <div class="parallax-window tint" id="about" data-parallax="scroll"  data-image-src="img/interview2.jpg" style="margin-top: 100px;">
         <!-- <p class="parallax-text">
             <span style="font-size: 35px; letter-spacing: .2rem;">WHAT WE DO</span><br>
             We have curated several professionals across a multitude of industries who have been generous enough to offer their time to help level up the interview skills of others. Through our platform,
             you can simply arrange for either an informational or mock interview with an industry professional and begin the process of upgrading your interviewing skills for that next job on the horizon!
         </p> -->
-          <div class="row mx-auto text-center parallax-text fadein animate__animated">
+        <div class="parallax-window tint try" id="about" data-parallax="scroll"  data-image-src="img/interview2.jpg" style="margin-top: 100px;">
+     <div class="outerdiv">     
+        <div class="row mx-auto text-center fadein animate__animated" id="innerdiv">
             <div style="margin-bottom: 30px;">
               <span style="font-size: 35px; letter-spacing: .2rem; text-align: center;">WHAT WE DO</span><br>
               <p>
@@ -216,7 +226,7 @@
                 you can simply arrange for either an informational or mock interview with an industry professional and begin the process of upgrading your interviewing skills for that next job on the horizon!
               </p> 
             </div>
-
+            <div class="row">
             <div class="col-sm-4 bounce animate__animated bounce1">
               <!-- style="color: rgb(180, 246, 255);" -->
               <i class="far fa-thumbs-up fa-8x" ></i>
@@ -235,8 +245,11 @@
               <h1>101%</h1>
               <h3>Jobs Secured</h3>
             </div>
-        </div>      
-    </div>
+          </div>
+        </div>  
+      </div>
+      </div>
+    
 
     <!-- Video Walkthrough / Advertisement -->
     <div style="text-align: center;" class="jack animate__animated">
