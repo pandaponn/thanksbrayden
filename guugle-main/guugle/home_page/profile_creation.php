@@ -54,7 +54,6 @@ const id = '<?php echo $_SESSION["id"]?>';
             margin-top: 20px;
             margin-bottom: 60px;
         }
-
     </style>
 </head>
 <body>
@@ -78,13 +77,7 @@ const id = '<?php echo $_SESSION["id"]?>';
         <div class="collapse navbar-collapse" id="hamburger">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="home.html" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="profile_creation.html" class="nav-link">Join Us</a>
-                </li>
-                <li class="nav-item">
-                    <a href="../../../server/helper/anotherUser.php" class="nav-link">Log In with another account</a>
+                    <a href="home.html" class="nav-link">Back To Home</a>
                 </li>
             </ul>
         </div>
@@ -158,7 +151,7 @@ const id = '<?php echo $_SESSION["id"]?>';
 
             <div class="form-group">
                 <label for="company">Current Company</label>
-                <input type="text" id="company" name="company" class="form-control" placeholder="Please specify 'nil' if you are not part of any company" required>
+                <input type="text" id="company" name="company" class="form-control" placeholder="Please specify 'nil' if you are not with a company or your institution if you are a student." required>
                 <div class="invalid-feedback">
                   Please fill in your company, 'nil' if you don't have one.
                 </div>
@@ -187,10 +180,6 @@ const id = '<?php echo $_SESSION["id"]?>';
             <!-- </div> -->
         </form>
 
-    </div>
-    <!-- Footer -->
-    <div class="text-center py-2" style="background-color: black; color: white; margin-top: 40px; font-size: small;">© 2020 Copyright: 
-        <a href="https://www.linkedin.com/in/zhi-hao-lim/" target="blank">Lim Zhi Hao</a> 
     </div>
 
     <script type = "text/javascript">
