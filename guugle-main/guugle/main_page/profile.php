@@ -35,6 +35,22 @@ const id = '<?php echo $_SESSION["id"]?>';
             background-repeat: repeat;
             background-size: cover;
         }
+        .text {
+        animation-duration: 2s;
+        animation-name: slidein;
+        }
+
+        @keyframes slidein {
+        from {
+            margin-left: 100%;
+            width: 300%; 
+        }
+
+        to {
+            margin-left: 0%;
+            width: 100%;
+        }
+        }
     </style>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
@@ -62,7 +78,7 @@ const id = '<?php echo $_SESSION["id"]?>';
             </ul>
         </div>
     </nav>
-
+    <div class='text'>
     <div class="box container-fluid">
         <div class="profile">
             <img src="" style="height: 150px; width: 150px;" id="user_img">
@@ -101,14 +117,12 @@ const id = '<?php echo $_SESSION["id"]?>';
                               30/10/20, 4:00pm
                             </label>
                         </div>
-
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
                             <label class="form-check-label" for="exampleRadios2">
                                 08/11/20, 9:00am
                             </label>
                         </div>
-
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
                             <label class="form-check-label" for="exampleRadios3">
@@ -190,6 +204,7 @@ const id = '<?php echo $_SESSION["id"]?>';
         </form> -->
         
 
+    </div>
     </div>
     
     <script type="text/javascript">
