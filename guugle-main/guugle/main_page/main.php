@@ -238,9 +238,7 @@ button{
           <p id="zeroBookings" style="margin: auto; color: white; margin-bottom: 12px;"></p>
         </div>
       
-        <div class='box_bookings text-white animate__animated animate__bounceIn bounce3' id='recommendations' style="margin-top: -60px;">
-          <p style="padding: 20px; text-align: center; font-weight: bold;">Recommendations</p>
-        </div>
+        
       </div>
 
       <div id='upNext' class="col-sm-6" style=''>
@@ -249,16 +247,19 @@ button{
           <div id="noBookings">
             <p id="nextBookingDate1"></p>
             <p id="nextBooking1">
-              <!-- Mock Interview w/ Phris, 5pm <br>
-              Mock Interview w/ Chris, 6pm <br>
-              Informational Interview w/ Ben, 8pm -->
+
             </p>
             <p id="nextBookingDate2"></p>
             <p id="nextBooking2">
-              <!-- Mock Interview w/ Mok, 7pm -->
+              
             </p>
           </div>
         </div>
+
+        <div class='box_bookings text-white animate__animated animate__bounceIn bounce3' id='recommendations' style="margin-top: -60px;">
+          <p style="padding: 20px; text-align: center; font-weight: bold;">Recommendations</p>
+        </div>
+
       </div>
     </div>
     <!-- <div class="text-center" style=''>
