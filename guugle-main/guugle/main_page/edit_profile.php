@@ -73,14 +73,17 @@ const id = '<?php echo $_SESSION["id"]?>';
         <h2 style="margin-top: -20px;" id="name"><span id="fname"></span> <span id="lname"></span></h2>
 
         <!-- Interviewer's Info -->
-        <form action="../../../server/helper/update.php" method="POST">
+        <form class="needs-validation" novalidate  action="../../../server/helper/update.php" method="POST">
             <div style="width: 80%;" class="mx-auto">
                 <div class="row" style="margin-top: 60px;">
                     <div class="col-sm-6">
                         <span class="fas fa-briefcase"></span> Occupation:
                     </div>
                     <div class="col-sm-6 text-left">
-                        <input type="text" id="job" name="job" style="padding-left: 5px; width: 70%;" required>
+                        <input class="form-control" type="text" id="job" name="job" style="padding-left: 5px; width: 70%;" required>
+                        <div class="invalid-feedback">
+                            Current Occupation is required.
+                        </div>
                     </div>
                 </div>
                 <hr class="my-4">
@@ -90,7 +93,10 @@ const id = '<?php echo $_SESSION["id"]?>';
                         <span class="fas fa-building"></span>  Company:
                     </div>
                     <div class="col-sm-6 text-left">
-                        <input type="text" id="company" name="company" style="padding-left: 5px; width: 70%;" required>
+                        <input class="form-control" type="text" id="company" name="company" style="padding-left: 5px; width: 70%;" required>
+                        <div class="invalid-feedback">
+                            Please fill in your company, 'nil' if you don't have one.
+                        </div>
                     </div>
                 </div>
                 <hr class="my-4">
@@ -100,7 +106,31 @@ const id = '<?php echo $_SESSION["id"]?>';
                         <span class="fas fa-warehouse"></span>  Industry:
                     </div>
                     <div class="col-sm-6 text-left">
-                        <input type="text" id="industry" name="industry" style="padding-left: 5px; width: 70%;" required>
+                        <select id="industry" name="industry" class="form-control" required>
+                            <option value='' disabled selected hidden>Select an Industry</option>
+                            <option>Accountancy</option>
+                            <option>Business Development</option>
+                            <option>Communications</option>
+                            <option>Cybersecurity</option>
+                            <option>Data Analytics</option>
+                            <option>Data Science</option>
+                            <option>Financial Services</option>
+                            <option>Financial Technology</option>
+                            <option>Human Resources</option>
+                            <option>Information Systems</option>
+                            <option>Information Technology</option>
+                            <option>International Trade</option>
+                            <option>Law</option>
+                            <option>Marketing</option>
+                            <option>Operations Management</option>
+                            <option>Politics</option>
+                            <option>Quantitative Economics</option>
+                            <option>Real Estate</option>
+                            <option>Strategic Management</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select an Industry.
+                        </div>
                     </div>
                 </div>
                 <hr class="my-4">
@@ -110,11 +140,14 @@ const id = '<?php echo $_SESSION["id"]?>';
                         <span class="fas fa-graduation-cap"></span>  Specialization:
                     </div>
                     <div class="col-sm-6 text-left">
-                        <input type="text" id="specialization" name="specialization" style="padding-left: 5px; width: 70%;" required>
+                        <input class="form-control" type="text" id="specialization" name="specialization" style="padding-left: 5px; width: 70%;" required>
+                        <div class="invalid-feedback">
+                            Specialization is required.
+                        </div>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-dark" style="margin-top: 80px;" type="submit" name="confirm_edit">Confirm Changes</button>
+            <button id='confirm' class="btn btn-dark" style="margin-top: 80px;" type="submit" name="confirm_edit">Confirm Changes</button>
         </form>
     </div>
     
@@ -147,9 +180,30 @@ const id = '<?php echo $_SESSION["id"]?>';
             }
         request.open("GET", "../../../server/helper/getUser.php", true);
         request.send();
+
+        (function() {
+            'use strict';
+
+            document.getElementById('confirm').addEventListener('click', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+                }, false);
+            });
+            }, false);
+        })();
     </script>
 
 </body>
 </html>
+
 
 
