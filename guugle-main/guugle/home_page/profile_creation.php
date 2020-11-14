@@ -153,7 +153,7 @@ const id = '<?php echo $_SESSION["id"]?>';
                 <label for="company">Current Company</label>
                 <input type="text" id="company" name="company" class="form-control" placeholder="Please specify 'nil' if you are not with a company or your institution if you are a student." required>
                 <div class="invalid-feedback">
-                  Please fill in your company, 'nil' if you don't have one.
+                  Please fill in your company, 'nil' if you don't have one or your institution if you are a student.
                 </div>
             </div>
 
