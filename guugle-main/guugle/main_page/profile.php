@@ -43,7 +43,7 @@ const id = '<?php echo $_SESSION["id"]?>';
         @keyframes slidein {
         from {
             margin-left: 100%;
-            width: 300%; 
+            width: 100%; 
         }
 
         to {
