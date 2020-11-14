@@ -2,7 +2,8 @@
 // Ensures that user has successfully logged in and has a full profile with us!
 session_start();
 if (!isset($_SESSION["id"]) || !isset($_SESSION["login"])  ){
-  header("Location: ../home_page/login.html");
+  //redirects to home page when user is not logged in 
+  header("Location: ../home_page/home.html");
   exit();
 }
 ?>
@@ -64,6 +65,113 @@ const id = '<?php echo $_SESSION["id"]?>';
   .card{
     box-shadow: 0 5px 7px rgba(0,0,0,0.5);
   }
+
+  .alert {
+    background: #ffdb9b;
+    padding: 20px 40px;
+    min-width: 420px;
+    position: absolute;
+    right: 0px;
+    top: 80px;
+    opacity: 0;
+    border-radius: 4px;
+    border-left: 4px solid #ffa502;
+    z-index: 1;
+  }
+
+  .alert .fa-check-circle {
+    position: absolute;
+    left: 10px;
+    top: 30%;
+    transform: translativeY(-50%);
+    color: #ce8500;
+    font-size: 30px;
+
+  }
+
+  .alert .msg {
+    padding: 0 20px;
+    font-size: 18px;
+    color: #ce8500;
+  }
+
+  .alert .close-btn{
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ffd080;
+  padding: 20px 18px;
+  cursor: pointer;
+}
+
+.alert .close-btn:hover{
+  background: #ffc766;
+}
+
+.alert.show{
+  animation: show_slide 1s ease forwards;
+}
+@keyframes show_slide {
+  0%{
+    transform: translateX(100%);
+  }
+  40%{
+    transform: translateX(-10%);
+  }
+  80%{
+    transform: translateX(0%);
+  }
+  100%{
+    transform: translateX(-10px );
+  }
+}
+.alert.hide{
+  animation: hide_slide 1s ease forwards;
+  display: none;
+}
+@keyframes hide_slide {
+  0%{
+    transform: translateX(-10px);
+  }
+  40%{
+    transform: translateX(0%);
+  }
+  80%{
+    transform: translateX(-10%);
+  }
+  100%{
+    transform: translateX(100%);
+  }
+}
+.alert.showAlert{
+  opacity: 1;
+  pointer-events: auto;
+}
+button{
+  padding: 8px 16px;
+  font-size: 25px;
+  font-weight: 500;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  background: #e69100;
+  color: white;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.bounce1 {
+    animation-delay: 0.2s;
+  }
+.bounce2{
+  animation-delay: 0.4s;
+}
+.bounce3{
+  animation-delay: 0.6s;
+}
+.fade{
+  animation-duration: 1.5s;
+}
 </style>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
@@ -83,7 +191,7 @@ const id = '<?php echo $_SESSION["id"]?>';
       
       <ul class="navbar-nav">
         <li class="nav-item">
-            <a href="main.php" class="nav-link">Main</a>
+            <a href="main.php" class="nav-link">Bookings</a>
         </li>
         <li class="nav-item">
             <a href="user_profile.php" class="nav-link">Profile</a>
@@ -94,21 +202,29 @@ const id = '<?php echo $_SESSION["id"]?>';
       </ul>
     </div>
   </nav>
+
+  <div class="alert hide" style="margin-top: 80px;">
+    <i class="fas fa-check-circle fa-1x"></i>
+    <span class="msg">Booking removed successfully </span>
+    <div class="close-btn">
+        <span class="fas fa-times"></span>
+    </div>
+  </div>
   
-  <div class="container animate__animated animate__fadeIn">
+  <div class="container">
     <!-- <div id='recommendation' class="py-5 text-center" style=''>
       <h2 class='mt-5'>Our Recommendations</h2>
       <p class="lead"> Welcome to Guugle! To get you started, these are some of our recommendations we picked out for you to start you on your interview journey!</p>
     </div> -->
-    <div id='booking' class="py-5 text-center" style=''>
-      <h1 class='mt-5' style="text-transform: uppercase; letter-spacing: .2rem; ">Bookings</h1>
+    <div id='booking' class="py-5 text-center animate__animated animate__fadeIn fade" style=''>
+      <h1 class='mt-5' style="text-transform: uppercase; letter-spacing: .2rem;">Bookings</h1>
       <p class="lead">These are your current interview bookings.</p>
     </div>
     <!-- <div id='recommendations' class="row card-deck" style='display: none;'>
     </div> -->
     <div class="row">
       <div class="col-sm-6">
-        <div id='bookings' class="row box_bookings" style=''>
+        <div id='bookings' class="row box_bookings animate__animated animate__bounceIn bounce1" style=''>
           <table id='details' class = 'table table-hover table-borderless' style="margin-top: 10px; color: white;">
             <thead>
               <tr style="border-bottom: 2px solid orange;">
@@ -122,13 +238,13 @@ const id = '<?php echo $_SESSION["id"]?>';
           <p id="zeroBookings" style="margin: auto; color: white; margin-bottom: 12px;"></p>
         </div>
       
-        <div class='box_bookings text-white' id='recommendations' style="margin-top: -60px;">
+        <div class='box_bookings text-white animate__animated animate__bounceIn bounce3' id='recommendations' style="margin-top: -60px;">
           <p style="padding: 20px; text-align: center; font-weight: bold;">Recommendations</p>
         </div>
       </div>
 
       <div id='upNext' class="col-sm-6" style=''>
-        <div class="box_bookings" style="color: white; padding: 20px 30px;">
+        <div class="box_bookings animate__animated animate__bounceIn bounce2" style="color: white; padding: 20px 30px;">
           <p style="text-align: center; font-weight: bold;">Up Next</p>
           <div id="noBookings">
             <p id="nextBookingDate1"></p>
@@ -170,7 +286,11 @@ const id = '<?php echo $_SESSION["id"]?>';
       </div>
     </div>
   </div>
-    
+  
+  <!-- Footer -->
+  <div class="text-center py-2 footer" style="background-color: black; color: white; font-size: small;">© 2020 Copyright: 
+        <a href="https://www.linkedin.com/in/zhi-hao-lim/" target="blank">Lim Zhi Hao</a> 
+  </div>
   
   
   <script>
@@ -359,6 +479,8 @@ const id = '<?php echo $_SESSION["id"]?>';
       const request = new XMLHttpRequest;
         request.onreadystatechange = function(){
           if (this.readyState == 4 && this.status == 200){
+            // Used for booking deletion alert 
+            sessionStorage.setItem("showAlert", true);
             location.reload();
           }
         }
@@ -367,6 +489,33 @@ const id = '<?php echo $_SESSION["id"]?>';
       }
       //END of delete
 
+      // The 2 functions below assist with displaying an alert upon successful deletion of booking 
+      window.onload = function() {
+        if(sessionStorage.getItem("showAlert")) {
+          sessionStorage.removeItem("showAlert");
+          showAlert();
+        }
+      
+      }
+
+      function showAlert() {
+        var alert = document.getElementsByClassName('alert')[0];
+        alert.classList.add('show');
+        alert.classList.remove('hide');
+        alert.classList.add('showAlert');
+        setTimeout(function() {
+          alert.classList.remove('show');
+          alert.classList.add('hide');
+        }, 3000)
+        const hideAlert = document.getElementsByClassName("close-btn")[0];  
+        console.log(hideAlert);
+        hideAlert.addEventListener('click', function(){
+        alert.classList.remove('show');
+        alert.classList.add('hide');
+      })
+      }
+
+      
   </script>
 </body>
 </html>

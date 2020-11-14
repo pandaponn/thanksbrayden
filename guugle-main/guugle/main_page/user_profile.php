@@ -29,6 +29,13 @@ const id = '<?php echo $_SESSION["id"]?>';
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="profile.css">
 </head>
+<style>
+    body {
+        background-image: url("img/bg_6.jpg");
+        background-repeat: repeat;
+        background-size: cover;
+    }
+</style>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
@@ -45,7 +52,7 @@ const id = '<?php echo $_SESSION["id"]?>';
             
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="main.php" class="nav-link">Main</a>
+                    <a href="main.php" class="nav-link">Bookings</a>
                 </li>
                 <li class="nav-item">
                     <a href="user_profile.php" class="nav-link">Profile</a>
@@ -57,7 +64,7 @@ const id = '<?php echo $_SESSION["id"]?>';
         </div>
     </nav>
 
-    <div class="box container-fluid">
+    <div class="box container-fluid animate__animated animate__fadeIn">
         <div class="profile">
             <img src="" style="height: 150px; width: 150px;" id="user_img">
         </div>
@@ -65,7 +72,7 @@ const id = '<?php echo $_SESSION["id"]?>';
         <h4><span id="job">Assistant Professor of Information Systems</span>, <span id="company">SMU</span></h4> -->
         <h2 style="margin-top: -20px;" id="name"><span id="fname"></span> <span id="lname"></span></h2>
         <h4><span id="job"></span>, <span id="company"></span></h4>
-
+        <button class="btn btn-dark btn-sm">Edit <i class="far fa-edit"></i></button>
 
         <!-- Interviewer's Info -->
         <div style="width: 80%;" class="mx-auto">
@@ -74,7 +81,6 @@ const id = '<?php echo $_SESSION["id"]?>';
                     <span class="fas fa-envelope"></span> Email:
                 </div>
                 <div class="col-sm-6 text-left">
-                    <!-- <a href="#" id="email">cposkitt@smu.edu.sg</a> -->
                     <a href="#" id="email"></a>
                 </div>
             </div>

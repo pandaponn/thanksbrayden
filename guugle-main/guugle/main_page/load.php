@@ -44,6 +44,8 @@ if(!isset($_SESSION["interview_type"]) || !isset($_SESSION['interviewerFName']) 
 
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
     <title>Interview Confirmation</title>
 
     <style>
@@ -59,8 +61,9 @@ if(!isset($_SESSION["interview_type"]) || !isset($_SESSION['interviewerFName']) 
         }
 
         body {
-            background-image: url("profile_img/pattern2.jpg");
+            background-image: url("img/bg_6.jpg");
             background-repeat: repeat;
+            background-size: cover;
         }
 
         .box {
@@ -69,7 +72,7 @@ if(!isset($_SESSION["interview_type"]) || !isset($_SESSION['interviewerFName']) 
             background-color: #fff;
             padding: 0 20px 80px;
             border-radius: 6px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            box-shadow: 0 3px 7px rgba(0,0,0,0.3);
             text-align: center;
         }
 
@@ -84,6 +87,10 @@ if(!isset($_SESSION["interview_type"]) || !isset($_SESSION['interviewerFName']) 
             box-shadow: 0 0 0 8px #f0f0f0;
         }
 
+        .bounce {
+            animation-duration: 5s;
+        }
+
     </style>
 
     <link rel="stylesheet" href="style.css">
@@ -91,17 +98,17 @@ if(!isset($_SESSION["interview_type"]) || !isset($_SESSION['interviewerFName']) 
   </head>
 
   <body>
-    <div class="box container-fluid">
+    <div class="box container-fluid animate__animated animate__bounceIn bounce">
         <div class="confirmation">
             <i class="fas fa-check-circle fa-9x"></i>
         </div>
 
         <div>
-            <h2>Your <span id='interview_type'></span> <span> interview at </span> <span id="time"></span><span> on </span><span id="date"></span><span> with </span><span id="interviewerFName"></span> <span>has been confirmed</span></h2>
+            <h3 style="padding: 20px;">Your <span id='interview_type'></span> <span> interview at </span> <span id="time"></span><span> on </span><span id="date"></span><span> with </span><span id="interviewerFName"></span> <span>has been confirmed</span></h3>
         </div>
             <br>
             <br>
-        <h4>Redirecting you to your bookings</h4>
+        <h4>Redirecting you to the bookings page</h4>
 
     </div>
     

@@ -29,6 +29,13 @@ const id = '<?php echo $_SESSION["id"]?>';
     <link rel="stylesheet" href="profile.css">
 </head>
 <body>
+    <style>
+        body {
+            background-image: url("img/bg_6.jpg");
+            background-repeat: repeat;
+            background-size: cover;
+        }
+    </style>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
         <a href="main.php" class="navbar-brand">Phris Coskitt</a>
@@ -44,7 +51,7 @@ const id = '<?php echo $_SESSION["id"]?>';
             
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="main.php" class="nav-link">Main</a>
+                    <a href="main.php" class="nav-link">Bookings</a>
                 </li>
                 <li class="nav-item">
                     <a href="user_profile.php" class="nav-link">Profile</a>
@@ -307,7 +314,6 @@ const id = '<?php echo $_SESSION["id"]?>';
         
 
         // Test code to get bookings
-        document.getElementById('retrievebookings').addEventListener('click', getBookings);
 
         function getBookings(){
             const request = new XMLHttpRequest;

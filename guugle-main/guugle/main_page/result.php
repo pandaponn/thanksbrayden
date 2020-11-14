@@ -17,6 +17,11 @@
     .animate__fadeIn{
         animation-duration: 1.5s;
     }
+    body {
+        background-image: url("img/bg_6.jpg");
+        background-repeat: repeat;
+        background-size: cover;
+    }
 </style>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
@@ -36,7 +41,7 @@
         
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a href="main.php" class="nav-link">Main</a>
+                <a href="main.php" class="nav-link">Bookings</a>
             </li>
             <li class="nav-item">
                 <a href="user_profile.php" class="nav-link">Profile</a>
@@ -49,7 +54,7 @@
     </nav>
 
     <!-- Search Results -->
-    <h1 id="search_header" class="animate__animated animate__fadeIn">Search Results</h1>
+    <h2 id="search_header" class="animate__animated animate__fadeIn" style="text-transform: uppercase; letter-spacing: .2rem;">Search Results</h2>
     <div class='box animate__animated animate__fadeIn'>
         <div id="search_results" style="padding-top: 30px; padding-bottom:30px;">
             <!--<div class="row" id="row">-->

@@ -4,6 +4,12 @@
     letter-spacing: .1rem;
 }
 
+body {
+  background-image: url("img/bg_6.jpg");
+  background-repeat: repeat;
+  background-size: cover;
+}
+
 .snip1336 {
   font-family: 'Roboto', Arial, sans-serif;
   position: relative;
@@ -92,11 +98,6 @@
   font-size: 0.8em;
   letter-spacing: 1px;
   opacity: 0.8;
-}
-
-
-body{
-  background: #e4eefa;
 }
 
 .wrapper{
