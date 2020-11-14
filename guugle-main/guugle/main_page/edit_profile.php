@@ -63,49 +63,61 @@ const id = '<?php echo $_SESSION["id"]?>';
             </ul>
         </div>
     </nav>
-
-    <div class="box container-fluid animate__animated animate__fadeIn">
+    <h1 style="text-transform: uppercase; letter-spacing: .2rem; color: black; text-align: center; margin-top: 120px;" class="animate__animated animate__fadeIn">Edit Profile</h1>
+    <div class="box container-fluid animate__animated animate__fadeIn" style="margin-top: 120px;">
         <div class="profile">
             <img src="" style="height: 150px; width: 150px;" id="user_img">
         </div>
         <!-- <h2 style="margin-top: -20px;" id="name"><span id="fname">Phris</span> <span id="lname">Coskitt</span></h2>
         <h4><span id="job">Assistant Professor of Information Systems</span>, <span id="company">SMU</span></h4> -->
         <h2 style="margin-top: -20px;" id="name"><span id="fname"></span> <span id="lname"></span></h2>
-        <h4><span id="job"></span>, <span id="company"></span></h4>
-        <button class="btn btn-dark btn-sm" onClick="javascript:window.location.href='edit_profile.php'">Edit <i class="far fa-edit"></i></button>
 
         <!-- Interviewer's Info -->
-        <div style="width: 80%;" class="mx-auto">
-            <div class="row" style="margin-top: 80px;">
-                <div class="col-sm-6">
-                    <span class="fas fa-envelope"></span> Email:
+        <form action="../../../server/helper/update.php" method="POST">
+            <div style="width: 80%;" class="mx-auto">
+                <div class="row" style="margin-top: 60px;">
+                    <div class="col-sm-6">
+                        <span class="fas fa-briefcase"></span> Occupation:
+                    </div>
+                    <div class="col-sm-6 text-left">
+                        <input type="text" id="job" name="job" style="padding-left: 5px; width: 70%;" required>
+                    </div>
                 </div>
-                <div class="col-sm-6 text-left">
-                    <a href="#" id="email"></a>
-                </div>
-            </div>
-            <hr class="my-4">
-            
-            <div class="row">
-                <div class="col-sm-6">
-                    <span class="fas fa-warehouse"></span>  Industry:
-                </div>
-                <div class="col-sm-6 text-left" id="industry">
-                </div>
-            </div>
-            <hr class="my-4">
+                <hr class="my-4">
 
-            <div class="row">
-                <div class="col-sm-6">
-                    <span class="fas fa-graduation-cap"></span>  Specialization:
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="fas fa-building"></span>  Company:
+                    </div>
+                    <div class="col-sm-6 text-left">
+                        <input type="text" id="company" name="company" style="padding-left: 5px; width: 70%;" required>
+                    </div>
                 </div>
-                <div class="col-sm-6 text-left" id="specialization">
+                <hr class="my-4">
+                
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="fas fa-warehouse"></span>  Industry:
+                    </div>
+                    <div class="col-sm-6 text-left">
+                        <input type="text" id="industry" name="industry" style="padding-left: 5px; width: 70%;" required>
+                    </div>
+                </div>
+                <hr class="my-4">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="fas fa-graduation-cap"></span>  Specialization:
+                    </div>
+                    <div class="col-sm-6 text-left">
+                        <input type="text" id="specialization" name="specialization" style="padding-left: 5px; width: 70%;" required>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-
+            <button class="btn btn-dark" style="margin-top: 80px;" type="submit" name="confirm_edit">Confirm Changes</button>
+        </form>
     </div>
+    
 
     <script type="text/javascript">
         const request = new XMLHttpRequest;
@@ -126,11 +138,10 @@ const id = '<?php echo $_SESSION["id"]?>';
                     user_img.setAttribute("src", data.photoURL);
                     fname.innerHTML = data.fname;
                     lname.innerHTML = data.lname;
-                    job.innerHTML = data.job;
-                    company.innerHTML = data.company;
-                    email.innerHTML = data.email;
-                    industry.innerHTML = data.industry;
-                    specialization.innerHTML = data.specialization;
+                    job.setAttribute("placeholder", data.job);
+                    company.setAttribute("placeholder", data.company);
+                    industry.setAttribute("placeholder", data.industry);
+                    specialization.setAttribute("placeholder", data.specialization);
 
                 }
             }
