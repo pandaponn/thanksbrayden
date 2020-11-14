@@ -242,7 +242,7 @@ button{
       </div>
 
       <div id='upNext' class="col-sm-6" style=''>
-        <div class="box_bookings animate__animated animate__bounceIn bounce2" style="color: white; padding: 20px 30px;">
+        <div id='upNext1'class="box_bookings animate__animated animate__bounceIn bounce2" style="color: white; padding: 20px 30px; display:none;">
           <p style="text-align: center; font-weight: bold;">Up Next</p>
           <div id="noBookings">
             <p id="nextBookingDate1"></p>
@@ -373,10 +373,9 @@ button{
                         bookings = data;
                         console.log(bookings);
                         // document.getElementById('recommendation').style = 'display: none';
-                        // document.getElementById('recommendations').style = 'display: none';
                         // document.getElementById('booking').style = '';
                         // document.getElementById('bookings').style = '';
-                        // document.getElementById('upNext').style = '';
+                        document.getElementById('upNext1').style = 'color: white; padding: 20px 30px;';
 
                         for (booking of data){
                           var interviewer_id = booking['interviewer_id']
@@ -442,6 +441,7 @@ button{
                       else{
                         document.getElementById('zeroBookings').innerHTML = "No bookings made!";
                         document.getElementById('noBookings').innerHTML = "No upcoming interviews!";
+                        document.getElementById('recommendations').style = '';
                       }
                       getRecommendations();
                   }
