@@ -2,7 +2,7 @@
 // Ensures that user has successfully logged in and has a full profile with us!
 session_start();
 if (!isset($_SESSION["id"]) || !isset($_SESSION["login"])  ){
-  header("Location: ../home_page/login.html");
+  header("Location: ../../../index.html");
   exit();
 }
 ?>
@@ -37,18 +37,15 @@ const id = '<?php echo $_SESSION["id"]?>';
         }
         .text {
         animation-duration: 2s;
-        animation-name: slidein;
+        animation-name: fadein;
         }
 
-        @keyframes slidein {
+        @keyframes fadein {
         from {
-            margin-left: 100%;
-            width: 100%; 
+            opacity:0;
         }
-
         to {
-            margin-left: 0%;
-            width: 100%;
+            opacity:1;
         }
         }
     </style>
@@ -209,7 +206,6 @@ const id = '<?php echo $_SESSION["id"]?>';
     
     <script type="text/javascript">
         var interviewer_id = "<?php echo $_POST['interviewer_id'] ?>"
-        console.log(interviewer_id);
         var interviewers = {}
 
         function getInterviewers(){
@@ -218,7 +214,6 @@ const id = '<?php echo $_SESSION["id"]?>';
                 if (this.readyState == 4 && this.status==200){
                     let data = JSON.parse(this.responseText).interviewers;
                     interviewers = data;
-                    console.log(interviewers);
 
                     // Interviewer's Info
                     for (interviewer of interviewers){
@@ -334,7 +329,7 @@ const id = '<?php echo $_SESSION["id"]?>';
             const request = new XMLHttpRequest;
             request.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200){
-                    console.log(JSON.parse(this.responseText));
+                    //console.log(JSON.parse(this.responseText));
                 }
             }
             request.open("GET", "../../../server/helper/getBookings.php", true);

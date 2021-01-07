@@ -57,7 +57,7 @@ INSERT INTO `interviewers` (`id`, `fname`, `lname`, `job`, `company`, `years`, `
 'profile_img/chris.jpg');
 
 INSERT INTO `interviewers` (`id`, `fname`, `lname`, `job`, `company`, `years`, `industry`, `about`,
-`email`, `experience`, `education`, `img`) VALUES (2, 'Wong', 'Xin Wei','Cyber and Strategic Risk Intern', 'Deloitte', 0.5, 'Cybersecurity', 
+`email`, `experience`, `education`, `img`) VALUES (2, 'Xin Wei', 'Wong','Cyber and Strategic Risk Intern', 'Deloitte', 0.5, 'Cybersecurity', 
 'I am a penultimate student at Singapore Management University, pursing a Bachelor of Science (Information System) degree majoring in software development. My experience and interest lies in the area of information technology, full stack web application development, database management and project management.', 
 'xinwei.wong.2018@smu.edu.sg', 
 "{""experience"" : [""Teaching Assistant, School of Information Systems, SMU, Aug 2020 - Present"",
@@ -68,7 +68,7 @@ INSERT INTO `interviewers` (`id`, `fname`, `lname`, `job`, `company`, `years`, `
 
 INSERT INTO interviewers (id, fname, lname, job, company, years, industry, about,
 email, experience, education, img) VALUES 
-(3, 'Ong', 'Hong Seng','Senior Instructor of Information Systems', 'SMU', 13, 'Information Technology', 
+(3, 'Hong Seng', 'Ong','Senior Instructor of Information Systems', 'SMU', 13, 'Information Technology', 
 'I am a Senior Instructor of Information Systems. I have been in the field of Information Technology for 20 years.', 
 'hsong@smu.edu.sg', 
 "{""experience"" : [""Senior Instructor, School of Information Systems, SMU, Aug 2007 - Present"",
@@ -134,7 +134,7 @@ email, experience, education, img) VALUES
 
 INSERT INTO interviewers (id, fname, lname, job, company, years, industry, about,
 email, experience, education, img) VALUES 
-(9, 'Phris The Third', 'of the House Coskitt','Emperor', 'The Entire World', 50, 'Law', 
+(9, 'Phris', 'of House Coskitt','Emperor', 'The Entire World', 50, 'Law', 
 'Bow, you peasants.', 
 'kingphris@anywhere.com', 
 "{""experience"" : [""Emperor, The World, Earth, Jan 1970 - Present""]}",

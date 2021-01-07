@@ -2,7 +2,7 @@
 // Ensures that user has successfully logged in and has a full profile with us!
 session_start();
 if (!isset($_SESSION["id"]) || !isset($_SESSION["login"])  ){
-  header("Location: ../home_page/login.html");
+  header("Location: ../../../index.html");
   exit();
 }
 
@@ -66,13 +66,13 @@ const id = '<?php echo $_SESSION["id"]?>';
 
     <div class="box container-fluid animate__animated animate__fadeIn">
         <div class="profile">
-            <img src="" style="height: 150px; width: 150px;" id="user_img">
+            <img src="../../../img/avatar.png" style="height: 150px; width: 150px;" id="user_img">
         </div>
         <!-- <h2 style="margin-top: -20px;" id="name"><span id="fname">Phris</span> <span id="lname">Coskitt</span></h2>
         <h4><span id="job">Assistant Professor of Information Systems</span>, <span id="company">SMU</span></h4> -->
         <h2 style="margin-top: -20px;" id="name"><span id="fname"></span> <span id="lname"></span></h2>
         <h4><span id="job"></span>, <span id="company"></span></h4>
-        <button class="btn btn-dark btn-sm" onClick="javascript:window.location.href='edit_profile.php'">Edit <i class="far fa-edit"></i></button>
+        <button class="btn btn-sm" onClick="javascript:window.location.href='edit_profile.php'" style="border: none; background: none; color: #0066CC;">Edit Profile <i class="far fa-edit"></i></button>
 
         <!-- Interviewer's Info -->
         <div style="width: 80%;" class="mx-auto">
@@ -111,7 +111,7 @@ const id = '<?php echo $_SESSION["id"]?>';
         const request = new XMLHttpRequest;
             request.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status==200){
-                    console.log(JSON.parse(this.responseText).users);
+                    //console.log(JSON.parse(this.responseText).users);
                     let data = JSON.parse(this.responseText).users;
                     
                     let user_img = document.getElementById('user_img');
@@ -123,7 +123,9 @@ const id = '<?php echo $_SESSION["id"]?>';
                     let industry = document.getElementById('industry');
                     let specialization = document.getElementById('specialization');
 
-                    user_img.setAttribute("src", data.photoURL);
+                    if(data.photoURL != null) {
+                        user_img.setAttribute("src", data.photoURL);
+                    }
                     fname.innerHTML = data.fname;
                     lname.innerHTML = data.lname;
                     job.innerHTML = data.job;

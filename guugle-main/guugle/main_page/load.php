@@ -2,13 +2,13 @@
 // Ensures that user has successfully logged in and has a full profile with us!
 session_start();
 if (!isset($_SESSION["id"]) || !isset($_SESSION["login"]) ){
-  header("Location: ../home_page/home.html");
+  header("Location: ../../../index.html");
   exit();
 }
 
 // User did not get a booking
 if(!isset($_SESSION["interview_type"]) || !isset($_SESSION['interviewerFName']) || !isset($_SESSION['radio_timeslot'])) {
-    header("Location: ../main_page/main.php");
+    header("Location: main.php");
     exit();
 }
 
@@ -67,7 +67,7 @@ if(!isset($_SESSION["interview_type"]) || !isset($_SESSION['interviewerFName']) 
         }
 
         .box {
-            width: 40%;
+            width: 50%;
             margin: 200px auto 120px;
             background-color: #fff;
             padding: 0 20px 80px;
@@ -91,6 +91,11 @@ if(!isset($_SESSION["interview_type"]) || !isset($_SESSION['interviewerFName']) 
             animation-duration: 5s;
         }
 
+        h3 {
+            font-size: 3.0vh;
+        }
+
+
     </style>
 
     <link rel="stylesheet" href="style.css">
@@ -104,11 +109,11 @@ if(!isset($_SESSION["interview_type"]) || !isset($_SESSION['interviewerFName']) 
         </div>
 
         <div>
-            <h3 style="padding: 20px;">Your <span id='interview_type'></span> <span> interview at </span> <span id="time"></span><span> on </span><span id="date"></span><span> with </span><span id="interviewerFName"></span> <span>has been confirmed</span></h3>
+            <h3 class="text-center">Your <span id='interview_type'></span> <span> interview at </span> <span id="time"></span><span> on </span><span id="date"></span><span> with </span><span id="interviewerFName"></span> <span>has been confirmed</span></h3>
         </div>
             <br>
             <br>
-        <h4>Redirecting you to the bookings page</h4>
+        <h3>Redirecting you to the bookings page</h3>
 
     </div>
     

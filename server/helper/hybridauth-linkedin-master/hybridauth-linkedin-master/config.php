@@ -1,7 +1,7 @@
 <?php
 // Stores Our keys and info 
 $hybridauthConfig = [
-  'callback' => 'http://localhost:8888/test/server/helper/callback.php',
+  'callback' => 'http://localhost:8888/app/server/helper/callback.php',
   'providers' => [
     'LinkedIn' => [
       'enabled' => true,

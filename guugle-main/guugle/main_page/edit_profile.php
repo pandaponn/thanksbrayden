@@ -2,7 +2,7 @@
 // Ensures that user has successfully logged in and has a full profile with us!
 session_start();
 if (!isset($_SESSION["id"]) || !isset($_SESSION["login"])  ){
-  header("Location: ../home_page/login.html");
+  header("Location: ../../../index.html");
   exit();
 }
 
@@ -66,7 +66,7 @@ const id = '<?php echo $_SESSION["id"]?>';
     <h1 style="text-transform: uppercase; letter-spacing: .2rem; color: black; text-align: center; margin-top: 120px;" class="animate__animated animate__fadeIn">Edit Profile</h1>
     <div class="box container-fluid animate__animated animate__fadeIn" style="margin-top: 120px;">
         <div class="profile">
-            <img src="" style="height: 150px; width: 150px;" id="user_img">
+            <img src="../../../img/avatar.png" style="height: 150px; width: 150px;" id="user_img">
         </div>
         <!-- <h2 style="margin-top: -20px;" id="name"><span id="fname">Phris</span> <span id="lname">Coskitt</span></h2>
         <h4><span id="job">Assistant Professor of Information Systems</span>, <span id="company">SMU</span></h4> -->
@@ -156,7 +156,6 @@ const id = '<?php echo $_SESSION["id"]?>';
         const request = new XMLHttpRequest;
             request.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status==200){
-                    console.log(JSON.parse(this.responseText).users);
                     let data = JSON.parse(this.responseText).users;
                     
                     let user_img = document.getElementById('user_img');
@@ -168,10 +167,12 @@ const id = '<?php echo $_SESSION["id"]?>';
                     let industry = document.getElementById('industry');
                     let specialization = document.getElementById('specialization');
 
-                    user_img.setAttribute("src", data.photoURL);
+                    if(data.photoURL != null) {
+                        user_img.setAttribute("src", data.photoURL);
+                    }
                     fname.innerHTML = data.fname;
                     lname.innerHTML = data.lname;
-                    job.setAttribute("placeholder", data.job);
+                    job.setAttribute("placeholder",  data.job);
                     company.setAttribute("placeholder", data.company);
                     industry.setAttribute("placeholder", data.industry);
                     specialization.setAttribute("placeholder", data.specialization);

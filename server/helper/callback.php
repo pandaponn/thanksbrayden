@@ -36,7 +36,7 @@ try {
 
 	// Gracefully handle if a user declines on the prompt to log in
 	if (isset($_GET['error']) && ($_GET['error'] == 'user_cancelled_login' || $_GET['error'] == 'user_cancelled_authorize')) {
-        header("Location: ../../guugle-main/guugle/home_page/login.html?" .  $_GET['error']);
+        header("Location: ../../index.html?" .  $_GET['error']);
         // header("Location: http://localhost/WAD2Project/guugle/guugle/home_page/home.html");
 		exit();
 	}
@@ -98,7 +98,7 @@ try {
             else {
                 if(!($dao->checkUser($id))){
                     if ($dao ->addUser($id, $dname, $fname, $lname, $email, $photoURL)){
-                        header("Location: ../../guugle-main/guugle/home_page/profile_creation.php" );   
+                        header("Location: ../../profile_creation.php" );   
                     }
 
                     else {
@@ -106,7 +106,7 @@ try {
                     }
                 }
                 else {
-                    header("Location: ../../guugle-main/guugle/home_page/profile_creation.php" ); 
+                    header("Location: ../../profile_creation.php" ); 
                 }
             }
 

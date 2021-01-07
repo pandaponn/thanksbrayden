@@ -39,11 +39,9 @@ body {
   height:fit-content;
   margin: 10px auto 120px;
   background-color: #fff;
-  padding: 0 50px 0px;
+  padding: 0 0px 0px;
   border-radius: 6px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-  
-
   /* text-align: center; */
   /*justify-content: center;*/
   

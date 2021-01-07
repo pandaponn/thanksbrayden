@@ -1,3 +1,12 @@
+<?php
+// Ensures that user has successfully logged in and has a full profile with us!
+session_start();
+if (!isset($_SESSION["id"]) || !isset($_SESSION["login"])  ){
+  header("Location: ../../../index.html");
+  exit();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +30,23 @@
         background-image: url("img/bg_6.jpg");
         background-repeat: repeat;
         background-size: cover;
+        width:100%;
     }
+    .container{
+        width:80%;
+    }
+    .nxm { 
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    color: black;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: bold;
+}
+
 </style>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
@@ -54,14 +79,17 @@
     </nav>
 
     <!-- Search Results -->
+    
     <h2 id="search_header" class="animate__animated animate__fadeIn" style="text-transform: uppercase; letter-spacing: .2rem;">Search Results</h2>
-    <div class='box animate__animated animate__fadeIn'>
+    
+    <div class=' container-fluid box animate__animated animate__fadeIn'>
         <div id="search_results" style="padding-top: 30px; padding-bottom:30px;">
-            <!--<div class="row" id="row">-->
+            
 
-            </div>
+
         </div>
     </div>
+    
 </body>
 </html>
 
@@ -95,19 +123,19 @@
 
         search_results.innerHTML += `
         <div class="flex-container row" style="justify-content:center;">
+        <form action="profile.php" method="POST">
             <div class="fir-image-figure">
                 <img class="fir-author-image fir-clickcircle" src="${img}">
 
                 <figcaption>
-                <div class="fig-author-figure-title" style="font-weight:900;">${name}</div>
+                <div class="fig-author-figure-title" style="font-weight:900;"><button class="btn-link nxm" value="${id}" name="interviewer_id">${name}</button></div>
                 <div class="fig-author-figure-title">${job}, ${company}</div>
                 <div class="fig-author-figure-title">${industry}</div>
                 </figcaption>
 
-                <form action="profile.php" method="POST">
-                <button class="btn btn-dark btn-sm" style="margin-left: 15px;" value="${id}" name="interviewer_id">Book now</button>
-                </form>
+               
             </div>
+        </form>    
         </div>
         <br>
         `;
@@ -116,7 +144,7 @@
 
     let interviewers = {}
     let search = '<?php echo $_POST['searchItem']; ?>'.toLowerCase();
-    console.log(search);
+    
 
     var index = 0;
     function getInterviewers(){
@@ -141,22 +169,18 @@
                     index ++;
                     
                     search_results.innerHTML += `
-                    
+                    <form action="profile.php" method="POST">
                     <div class="fir-image-figure">
                         <img class="fir-author-image fir-clickcircle" src="${img}">
                         
                         <figcaption>
-                        <div class="fig-author-figure-title" style="font-weight:900;">${name}</div>
+                        <div class="fig-author-figure-title" style="font-weight:900;"><button class="btn-link nxm" value="${id}" name="interviewer_id">${name}</button></div>
                         <div class="fig-author-figure-title">${job}, ${company}</div>
                         <div class="fig-author-figure-title">${industry}</div>
                         </figcaption>        
-                    
-                        <form action="profile.php" method="POST">
                         
-                        <button class="btn btn-dark btn-sm" style="justify-content:right; margin-left: 50px;" value="${id}" name="interviewer_id">Book now</button>
-                        </form>
                     </div>
-
+                    </form>
                     
                     
                     </div>
@@ -169,8 +193,8 @@
                 search_results.innerHTML += `
                 <div class="text-center">
                     <i class="fas fa-exclamation-circle fa-8x" style="color: #cb1616;"></i>
-                    <h3 style="margin: 20px 20px 10px 20px">Sorry, we couldn't find what you were searching for!</h3>
-                    <h4 style="margin-bottom: 20px;">How about these <strong style="font-style: italic;">fine</strong> interviewers instead?</h4>
+                    <h4 style="margin: 20px 20px 10px 20px">Sorry, we couldn't find what you were searching for!</h4>
+                    <h5 style="margin-bottom: 20px;">How about these <strong style="font-style: italic;">fine</strong> interviewers instead?</h5>
                     <br>
                 </div>
                     

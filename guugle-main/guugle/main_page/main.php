@@ -3,13 +3,14 @@
 session_start();
 if (!isset($_SESSION["id"]) || !isset($_SESSION["login"])  ){
   //redirects to home page when user is not logged in 
-  header("Location: ../home_page/home.html");
+  header("Location: ../../../index.html");
   exit();
 }
 ?>
 
 <script type='text/javascript'>
 const id = '<?php echo $_SESSION["id"]?>';
+
 </script>
 
 <!DOCTYPE html>
@@ -24,10 +25,16 @@ const id = '<?php echo $_SESSION["id"]?>';
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <title>guugle</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="search.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <!-- <link rel="stylesheet" href="search.css"> -->
 </head>
 <style>
+
+.nav {
+    background-color: black !important;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+  }
   body {
     background-image: url("img/bg_6.jpg");
     background-repeat: repeat;
@@ -38,7 +45,7 @@ const id = '<?php echo $_SESSION["id"]?>';
   height:fit-content;
   margin: 0px auto 120px;
   background-color: black;
-  padding: 0 20px 0px;
+  padding: 0 10px 0px;
   border-radius: 6px;
   box-shadow: 0 5px 7px rgba(0,0,0,0.5);
   }
@@ -71,7 +78,7 @@ const id = '<?php echo $_SESSION["id"]?>';
     padding: 20px 40px;
     min-width: 420px;
     position: absolute;
-    right: 0px;
+    left: 10px;
     top: 80px;
     opacity: 0;
     border-radius: 4px;
@@ -172,6 +179,67 @@ button{
 .fade{
   animation-duration: 1.5s;
 }
+
+
+.fir-clickcircle {
+    height: 80px;
+    width: 80px;
+    border-radius: 100px;
+    margin-left:30px;
+}
+  
+.fir-image-figure {
+  display: flex;
+  align-items: center;
+  position: relative;
+  text-decoration: none;
+  margin-bottom: 20px;
+  margin-right:0px;
+  /*padding-left:0; 
+  padding-right:15px;*/
+  
+}
+
+.fir-image-figure .caption, .fir-image-figure figcaption {
+  padding-left: 15px;
+}
+
+.fir-image-figure .fig-author-figure-title {
+  color: var(--fir-color-grey);
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  margin-top: 2px;
+  width:200px;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+   /* Basically up to, but not including an iPad */
+   
+   .alert{
+        min-width: 200px;
+    }
+}
+@media (min-width: 768px) {
+   /* iPad and bigger */
+   .alert{
+        min-width: 420px; 
+    }
+}
+
+
+.nxm { 
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    color: white;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: bold;
+}
+
 </style>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav fixed-top">
@@ -205,44 +273,40 @@ button{
 
   <div class="alert hide" style="margin-top: 80px;">
     <i class="fas fa-check-circle fa-1x"></i>
-    <span class="msg">Booking removed successfully </span>
+    <span class="msg">Booking removed successfully</span>
     <div class="close-btn">
         <span class="fas fa-times"></span>
     </div>
   </div>
   
-  <div class="container">
-    <!-- <div id='recommendation' class="py-5 text-center" style=''>
-      <h2 class='mt-5'>Our Recommendations</h2>
-      <p class="lead"> Welcome to Guugle! To get you started, these are some of our recommendations we picked out for you to start you on your interview journey!</p>
-    </div> -->
+  <div class="container" style="">
     <div id='booking' class="py-5 text-center animate__animated animate__fadeIn fade" style=''>
       <h1 class='mt-5' style="text-transform: uppercase; letter-spacing: .2rem;">Bookings</h1>
       <p class="lead">These are your current interview bookings.</p>
     </div>
     <!-- <div id='recommendations' class="row card-deck" style='display: none;'>
     </div> -->
+    
     <div class="row">
-      <div class="col-sm-6">
-        <div id='bookings' class="row box_bookings animate__animated animate__bounceIn bounce1" style=''>
-          <table id='details' class = 'table table-hover table-borderless' style="margin-top: 10px; color: white;">
-            <thead>
-              <tr style="border-bottom: 2px solid orange;">
-                <th scope="col">Interviewer</th>
-                <th scope="col">Details</th>
-                <th scope="col">Interview Type</th>
-                <th></th>
-              </tr>
-            </thead>
-          </table>
-          <p id="zeroBookings" style="margin: auto; color: white; margin-bottom: 12px;"></p>
-        </div>
+      <div id='bookings' class=" col-sm-6 table-responsive-lg box_bookings animate__animated animate__bounceIn bounce1" style='width: fit-content; '>
+        <table id='details' class = 'table table-hover table-borderless' style="margin-top: 10px; color: white;">
+          <thead>
+            <tr style="border-bottom: 2px solid orange;">
+              <th scope="col">Interviewer</th>
+              <th scope="col">Details</th>
+              <th scope="col">Type</th>
+              <th></th>
+            </tr>
+          </thead>
+        </table>
+        <p id="zeroBookings" style="text-align: center; color: white; margin-bottom: 12px;"></p>
+      </div>
       
         
-      </div>
 
-      <div id='upNext' class="col-sm-6" style=''>
-        <div id='upNext1'class="box_bookings animate__animated animate__bounceIn bounce2" style="color: white; padding: 20px 30px; display:none;">
+
+       <div id='upNext' class="col-sm-6" style='width:fit-content; justify-content:center;'>
+        <div id='upNext1'class=" box_bookings animate__animated animate__bounceIn bounce2" style="color: white; padding: 20px 30px; display:none;">
           <p style="text-align: center; font-weight: bold;">Up Next</p>
           <div id="noBookings">
             <p id="nextBookingDate1"></p>
@@ -255,19 +319,16 @@ button{
             </p>
           </div>
         </div>
-
+      
+        <!-- Recommendations -->
         <div class='box_bookings text-white animate__animated animate__bounceIn bounce3' id='recommendations' style="margin-top: -60px;">
           <p style="padding: 20px; text-align: center; font-weight: bold;">Recommendations</p>
-        </div>
+        </div>  
+        </div> <!-- row-->
 
-      </div>
+        </div>  
     </div>
-    <!-- <div class="text-center" style=''>
-      <h5>Recommendations</h5>
-    </div>
-    <div class='box_bookings text-white' id='recommendations'>
-    </div> -->
-  </div>
+
   <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -287,11 +348,12 @@ button{
       </div>
     </div>
   </div>
+
   
   <!-- Footer -->
-  <div class="text-center py-2 footer" style="background-color: black; color: white; font-size: small;">© 2020 Copyright: 
+  <!-- <div class="text-center py-2 footer" style="background-color: black; color: white; font-size: small;">© 2020 Copyright: 
         <a href="https://www.linkedin.com/in/zhi-hao-lim/" target="blank">Lim Zhi Hao</a> 
-  </div>
+  </div> -->
   
   
   <script>
@@ -324,21 +386,19 @@ button{
         var industry = item['industry'];
 
         recommendations.innerHTML += `
-        <div class="fir-image-figure">
-          <img class="fir-author-image fir-clickcircle" src="${img}">
-          
-          <figcaption>
-          <div class="fig-author-figure-title" style="font-weight:900;">${name}</div>
-          <div class="fig-author-figure-title">${job}, ${company}</div>
-          <div class="fig-author-figure-title">${industry}</div>
-          </figcaption>        
-      
-          <form action="profile.php" method="POST">
-          
-          <button class="btn btn-sm" style="justify-content:right; margin-left:50px;" value="${id}" name="interviewer_id"><i class="fa fa-user" style="color: white;"></i></button>
-          </form>
-        </div>
+        <form action="profile.php" method="POST">
+          <div class="fir-image-figure">
+            <img class="fir-author-image fir-clickcircle" src="${img}">
+            
+            <figcaption>
+            <div class="fig-author-figure-title" style="font-weight:900;"><button class="btn-link nxm" value="${id}" name="interviewer_id">${name}</button></div>
+            <div class="fig-author-figure-title">${job}, ${company}</div>
+            <div class="fig-author-figure-title">${industry}</div>
+            </figcaption>   
+          </div>
+        </form>
         `;
+        // <button class="btn btn-sm" style="justify-content:right; margin-left:50px;" value="${id}" name="interviewer_id"><i class="fa fa-user" style="color: white;"></i></button>
 
         if (count != 2){
           recommendations.innerHTML += `
@@ -363,21 +423,26 @@ button{
               interviewers = data;
 
               // Retrieve Bookings
+              let userBooking = [];
               function getBookings(){
               const request = new XMLHttpRequest;
               request.onreadystatechange = function(){
                   if (this.readyState == 4 && this.status == 200){
-                      let data = JSON.parse(this.responseText).bookings
-                      console.log(data);
-                      if (data.length != 0){
-                        bookings = data;
-                        console.log(bookings);
+                      let data = JSON.parse(this.responseText).bookings;
+                      let id1 = '<?php echo $_SESSION["id"]?>';
+                      for (i of data){
+                        if (i['user_id'] == id1){
+                          userBooking.push(i);
+                        }
+                      }
+                      if (userBooking.length != 0){
+                        bookings = userBooking;
                         // document.getElementById('recommendation').style = 'display: none';
                         // document.getElementById('booking').style = '';
                         // document.getElementById('bookings').style = '';
                         document.getElementById('upNext1').style = 'color: white; padding: 20px 30px;';
 
-                        for (booking of data){
+                        for (booking of userBooking){
                           var interviewer_id = booking['interviewer_id']
                           var timeslot = booking['timeslots']
                           var interview_type = booking['interview_type']
@@ -398,9 +463,14 @@ button{
 
                               td2.appendChild(document.createTextNode(timeslot))
                               tr.appendChild(td2)
-
-                              td3.appendChild(document.createTextNode(interview_type))
+                              if (interview_type == 'Informational'){
+                              td3.appendChild(document.createTextNode("Info"))
                               tr.appendChild(td3)
+                              }
+                              else{
+                                td3.appendChild(document.createTextNode("Mock"))
+                                tr.appendChild(td3)
+                              }
 
                               td4.innerHTML = `<button value="${delete_id}" class="open-deleteBooking btn btn-sm" type='button' data-toggle="modal" data-target="#confirm"><i class="fa fa-trash" style="color: white"></i></button>`
                               tr.appendChild(td4)
@@ -415,12 +485,10 @@ button{
                           let date = booking.timeslots.split(", ")[0];
                           date = "20" + date.slice(-2) + "-" + date.slice(3,5) + "-" + date.slice(0,2);
                           newDate = new Date(date);
-                          console.log(date);
                           let time = booking.timeslots.split(", ")[1];
                           timeSlots.push({'date': date, 'newDate': newDate, 'time': time, 'id': booking.interviewer_id, 'type': booking.interview_type});
                         }
                         sortedTimeSlots = timeSlots.sort((a,b) => a.newDate - b.newDate);
-                        console.log(sortedTimeSlots);
                         document.getElementById('nextBookingDate1').innerHTML = sortedTimeSlots[0].newDate.toDateString();
                         document.getElementById('nextBookingDate1').setAttribute("style", "border-bottom: 2px solid orange");
                         if(sortedTimeSlots.length > 1){
@@ -509,7 +577,6 @@ button{
           alert.classList.add('hide');
         }, 3000)
         const hideAlert = document.getElementsByClassName("close-btn")[0];  
-        console.log(hideAlert);
         hideAlert.addEventListener('click', function(){
         alert.classList.remove('show');
         alert.classList.add('hide');
